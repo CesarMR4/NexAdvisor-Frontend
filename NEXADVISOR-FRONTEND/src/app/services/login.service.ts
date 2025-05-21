@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Asesor } from '../models/Asesor';
-import { Estudiante } from '../models/Estudiante';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  private baseUrl = 'http://localhost:8080'; 
+
   constructor(private http: HttpClient) { }
-  login(request: Asesor) {
-    return this.http.post('http://localhost:8080/login', request);
+  login(credentials: { email: string; password: string }, tipo: 'asesor' | 'estudiante'): Observable<any> {
+    const endpoint = tipo === 'asesor'
+      ? `${this.baseUrl}/asesores/login/asesor`
+      : `${this.baseUrl}/estudiante/login/estudiante`;
+
+    return this.http.post(endpoint, credentials);
   }
- 
 }
