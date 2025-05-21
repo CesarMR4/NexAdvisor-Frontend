@@ -24,7 +24,6 @@ export class LoginComponent {
 
     this.loginService.login(credentials, this.tipoUsuario).subscribe({
       next: (usuario) => {
-        // Puedes guardar en localStorage o manejar como desees
         console.log('Usuario autenticado:', usuario);
         this.router.navigate(['/dashboard']);
       },
