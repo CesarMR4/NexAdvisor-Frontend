@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -14,8 +15,16 @@ export class LoginComponent {
   password = '';
   tipoUsuario: 'asesor' | 'estudiante' = 'estudiante';
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute) {}
 
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const rol = params['rol'];
+      if (rol === 'asesor' || rol === 'estudiante') {
+        this.tipoUsuario = rol;
+      }
+    });
+  }
   login() {
     const credentials = {
       email: this.email,
