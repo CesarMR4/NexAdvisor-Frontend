@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginComponent {
   password = '';
   tipoUsuario: 'asesor' | 'estudiante' = 'estudiante';
 
-  constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute, private authService: AuthService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -34,7 +35,8 @@ export class LoginComponent {
     this.loginService.login(credentials, this.tipoUsuario).subscribe({
       next: (usuario) => {
         console.log('Usuario autenticado:', usuario);
-        this.router.navigate(['/dashboard']);
+         this.authService.setUser({ nombre: usuario.nombre, tipoUsuario: this.tipoUsuario });
+         this.router.navigate(['/dashboard']);
       },
       error: () => {
         alert('Credenciales incorrectas');

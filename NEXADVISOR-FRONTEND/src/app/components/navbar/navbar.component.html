@@ -1,0 +1,21 @@
+<!-- navbar.component.html -->
+<nav class="navbar">
+  <div class="greeting" *ngIf="user">
+    Hola, {{ user.nombre }}
+  </div>
+
+  <div class="menu">
+    <a href="#" *ngIf="user?.tipoUsuario === 'estudiante'">Ver perfil</a>
+    <a href="#" *ngIf="user?.tipoUsuario === 'estudiante'">Contactar</a>
+    <a href="#" *ngIf="user?.tipoUsuario === 'estudiante'">Chats</a>
+    <a href="#" *ngIf="user?.tipoUsuario === 'estudiante'">Foro</a>
+  </div>
+
+   <div class="menu" *ngIf="user?.tipoUsuario === 'asesor'">
+    <a routerLink="/perfil">Ver perfil</a>
+    <a routerLink="/solicitudes">Solicitudes</a>
+    <a routerLink="/comentarios">Comentarios</a>
+    <a routerLink="/horarios">Horarios</a>
+    <a href="#" (click)="logout()">Cerrar sesión</a>
+  </div>
+</nav>
