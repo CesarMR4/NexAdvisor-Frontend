@@ -1,1 +1,19 @@
-<p>login works!</p>
+<div class="login-container">
+  <h2 *ngIf="tipoUsuario === 'asesor'">Login Asesor</h2>
+  <h2 *ngIf="tipoUsuario === 'estudiante'">Login Estudiante</h2>
+
+  <form (ngSubmit)="login()">
+    <div>
+      <label>Email:</label>
+      <input type="email" [(ngModel)]="email" name="email" required>
+    </div>
+
+    <div>
+      <label>Contraseña:</label>
+      <input type="password" [(ngModel)]="password" name="password" required>
+    </div>
+
+    <!-- Aquí puedes personalizar mensajes, estilos, imágenes, etc. -->
+    <button type="submit">Iniciar sesión</button>
+  </form>
+</div>
