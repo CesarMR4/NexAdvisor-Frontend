@@ -1,63 +1,63 @@
 import { Component, OnInit } from '@angular/core';
 import { Horario } from '../../models/Horario';
-import { Asesor } from '../../models/Asesor';
 import { HorarioService } from '../../services/horario.service';
+import { AuthService } from '../../services/auth.service';
+import { Asesor } from '../../models/Asesor';
 
 @Component({
-  selector: 'app-horario-asesor',
-  templateUrl: './horario-asesor.component.html',
-  styleUrls: ['./horario-asesor.component.css'],
-  standalone: true,
-  imports: []
+  selector: 'app-horarios-asesor',
+  templateUrl: './horarios-asesor.component.html'
 })
-export class HorarioAsesorComponent implements OnInit {
+export class HorariosAsesorComponent implements OnInit {
+  horarios: Horario[] = [];
+  diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
 
-  dias: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
-  horariosPorDia: { [dia: string]: Horario[] } = {};
-  nuevoHorario: { [dia: string]: Horario } = {};
-  asesor: Asesor = new Asesor(); // Este asesor debe venir de login o sesión
-
-  constructor(private horarioService: HorarioService) {}
+  constructor(private horarioService: HorarioService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.dias.forEach((_, index) => {
-      this.horariosPorDia[index] = [];
-      this.nuevoHorario[index] = new Horario();
-    });
+  const asesor = this.authService.getUser();
 
-    this.horarioService.listar().subscribe(data => {
-      const delAsesor = data.filter(h => h.asesor.id === this.asesor.id);
-      delAsesor.forEach(horario => {
-        this.horariosPorDia[horario.dia].push(horario);
+  if (!asesor) {
+    alert('Error: No se encontró al asesor autenticado.');
+    return;
+  }
+
+  this.horarioService.getByAsesor(asesor.id).subscribe(data => {
+    this.horarios = data;
+  });
+}
+
+  agregarHorario() {
+    this.horarios.push(new Horario());
+  }
+
+  eliminarHorario(horario: Horario) {
+    if (horario.id) {
+      this.horarioService.eliminar(horario.id).subscribe(() => {
+        this.horarios = this.horarios.filter(h => h !== horario);
       });
-    });
-  }
-
-  agregarHorario(dia: number) {
-    const h = this.nuevoHorario[dia];
-    h.dia = dia;
-    h.asesor = this.asesor;
-    this.horarioService.insertar(h).subscribe(() => {
-      this.horariosPorDia[dia].push({ ...h });
-      this.nuevoHorario[dia] = new Horario();
-    });
-  }
-
-  eliminarHorario(dia: number, index: number) {
-    const horario = this.horariosPorDia[dia][index];
-    this.horarioService.eliminar(horario.id).subscribe(() => {
-      this.horariosPorDia[dia].splice(index, 1);
-    });
-  }
-
-  editarHorario(dia: number, index: number) {
-    const horario = this.horariosPorDia[dia][index];
-    this.nuevoHorario[dia] = { ...horario };
-    this.horariosPorDia[dia].splice(index, 1); // Lo eliminamos para que se sobreescriba al guardar
+    } else {
+      this.horarios = this.horarios.filter(h => h !== horario);
+    }
   }
 
   guardarCambios() {
-    // Si llegas a tener cambios en lote, puedes implementar un método para eso en el backend
-    console.log("Cambios guardados");
+  const asesor = this.authService.getUser();
+
+  if (!asesor) {
+    alert('Error: No se encontró al asesor autenticado.');
+    return;
   }
+
+  this.horarios.forEach(horario => {
+    if (horario.id) {
+      this.horarioService.actualizar(horario.id, horario).subscribe();
+    } else {
+      horario.asesor.id = asesor.id;
+      this.horarioService.insertar(horario).subscribe();
+    }
+  });
+
+  alert('Horarios guardados exitosamente');
+}
 }

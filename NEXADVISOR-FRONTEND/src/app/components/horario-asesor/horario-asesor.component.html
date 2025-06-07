@@ -1,19 +1,23 @@
-<div class="dias-container">
-  <div *ngFor="let dia of dias; let i = index" class="dia">
-    <h3>{{ dia }}</h3>
-
-    <div *ngFor="let h of horariosPorDia[i]; let idx = index" class="horario-item">
-      {{ h.horaInicio | date:'shortTime' }} - {{ h.horaFin | date:'shortTime' }}
-      <button (click)="editarHorario(i, idx)">Edit</button>
-      <button (click)="eliminarHorario(i, idx)">Delete</button>
-    </div>
-
-    <div class="nuevo-horario">
-      <input type="time" [(ngModel)]="nuevoHorario[i].horaInicio">
-      <input type="time" [(ngModel)]="nuevoHorario[i].horaFin">
-      <button (click)="agregarHorario(i)">Agregar</button>
-    </div>
-  </div>
-</div>
-
-<button class="guardar-btn" (click)="guardarCambios()">Listo</button>
+<h2>Mi horario disponible</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Día</th>
+      <th>Hora inicio</th>
+      <th>Hora fin</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let horario of horarios">
+      <td>{{ diasSemana[horario.dia] }}</td>
+      <td><input [(ngModel)]="horario.Hora_inicio" type="time"></td>
+      <td><input [(ngModel)]="horario.Hora_fin" type="time"></td>
+      <td>
+        <button (click)="eliminarHorario(horario)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button (click)="agregarHorario()">Agregar nuevo</button>
+<button (click)="guardarCambios()">Listo</button>
