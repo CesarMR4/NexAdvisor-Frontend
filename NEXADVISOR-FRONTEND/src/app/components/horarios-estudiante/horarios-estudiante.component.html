@@ -1,0 +1,11 @@
+<div *ngFor="let dia of diasSemana" class="col">
+  <h3>{{ dia }}</h3>
+  <div *ngFor="let horario of horariosPorDia[dia]">
+    <div>
+      {{ horario.horaInicio }} - {{ horario.horaFin }}
+    </div>
+    <button (click)="seleccionarHorario(horario)">Seleccionar</button>
+  </div>
+</div>
+
+<button (click)="confirmarSeleccion()">Listo</button>
