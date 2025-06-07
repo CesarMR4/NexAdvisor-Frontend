@@ -1,0 +1,11 @@
+/* buscar-asesores.component.css */
+.buscar-asesores-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.error {
+  color: red;
+  margin-top: 0.5rem;
+}

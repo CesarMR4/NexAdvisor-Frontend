@@ -24,4 +24,11 @@ export class AsesorService {
   updateAsesor(id: number, asesor: Asesor): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}`, asesor);
   }
+  buscarPorCarrera(carrera: string): Observable<Asesor[]> {
+    return this.http.get<Asesor[]>(`${this.baseUrl}/buscar/carrera/${carrera}`);
+  }
+
+  buscarPorSector(sector: string): Observable<Asesor[]> {
+    return this.http.get<Asesor[]>(`${this.baseUrl}/buscar/sector/${sector}`);
+  }
 }

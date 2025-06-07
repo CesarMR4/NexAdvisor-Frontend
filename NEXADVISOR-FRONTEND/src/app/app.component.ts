@@ -1,4 +1,4 @@
- import { Component }from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,16 +7,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';  // <-- Agrega esto
 import { RegistroAsesorComponent } from './components/registro-asesor/registro-asesor.component';
-
-
-
 
 @Component({
   selector: 'app-root',
-   standalone: true,
-  imports: [ MatInputModule,
+  standalone: true,
+  imports: [
+    CommonModule,        // <-- Aquí
+    MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
     MatCardModule,
@@ -24,7 +23,8 @@ import { RegistroAsesorComponent } from './components/registro-asesor/registro-a
     MatIconModule,
     FormsModule,
     RouterModule,
-    RegistroAsesorComponent],
+    RegistroAsesorComponent
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

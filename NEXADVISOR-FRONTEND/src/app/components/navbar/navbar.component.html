@@ -4,14 +4,15 @@
     Hola, {{ user.nombre }}
   </div>
 
-  <div class="menu">
-    <a href="#" *ngIf="user?.tipoUsuario === 'estudiante'">Ver perfil</a>
-    <a href="#" *ngIf="user?.tipoUsuario === 'estudiante'">Contactar</a>
-    <a href="#" *ngIf="user?.tipoUsuario === 'estudiante'">Chats</a>
-    <a href="#" *ngIf="user?.tipoUsuario === 'estudiante'">Foro</a>
+  <div class="menu" *ngIf="user?.tipoUsuario === 'estudiante'">
+    <a href="#">Ver perfil</a>
+    <a href="#">Contactar</a>
+    <a href="#">Chats</a>
+    <a href="#">Foro</a>
+    <a routerLink="/buscar-asesores">Buscar Asesores</a> <!-- NUEVO ENLACE -->
   </div>
 
-   <div class="menu" *ngIf="user?.tipoUsuario === 'asesor'">
+  <div class="menu" *ngIf="user?.tipoUsuario === 'asesor'">
     <a routerLink="/perfil">Ver perfil</a>
     <a routerLink="/solicitudes">Solicitudes</a>
     <a routerLink="/comentarios">Comentarios</a>
