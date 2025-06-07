@@ -1,0 +1,19 @@
+<div class="dias-container">
+  <div *ngFor="let dia of dias; let i = index" class="dia">
+    <h3>{{ dia }}</h3>
+
+    <div *ngFor="let h of horariosPorDia[i]; let idx = index" class="horario-item">
+      {{ h.horaInicio | date:'shortTime' }} - {{ h.horaFin | date:'shortTime' }}
+      <button (click)="editarHorario(i, idx)">Edit</button>
+      <button (click)="eliminarHorario(i, idx)">Delete</button>
+    </div>
+
+    <div class="nuevo-horario">
+      <input type="time" [(ngModel)]="nuevoHorario[i].horaInicio">
+      <input type="time" [(ngModel)]="nuevoHorario[i].horaFin">
+      <button (click)="agregarHorario(i)">Agregar</button>
+    </div>
+  </div>
+</div>
+
+<button class="guardar-btn" (click)="guardarCambios()">Listo</button>
