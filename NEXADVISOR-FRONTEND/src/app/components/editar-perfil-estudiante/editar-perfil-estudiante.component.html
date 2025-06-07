@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="nombre">Nombre:</label>
+    <input id="nombre" formControlName="nombre" />
+    <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" style="color:red;">
+      El nombre es obligatorio.
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input id="email" formControlName="email" />
+    <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" style="color:red;">
+      Ingresa un email válido.
+    </div>
+  </div>
+
+  <div>
+    <label for="direccion">Dirección:</label>
+    <input id="direccion" formControlName="direccion" />
+  </div>
+
+  <div>
+    <label for="carrera">Carrera:</label>
+    <input id="carrera" formControlName="carrera" />
+  </div>
+
+  <div>
+    <label for="telefono">Teléfono:</label>
+    <input id="telefono" formControlName="telefono" />
+  </div>
+
+  <button type="submit" [disabled]="form.invalid || isLoading">
+    {{ isLoading ? 'Guardando...' : 'Guardar Cambios' }}
+  </button>
+</form>
+
+<div *ngIf="successMessage" style="color: green; margin-top: 10px;">
+  {{ successMessage }}
+</div>

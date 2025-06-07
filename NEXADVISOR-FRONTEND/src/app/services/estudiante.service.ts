@@ -1,19 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Estudiante } from '../models/Estudiante';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstudianteService {
 
-   private baseUrl = 'http://localhost:8080/api/Estudiante';
+  private baseUrl = 'http://localhost:8080/estudiante';
 
   constructor(private http: HttpClient) { }
 
-  registrar(estudiante: Estudiante): Observable<void>{
-        return this.http.post<void>(this.baseUrl, estudiante);
+  registrar(estudiante: Estudiante): Observable<void> {
+    return this.http.post<void>(this.baseUrl, estudiante);
+  }
+
+  getEstudianteById(id: number): Observable<Estudiante> {
+    return this.http.get<Estudiante>(`${this.baseUrl}/${id}`);
+  }
+
+  updateEstudiante(id: number, estudiante: Estudiante): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${id}`, estudiante);
   }
 }

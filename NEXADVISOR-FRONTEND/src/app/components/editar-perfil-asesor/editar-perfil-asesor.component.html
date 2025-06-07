@@ -1,0 +1,53 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="nombre">Nombre *</label>
+    <input id="nombre" formControlName="nombre" type="text" />
+    <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" style="color: red;">
+      El nombre es obligatorio.
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email *</label>
+    <input id="email" formControlName="email" type="email" />
+    <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" style="color: red;">
+      <div *ngIf="form.get('email')?.errors?.['required']">El email es obligatorio.</div>
+      <div *ngIf="form.get('email')?.errors?.['email']">Email no es válido.</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="direccion">Dirección</label>
+    <input id="direccion" formControlName="direccion" type="text" />
+  </div>
+
+  <div>
+    <label for="telefono">Teléfono</label>
+    <input id="telefono" formControlName="telefono" type="text" />
+  </div>
+
+  <div>
+    <label for="curriculum">Currículum (URL o texto)</label>
+    <input id="curriculum" formControlName="curriculum" type="text" />
+  </div>
+
+  <div>
+    <label for="sector">Sector</label>
+    <input id="sector" formControlName="sector" type="text" />
+  </div>
+
+  <div>
+    <label for="carrera">Carrera</label>
+    <input id="carrera" formControlName="carrera" type="text" />
+  </div>
+
+  <button type="submit" [disabled]="form.invalid || loading">
+    {{ loading ? 'Guardando...' : 'Guardar Cambios' }}
+  </button>
+
+  <div *ngIf="mensaje" style="color: green; margin-top: 10px;">
+    {{ mensaje }}
+  </div>
+
+</form>

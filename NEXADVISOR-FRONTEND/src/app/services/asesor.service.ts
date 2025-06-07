@@ -3,18 +3,25 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Asesor } from '../models/Asesor';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class AsesorService {
 
-    private baseUrl = 'http://localhost:8080/api/asesores'; 
+  private baseUrl = 'http://localhost:8080/api/asesores';
 
   constructor(private http: HttpClient) { }
 
-  registrar(asesor:Asesor): Observable<void>{
-    return this.http.post<void>(this.baseUrl, asesor);
+  registrar(asesor: Asesor): Observable<void> {
+    // Cambiar URL para registrar según backend
+    return this.http.post<void>(`${this.baseUrl}/registrar`, asesor);
+  }
 
+  getAsesorById(id: number): Observable<Asesor> {
+    return this.http.get<Asesor>(`${this.baseUrl}/${id}`);
+  }
+
+  updateAsesor(id: number, asesor: Asesor): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${id}`, asesor);
   }
 }
