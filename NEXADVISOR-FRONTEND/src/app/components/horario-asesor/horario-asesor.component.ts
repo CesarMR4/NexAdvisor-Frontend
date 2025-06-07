@@ -37,7 +37,7 @@ export class HorarioAsesorComponent implements OnInit {
     const h = this.nuevoHorario[dia];
     h.dia = dia;
     h.asesor = this.asesor;
-    this.horarioService.registrar(h).subscribe(() => {
+    this.horarioService.insertar(h).subscribe(() => {
       this.horariosPorDia[dia].push({ ...h });
       this.nuevoHorario[dia] = new Horario();
     });
