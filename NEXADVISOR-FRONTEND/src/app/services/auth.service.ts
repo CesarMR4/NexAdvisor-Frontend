@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 export interface Usuario {
   id: number;
   nombre: string;
   tipoUsuario: 'asesor' | 'estudiante';
+  email?: string;
+  token?: string; // si usas JWT u otro token
 }
 
 @Injectable({
@@ -15,9 +18,22 @@ export class AuthService {
   private userSource = new BehaviorSubject<Usuario | null>(null);
   currentUser = this.userSource.asObservable();
 
+  private apiUrl = 'http://localhost:8080'; // Cambia al URL real
+
+  constructor(private http: HttpClient) {
+    this.cargarUsuarioDesdeStorage();
+  }
+
+  private cargarUsuarioDesdeStorage() {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const user: Usuario = JSON.parse(storedUser);
+      this.userSource.next(user);
+    }
+  }
+
   setUser(user: Usuario) {
     this.userSource.next(user);
-    // También puedes guardar en localStorage para persistencia
     localStorage.setItem('user', JSON.stringify(user));
   }
 
@@ -27,18 +43,7 @@ export class AuthService {
   }
 
   getUser(): Usuario | null {
-    const user = this.userSource.getValue();
-    if (user) {
-      return user;
-    }
-    // Si no está en BehaviorSubject, intenta cargar de localStorage
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      const parsedUser: Usuario = JSON.parse(storedUser);
-      this.userSource.next(parsedUser);
-      return parsedUser;
-    }
-    return null;
+    return this.userSource.getValue();
   }
 
   getUserId(): number | null {
@@ -49,5 +54,18 @@ export class AuthService {
   getUserTipo(): 'asesor' | 'estudiante' | null {
     const user = this.getUser();
     return user ? user.tipoUsuario : null;
+  }
+
+  // Método real de login que hace HTTP POST al backend
+  login(email: string, password: string): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.apiUrl}/auth/login`, { email, password }).pipe(
+      tap(user => {
+        this.setUser(user);
+      })
+    );
+  }
+
+  logout() {
+    this.clearUser();
   }
 }

@@ -1,0 +1,40 @@
+<div *ngFor="let comentario of comentarios" class="comentario">
+
+  <!-- Edición Comentario -->
+  <div *ngIf="comentarioEditandoId === comentario.id; else verComentario">
+    <form [formGroup]="editarComentarioForm" (ngSubmit)="enviarEdicionComentario()">
+      <textarea formControlName="contenido"></textarea>
+      <button type="submit" [disabled]="editarComentarioForm.invalid">Guardar</button>
+      <button type="button" (click)="cancelarEdicionComentario()">Cancelar</button>
+    </form>
+  </div>
+
+  <ng-template #verComentario>
+    <p>{{ comentario.contenido }}</p>
+    <small>por {{ comentario.estudiante.nombre }}</small>
+    <button *ngIf="esDueñoComentario(comentario)" (click)="activarEdicionComentario(comentario)">Editar</button>
+    <button *ngIf="esDueñoComentario(comentario)" (click)="eliminarComentario(comentario.id)">Eliminar</button>
+  </ng-template>
+
+  <!-- Respuestas -->
+  <div *ngFor="let respuesta of respuestas.filter(r => r.comentario.id === comentario.id)" class="respuesta">
+
+    <!-- Edición Respuesta -->
+    <div *ngIf="respuestaEditandoId === respuesta.id; else verRespuesta">
+      <form [formGroup]="editarRespuestaForm" (ngSubmit)="enviarEdicionRespuesta()">
+        <textarea formControlName="contenido"></textarea>
+        <button type="submit" [disabled]="editarRespuestaForm.invalid">Guardar</button>
+        <button type="button" (click)="cancelarEdicionRespuesta()">Cancelar</button>
+      </form>
+    </div>
+
+    <ng-template #verRespuesta>
+      <p>{{ respuesta.contenido }}</p>
+      <small>por {{ respuesta.estudiante.nombre }}</small>
+      <button *ngIf="esDueñoRespuesta(respuesta)" (click)="activarEdicionRespuesta(respuesta)">Editar</button>
+      <button *ngIf="esDueñoRespuesta(respuesta)" (click)="eliminarRespuesta(respuesta.id)">Eliminar</button>
+    </ng-template>
+
+  </div>
+
+</div>
