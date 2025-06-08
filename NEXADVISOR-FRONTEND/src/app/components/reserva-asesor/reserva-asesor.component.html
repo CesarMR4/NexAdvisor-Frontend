@@ -1,0 +1,30 @@
+<h2>Solicitudes de Reserva</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Estudiante</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Estado</th>
+      <th>Comentario</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reserva of reservas">
+      <td>{{ reserva.estudiante.nombre }}</td>
+      <td>{{ reserva.fechaReserva | date:'shortDate' }}</td>
+      <td>{{ reserva.horaReserva }}</td>
+      <td>{{ reserva.estado }}</td>
+      <td>
+        <input [(ngModel)]="reserva.comentarioAsesor" placeholder="Comentario">
+      </td>
+      <td>
+        <button (click)="actualizarComentario(reserva, reserva.comentarioAsesor)">Responder</button>
+        <button (click)="actualizarEstado(reserva, 'Aceptada')">Aceptar</button>
+        <button (click)="actualizarEstado(reserva, 'Rechazada')">Rechazar</button>
+        <button (click)="eliminarReserva(reserva.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
