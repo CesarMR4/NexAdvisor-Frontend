@@ -1,1 +1,34 @@
-<p>registro-estudiante works!</p>
+<div class="registro-container">
+  <h2>Registro del Estudiante</h2>
+  <form (ngSubmit)="registrar()" enctype="multipart/form-data">
+    <div>
+      <label>Nombre:</label>
+      <input type="text" [(ngModel)]="Estudiante.nombre" name="nombre" required>
+    </div>
+    <div>
+      <label>Email:</label>
+      <input type="email" [(ngModel)]="Estudiante.email" name="email" required>
+    </div>
+    <div>
+      <label>Contraseña:</label>
+      <input type="password" [(ngModel)]="Estudiante.password" name="password" required>
+    </div>
+    <div>
+      <label>Dirección:</label>
+      <input type="text" [(ngModel)]="Estudiante.direccion" name="direccion" required>
+    </div>
+    <div>
+      <label>Teléfono:</label>
+      <input type="text" [(ngModel)]="Estudiante.telefono" name="telefono" required>
+    </div>
+    <div>
+      <label>Carrera:</label>
+      <input type="text" [(ngModel)]="Estudiante.carrera" name="carrera" required>
+    </div>
+    <div>
+      <label>Currículum (PDF):</label>
+      <input type="file" (change)="onFileSelected($event)" accept=".pdf" required>
+    </div>
+    <button type="submit">Registrarse</button>
+  </form>
+</div>
