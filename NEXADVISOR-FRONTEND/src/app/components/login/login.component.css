@@ -8,44 +8,75 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-.login-container h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #333;
+.login-page {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.login-container form div {
-  margin-bottom: 20px;
+.login-left {
+  width: 40%;
+  background-color: #9ed0f3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #000;
 }
 
-.login-container label {
-  display: block;
-  margin-bottom: 8px;
+.login-left h1 {
+  font-size: 28px;
   font-weight: bold;
-  color: #555;
 }
 
-.login-container input[type="email"],
-.login-container input[type="password"] {
+.login-left .logo {
+  width: 100px;
+  margin-top: 20px;
+}
+
+.login-right {
+  width: 60%;
+  background-color: #f1ecec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background-color: #a3d8a1;
+  padding: 40px;
+  border-radius: 25px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.login-box input {
+  display: block;
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-}
-
-.login-container button {
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
-  font-size: 16px;
+  margin: 10px 0;
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 8px;
 }
 
-.login-container button:hover {
-  background-color: #0056b3;
+.login-box button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #444;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.login-box .forgot {
+  display: block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
 }
