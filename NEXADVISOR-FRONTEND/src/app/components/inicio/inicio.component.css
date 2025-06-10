@@ -34,23 +34,36 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   color: white;
   min-width: 200px;
+  background-size: 200% 200%;
+  animation: gradientMove 4s ease infinite;
+  transition: transform 0.2s ease;
 }
 
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Estudiante: de verde a azul */
 .btn-estudiante {
-  background-color: #007bff;
+  background-image: linear-gradient(270deg, #28a745, #007bff);
 }
 
-.btn-estudiante:hover {
-  background-color: #0056b3;
-}
-
+/* Asesor: de azul a verde */
 .btn-asesor {
-  background-color: #28a745; 
+  background-image: linear-gradient(270deg, #007bff, #28a745);
 }
 
-.btn-asesor:hover {
-  background-color: #1e7e34;
+/* Animación del degradado */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

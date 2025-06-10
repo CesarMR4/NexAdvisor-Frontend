@@ -5,6 +5,11 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   background: #fafafa;
+  text-align: center; 
+}
+
+form {
+  text-align: left; 
 }
 
 form div {
@@ -31,4 +36,6 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  display: block;
+  margin: 1rem auto 0 auto; 
 }
