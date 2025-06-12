@@ -10,14 +10,19 @@
   </thead>
   <tbody>
     <tr *ngFor="let horario of horarios">
-      <td>{{ diasSemana[horario.diakctrl+k vkv] }}</td>
+      <td>
+        <select [(ngModel)]="horario.dia">
+          <option *ngFor="let dia of diasSemana; let i = index" [value]="i">
+            {{ dia }}
+          </option>
+        </select>
+      </td>
       <td><input [(ngModel)]="horario.Hora_inicio" type="time"></td>
       <td><input [(ngModel)]="horario.Hora_fin" type="time"></td>
-      <td>
-        <button (click)="eliminarHorario(horario)">Eliminar</button>
-      </td>
+      <td><button (click)="eliminarHorario(horario)">Eliminar</button></td>
     </tr>
   </tbody>
 </table>
+
 <button (click)="agregarHorario()">Agregar nuevo</button>
 <button (click)="guardarCambios()">Listo</button>
