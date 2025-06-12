@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Asesor } from '../models/Asesor';
+import { Auxiliar } from '../models/Auxiliar';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +32,8 @@ export class AsesorService {
   buscarPorSector(sector: string): Observable<Asesor[]> {
     return this.http.get<Asesor[]>(`${this.baseUrl}/buscar/sector/${sector}`);
   }
+  resetPassword(aux: Auxiliar): Observable<string> {
+    return this.http.put(`${this.baseUrl}/reset-password`, aux, { responseType: 'text' });
+  }
+
 }

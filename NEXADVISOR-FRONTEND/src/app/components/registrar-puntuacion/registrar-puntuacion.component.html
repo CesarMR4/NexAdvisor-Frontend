@@ -1,0 +1,19 @@
+<div>
+  <h2>Registrar Puntuación</h2>
+
+  <label>ID Estudiante:</label>
+  <input type="number" [(ngModel)]="puntuacion.idEstudiante">
+
+  <label>ID Asesor:</label>
+  <input type="number" [(ngModel)]="puntuacion.idAsesor">
+
+  <label>Puntaje (1 a 5):</label>
+  <input type="number" [(ngModel)]="puntuacion.puntaje" min="1" max="5">
+
+  <label>Comentario:</label>
+  <input type="text" [(ngModel)]="puntuacion.comentario">
+
+  <button (click)="registrar()">Registrar</button>
+
+  <p>{{ mensaje }}</p>
+</div>

@@ -1,0 +1,25 @@
+<div class="recuperar-contrasena-container">
+  <h2>Recuperar Contraseña</h2>
+
+  <div *ngIf="!mostrarConfirmacion">
+    <label>Correo electrónico:</label>
+    <input type="email" [(ngModel)]="email" /><br /><br />
+
+    <label>Nueva contraseña:</label>
+    <input type="password" [(ngModel)]="nuevaPassword" /><br /><br />
+
+    <button (click)="solicitarConfirmacion()">Actualizar contraseña</button>
+  </div>
+
+  <div *ngIf="mostrarConfirmacion">
+    <h3>Confirmación de identidad</h3>
+    <label>Ingrese su número telefónico registrado:</label>
+    <input type="text" [(ngModel)]="numeroTelefonico" /><br /><br />
+
+    <button (click)="confirmarYActualizar()">Confirmar y Cambiar</button>
+  </div>
+
+  <div *ngIf="mensaje">
+    <p>{{ mensaje }}</p>
+  </div>
+</div>
