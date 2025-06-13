@@ -1,0 +1,6 @@
+<div *ngIf="promedio !== null">
+  <p>Puntuación promedio: {{ promedio.toFixed(2) }} (basado en {{ cantidad }} puntuaciones)</p>
+</div>
+<div *ngIf="promedio === null">
+  <p>Este asesor aún no tiene puntuaciones.</p>
+</div>
