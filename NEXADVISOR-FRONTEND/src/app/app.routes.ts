@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroAsesorComponent } from './components/registro-asesor/registro-asesor.component';
 import { BuscarAsesoresComponent } from './components/buscar-asesores/buscar-asesores.component';
 import { PerfilAsesorComponent } from './components/ver-perfil-asesor/ver-perfil-asesor.component';
+import { ComentariosAsesorComponent } from './components/comentarios-asesor/comentarios-asesor.component';
 
 
 
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'registro-asesor', component: RegistroAsesorComponent },
   { path: 'buscar-asesores', component: BuscarAsesoresComponent},
   {path: 'ver-perfil-asesor/:id', component: PerfilAsesorComponent },
+  {path:'comentarios-asesor', component: ComentariosAsesorComponent},
   { path: '**', redirectTo: '' }, // ← siempre debe ir al final
 ];

@@ -31,6 +31,11 @@ export class ComentarioService {
     return this.http.delete<void>(`${this.apiUrl}/comentarios/${id}`, { headers });
   }
 
+  // 🔽 MÉTODO NUEVO PARA EL ASESOR
+  getComentariosPorAsesor(idAsesor: number): Observable<Comentario[]> {
+    return this.http.get<Comentario[]>(`${this.apiUrl}/comentarios/asesor/${idAsesor}`);
+  }
+
   private crearHeaders(): HttpHeaders {
     const userId = this.authService.getUserId();
     return new HttpHeaders({ 'X-User-Id': userId ? userId.toString() : '' });
