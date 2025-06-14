@@ -12,7 +12,7 @@
     <tr *ngFor="let comentario of comentarios">
       <td>{{ comentario.estudiante.nombre }}</td>
       <td>{{ comentario.contenido }}</td>
-      <td>{{ comentario.fecha | date:'short' }}</td>
+      <td>{{ comentario.fechacreacion | date: 'short' }}</td>
     </tr>
   </tbody>
 </table>

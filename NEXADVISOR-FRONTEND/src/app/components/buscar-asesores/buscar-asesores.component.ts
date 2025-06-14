@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';    // Importa CommonModule
-import { FormsModule } from '@angular/forms';      // Importa FormsModule
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AsesorService } from '../../services/asesor.service';
 import { Asesor } from '../../models/Asesor';
+import { VerPuntuacionComponent } from '../ver-puntuacion/ver-puntuacion.component'; // 👈 Agrega esto
 
 @Component({
   selector: 'app-buscar-asesores',
-  standalone: true,     // <- Declarar que es standalone
-  imports: [CommonModule, FormsModule],   // <- Agregar los módulos que usas
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    VerPuntuacionComponent  // 👈 Importa el componente aquí
+  ],
   templateUrl: './buscar-asesores.component.html',
   styleUrls: ['./buscar-asesores.component.css']
 })

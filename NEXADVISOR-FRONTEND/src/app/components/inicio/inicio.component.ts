@@ -3,9 +3,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
-  imports: [],
   templateUrl: './inicio.component.html',
-  styleUrl: './inicio.component.css'
+  styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent {
   constructor(private router: Router) {}

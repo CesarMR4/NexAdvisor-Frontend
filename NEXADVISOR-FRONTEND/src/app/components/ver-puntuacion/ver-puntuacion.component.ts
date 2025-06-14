@@ -11,7 +11,6 @@ import { Puntuacion } from '../../models/Puntuacion';
   styleUrls: ['./ver-puntuacion.component.css']
 })
 export class VerPuntuacionComponent implements OnInit {
-
   @Input() idAsesor: number = 0;
   promedio: number | null = null;
   cantidad: number = 0;

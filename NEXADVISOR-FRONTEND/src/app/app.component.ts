@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';  // <-- Agrega esto
 import { RegistroAsesorComponent } from './components/registro-asesor/registro-asesor.component';
+import { VerPuntuacionComponent } from './components/ver-puntuacion/ver-puntuacion.component';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ import { RegistroAsesorComponent } from './components/registro-asesor/registro-a
     MatIconModule,
     FormsModule,
     RouterModule,
-    RegistroAsesorComponent
+    RegistroAsesorComponent,
+    VerPuntuacionComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

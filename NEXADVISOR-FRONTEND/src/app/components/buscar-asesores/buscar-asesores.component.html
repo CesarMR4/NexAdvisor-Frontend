@@ -15,7 +15,7 @@
   <div>
     <input
       type="text"
-      placeholder="Ingrese criterio de búsqueda"
+      placeholder="Ingrese criterio de bús  queda"
       [(ngModel)]="criterio"
       (keyup.enter)="buscar()"
     />
@@ -28,7 +28,7 @@
   <ul *ngIf="resultados.length > 0">
     <li *ngFor="let asesor of resultados">
       <strong>{{ asesor.nombre }}</strong> — {{ asesor.carrera }} — {{ asesor.sector }} — {{ asesor.email }}
-      <app-ver-puntuacion [idAsesor]="asesor.id_Asesor"></app-ver-puntuacion>
+      <app-ver-puntuacion [idAsesor]="asesor.id"></app-ver-puntuacion>
     </li>
   </ul>
 

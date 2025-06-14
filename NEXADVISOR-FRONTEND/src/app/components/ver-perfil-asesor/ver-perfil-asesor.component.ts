@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AsesorService } from '../../services/asesor.service';
 import { Asesor } from '../../models/Asesor';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-perfil-asesor',
-  templateUrl: './perfil-asesor.component.html',
-  styleUrls: ['./perfil-asesor.component.css']
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './ver-perfil-asesor.component.html',
+  styleUrls: ['./ver-perfil-asesor.component.css']
 })
 export class PerfilAsesorComponent implements OnInit {
 

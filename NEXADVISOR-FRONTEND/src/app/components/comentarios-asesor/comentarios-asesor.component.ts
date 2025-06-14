@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Comentario } from '../../models/Comentario';
 import { ComentarioService } from '../../services/comentarios.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-comentarios-asesor',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './comentarios-asesor.component.html',
-  styleUrl: './comentarios-asesor.component.css'
+  styleUrls: ['./comentarios-asesor.component.css'],
+  providers: [DatePipe]
 })
-export class ComentariosAsesorComponent {
-comentarios: Comentario[] = [];
+export class ComentariosAsesorComponent implements OnInit {
+  comentarios: Comentario[] = [];
 
   constructor(
     private comentarioService: ComentarioService,
