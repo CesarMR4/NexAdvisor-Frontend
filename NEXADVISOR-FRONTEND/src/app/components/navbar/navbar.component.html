@@ -1,22 +1,28 @@
-<!-- navbar.component.html -->
 <nav class="navbar">
- <div class="greeting" *ngIf="user as u">
-  Hola, {{ u.nombre }}
-</div>
-
-  <div class="menu" *ngIf="user?.tipoUsuario === 'estudiante'">
-    <a href="#">Ver perfil</a>
-    <a href="#">Contactar</a>
-    <a href="#">Chats</a>
-    <a href="#">Foro</a>
-    <a routerLink="/buscar-asesores">Buscar Asesores</a> <!-- NUEVO ENLACE -->
+  <div class="greeting" *ngIf="user">
+    Bienvenido, {{ user.nombre }}
   </div>
 
+  <!-- Menú para estudiante -->
+  <div class="menu" *ngIf="user?.tipoUsuario === 'estudiante'">
+    <ul>
+      <li><a routerLink="/perfil-estudiante">Ver perfil</a></li>
+      <li><a routerLink="/contactar">Contactar</a></li>
+      <li><a routerLink="/chats">Chats</a></li>
+      <li><a routerLink="/foro">Foro</a></li>
+      <li><a routerLink="/buscar-asesores">Buscar Asesores</a></li>
+      <li><a href="#" (click)="logout()">Cerrar sesión</a></li>
+    </ul>
+  </div>
+
+  <!-- Menú para asesor -->
   <div class="menu" *ngIf="user?.tipoUsuario === 'asesor'">
-    <a routerLink="/perfil">Ver perfil</a>
-    <li><a routerLink="/reservas-asesor">Reservas</a></li>
-    <a routerLink="/comentarios-asesor">Comentarios</a>
-    <a routerLink="/horarios">Horarios</a>
-    <a href="#" (click)="logout()">Cerrar sesión</a>
+    <ul>
+      <li><a routerLink="/perfil">Ver perfil</a></li>
+      <li><a routerLink="/reservas-asesor">Reservas</a></li>
+      <li><a routerLink="/comentarios-asesor">Comentarios</a></li>
+      <li><a routerLink="/horarios">Horarios</a></li>
+      <li><a href="#" (click)="logout()">Cerrar sesión</a></li>
+    </ul>
   </div>
 </nav>

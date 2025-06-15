@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule, RouterModule, NavbarComponent],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   user: { nombre: string; tipoUsuario: 'asesor' | 'estudiante' } | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -19,9 +21,9 @@ export class NavbarComponent {
       this.user = user;
     });
   }
-   logout(): void {
+
+  logout(): void {
     this.authService.clearUser();
-    this.router.navigate(['/login']); // Redirige al login
+    this.router.navigate(['/login']);
   }
-  
 }

@@ -1,33 +1,38 @@
-/* navbar.component.css */
-
 .navbar {
-  background-color: #27ae60; /* Verde brillante */
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #4CAF50;
   color: white;
-  font-family: Arial, sans-serif;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .greeting {
-  font-weight: bold;
-  font-size: 1.1em;
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.menu li {
+  display: inline-block;
 }
 
 .menu a {
   color: white;
-  margin-left: 15px;
   text-decoration: none;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.3s ease;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
 }
 
 .menu a:hover {
-  color: #2ecc71; /* Verde más claro al pasar el mouse */
-}
-
-.active-link {
-  border-bottom: 2px solid #2ecc71;
+  color: #d9ffdc;
 }

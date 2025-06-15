@@ -58,21 +58,24 @@ login() {
         this.router.navigate(['/dashboard-asesor']); // Luego lo crearás
       }
     },
-    error: () => {
-      // TEMPORAL: simular login cuando hay error
-      console.warn('Simulando login por error en backend');
-      this.authService.setUser({
-        id: 999,
-        nombre: 'Estudiante Demo',
-        tipoUsuario: this.tipoUsuario
-      });
+   error: () => {
+  // TEMPORAL: simular login cuando hay error
+  console.warn('Simulando login por error en backend');
 
-      if (this.tipoUsuario === 'estudiante') {
-        this.router.navigate(['/dashboard-estudiante']);
-      } else {
-        this.router.navigate(['/dashboard-asesor']);
-      }
-    }
+  const nombreSimulado = this.tipoUsuario === 'estudiante' ? 'Estudiante Demo' : 'Asesor Demo';
+
+  this.authService.setUser({
+    id: 999,
+    nombre: nombreSimulado,
+    tipoUsuario: this.tipoUsuario
+  });
+
+  if (this.tipoUsuario === 'estudiante') {
+    this.router.navigate(['/dashboard-estudiante']);
+  } else {
+    this.router.navigate(['/dashboard-asesor']);
+  }
+}
   });
 }
 
