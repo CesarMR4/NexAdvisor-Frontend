@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
 login() {
   const credentials = {
     email: this.email,
@@ -54,14 +55,27 @@ login() {
       if (this.tipoUsuario === 'estudiante') {
         this.router.navigate(['/dashboard-estudiante']);
       } else {
-        this.router.navigate(['/dashboard-asesor']); // luego lo crearás
+        this.router.navigate(['/dashboard-asesor']); // Luego lo crearás
       }
     },
     error: () => {
-      alert('Credenciales incorrectas');
+      // TEMPORAL: simular login cuando hay error
+      console.warn('Simulando login por error en backend');
+      this.authService.setUser({
+        id: 999,
+        nombre: 'Estudiante Demo',
+        tipoUsuario: this.tipoUsuario
+      });
+
+      if (this.tipoUsuario === 'estudiante') {
+        this.router.navigate(['/dashboard-estudiante']);
+      } else {
+        this.router.navigate(['/dashboard-asesor']);
+      }
     }
   });
 }
+
   // ✅ Nuevo método agregado
   irARegistro() {
     if (this.tipoUsuario === 'estudiante') {
