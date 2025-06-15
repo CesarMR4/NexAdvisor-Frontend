@@ -1,8 +1,8 @@
 <!-- navbar.component.html -->
 <nav class="navbar">
-  <div class="greeting" *ngIf="user">
-    Hola, {{ user.nombre }}
-  </div>
+ <div class="greeting" *ngIf="user as u">
+  Hola, {{ u.nombre }}
+</div>
 
   <div class="menu" *ngIf="user?.tipoUsuario === 'estudiante'">
     <a href="#">Ver perfil</a>

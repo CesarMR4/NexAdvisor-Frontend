@@ -36,29 +36,32 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+login() {
+  const credentials = {
+    email: this.email,
+    password: this.password
+  };
 
-  login() {
-    const credentials = {
-      email: this.email,
-      password: this.password
-    };
+  this.loginService.login(credentials, this.tipoUsuario).subscribe({
+    next: (usuario) => {
+      console.log('Usuario autenticado:', usuario);
+      this.authService.setUser({
+        id: usuario.id,
+        nombre: usuario.nombre,
+        tipoUsuario: this.tipoUsuario
+      });
 
-    this.loginService.login(credentials, this.tipoUsuario).subscribe({
-      next: (usuario) => {
-        console.log('Usuario autenticado:', usuario);
-        this.authService.setUser({
-          id: usuario.id,
-          nombre: usuario.nombre,
-          tipoUsuario: this.tipoUsuario
-        });
-        this.router.navigate(['/dashboard']);
-      },
-      error: () => {
-        alert('Credenciales incorrectas');
+      if (this.tipoUsuario === 'estudiante') {
+        this.router.navigate(['/dashboard-estudiante']);
+      } else {
+        this.router.navigate(['/dashboard-asesor']); // luego lo crearás
       }
-    });
-  }
-
+    },
+    error: () => {
+      alert('Credenciales incorrectas');
+    }
+  });
+}
   // ✅ Nuevo método agregado
   irARegistro() {
     if (this.tipoUsuario === 'estudiante') {
