@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Estudiante } from '../../models/Estudiante';
 import { EstudianteService } from '../../services/estudiante.service';
 
-
 @Component({
   selector: 'app-registro-estudiante',
-  imports: [],
+  standalone: true, // 👈 Esto es CLAVE
+  imports: [CommonModule, FormsModule], // 👈 Importas lo necesario para usar ngModel y ngForm
   templateUrl: './registro-estudiante.component.html',
-  styleUrl: './registro-estudiante.component.css'
+  styleUrls: ['./registro-estudiante.component.css'] // 👈 era `styleUrl`, lo correcto es `styleUrls`
 })
 export class RegistroEstudianteComponent {
 
@@ -15,7 +17,7 @@ export class RegistroEstudianteComponent {
 
   constructor(private estudianteService: EstudianteService) {}
 
-  registrar(){
+  registrar() {
     this.estudiante.fechaRegistro = new Date();
     this.estudiante.rol = "estudiante";
 
@@ -29,4 +31,3 @@ export class RegistroEstudianteComponent {
     });
   }
 }
-     

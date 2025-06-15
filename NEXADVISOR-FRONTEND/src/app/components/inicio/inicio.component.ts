@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router'; // Asegura importar ambos
 
 @Component({
   selector: 'app-inicio',
+  standalone: true, // ← Esta línea es clave
+  imports: [RouterModule], // ← Necesario para usar directivas de router
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent {
   constructor(private router: Router) {}
 
-  irAlLogin(rol: 'asesor' | 'estudiante') {
-    this.router.navigate(['/login'], { queryParams: { rol } });
+  irAlLoginEstudiante() {
+    this.router.navigate(['/login'], { queryParams: { rol: 'estudiante' } });
+  }
+
+  irAlLogin(tipo: 'asesor' | 'estudiante') {
+    this.router.navigate(['/login'], { queryParams: { rol: tipo } });
   }
 }
