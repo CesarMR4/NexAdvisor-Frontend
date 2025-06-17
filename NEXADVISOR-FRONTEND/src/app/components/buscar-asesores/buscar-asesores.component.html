@@ -1,38 +1,42 @@
-<!-- buscar-asesores.component.html -->
 <div class="buscar-asesores-container">
   <h2>Buscar Asesores</h2>
 
-  <div>
-    <label>
-      Buscar por:
-      <select [(ngModel)]="tipoBusqueda">
-        <option value="carrera">Carrera</option>
-        <option value="sector">Sector</option>
-      </select>
-    </label>
+  <div style="margin-bottom: 1rem;">
+    <label for="tipoBusqueda">Buscar por:</label>
+    <select id="tipoBusqueda" [(ngModel)]="tipoBusqueda">
+      <option value="carrera">Carrera</option>
+      <option value="sector">Sector</option>
+    </select>
   </div>
 
-  <div>
+  <div style="display: flex; align-items: center; margin-bottom: 1rem;">
     <input
       type="text"
-      placeholder="Ingrese criterio de bús  queda"
+      placeholder="Ingrese criterio de búsqueda"
       [(ngModel)]="criterio"
       (keyup.enter)="buscar()"
+      aria-label="Criterio de búsqueda"
     />
     <button (click)="buscar()" [disabled]="cargando">Buscar</button>
   </div>
 
-  <div *ngIf="cargando">Cargando resultados...</div>
+  <div *ngIf="cargando" style="text-align: center; font-weight: 600; margin-top: 1rem;">
+    Cargando resultados...
+  </div>
+
   <div *ngIf="errorMensaje" class="error">{{ errorMensaje }}</div>
 
   <ul *ngIf="resultados.length > 0">
     <li *ngFor="let asesor of resultados">
-      <strong>{{ asesor.nombre }}</strong> — {{ asesor.carrera }} — {{ asesor.sector }} — {{ asesor.email }}
+      <strong>{{ asesor.nombre }}</strong>
+      <span>{{ asesor.carrera }}</span>
+      <span>{{ asesor.sector }}</span>
+      <span>{{ asesor.email }}</span>
       <app-ver-puntuacion [idAsesor]="asesor.id"></app-ver-puntuacion>
     </li>
   </ul>
 
-  <div *ngIf="!cargando && resultados.length === 0 && criterio">
+  <div *ngIf="!cargando && resultados.length === 0 && criterio" class="no-results">
     No se encontraron asesores con ese criterio.
   </div>
 </div>
