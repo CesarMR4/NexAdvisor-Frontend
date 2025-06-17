@@ -1,0 +1,35 @@
+.perfil-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #eef9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-container h2 {
+  text-align: center;
+  color: #2a5d77;
+  margin-bottom: 25px;
+}
+
+.perfil-item {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.btn-editar {
+  background: linear-gradient(45deg, #4caf50, #81c784);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(76, 175, 80, 0.4);
+  transition: background 0.3s ease;
+}
+
+.btn-editar:hover {
+  background: linear-gradient(45deg, #388e3c, #66bb6a);
+}
+

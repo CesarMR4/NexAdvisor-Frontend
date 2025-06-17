@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';  // <-- Agrega esto
 import { RegistroAsesorComponent } from './components/registro-asesor/registro-asesor.component';
 import { VerPuntuacionComponent } from './components/ver-puntuacion/ver-puntuacion.component';
@@ -25,7 +25,8 @@ import { VerPuntuacionComponent } from './components/ver-puntuacion/ver-puntuaci
     FormsModule,
     RouterModule,
     RegistroAsesorComponent,
-    VerPuntuacionComponent
+    VerPuntuacionComponent,
+    ReactiveFormsModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

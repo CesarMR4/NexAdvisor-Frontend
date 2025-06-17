@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { EstudianteService } from '../../services/estudiante.service';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-editar-perfil-estudiante',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './editar-perfil-estudiante.component.html',
   styleUrls: ['./editar-perfil-estudiante.component.css']
 })
@@ -17,7 +21,8 @@ export class EditarPerfilEstudianteComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private estudianteService: EstudianteService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +52,9 @@ export class EditarPerfilEstudianteComponent implements OnInit {
           next: () => {
             this.successMessage = 'Perfil actualizado correctamente';
             this.isLoading = false;
+            setTimeout(() => {
+              this.router.navigate(['/perfil-estudiante']);
+            }, 2000);
           },
           error: () => {
             alert('Error al actualizar el perfil');

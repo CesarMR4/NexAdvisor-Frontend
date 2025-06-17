@@ -5,6 +5,8 @@ import { RegistroAsesorComponent } from './components/registro-asesor/registro-a
 import { BuscarAsesoresComponent } from './components/buscar-asesores/buscar-asesores.component';
 import { PerfilAsesorComponent } from './components/ver-perfil-asesor/ver-perfil-asesor.component';
 import { ComentariosAsesorComponent } from './components/comentarios-asesor/comentarios-asesor.component';
+import { PerfilEstudianteComponent } from './components/perfil-estudiante/perfil-estudiante.component';
+import { EditarPerfilEstudianteComponent } from './components/editar-perfil-estudiante/editar-perfil-estudiante.component';
 
 // ⚠️ QUITA este import si el componente es standalone
 // import { LoginComponent } from './components/login/login.component';
@@ -28,6 +30,8 @@ export const routes: Routes = [
     import('./components/dashboard-asesor/dashboard-asesor.component').then(m => m.DashboardAsesorComponent)
 },
   { path: 'registro-estudiante', component: RegistroEstudianteComponent },
+  {path:'perfil-estudiante', component: PerfilEstudianteComponent},
+  { path: 'editar-perfil-estudiante', component: EditarPerfilEstudianteComponent },
   { path: 'registro-asesor', component: RegistroAsesorComponent },
   { path: 'buscar-asesores', component: BuscarAsesoresComponent },
   { path: 'ver-perfil-asesor/:id', component: PerfilAsesorComponent },

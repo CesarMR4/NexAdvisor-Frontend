@@ -1,0 +1,11 @@
+<div class="perfil-container">
+  <h2>Perfil del Estudiante</h2>
+  <div class="perfil-item"><strong>Nombre:</strong> {{ estudiante.nombre }}</div>
+  <div class="perfil-item"><strong>Email:</strong> {{ estudiante.email }}</div>
+  <div class="perfil-item"><strong>Teléfono:</strong> {{ estudiante.telefono }}</div>
+  <div class="perfil-item"><strong>Dirección:</strong> {{ estudiante.direccion }}</div>
+  <div class="perfil-item"><strong>Carrera:</strong> {{ estudiante.carrera }}</div>
+  <div class="perfil-item"><strong>Fecha de Registro:</strong> {{ estudiante.fechaRegistro | date }}</div>
+  <button (click)="editarPerfil()" class="btn-editar">Editar</button>
+
+</div>
