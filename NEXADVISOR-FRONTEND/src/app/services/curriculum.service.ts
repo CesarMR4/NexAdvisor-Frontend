@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Curriculum {
@@ -18,10 +18,11 @@ export class CurriculumService {
 
   constructor(private http: HttpClient) {}
 
-  analizarCurriculum(idReserva: number, textoCurriculum: string): Observable<string> {
-    const headers = new HttpHeaders({'Content-Type': 'text/plain'});
-    return this.http.post(`${this.baseUrl}/analizar/${idReserva}`, textoCurriculum, {
-      headers,
+  analizarCurriculum(idReserva: number, archivo: File): Observable<string> {
+    const formData = new FormData();
+    formData.append('archivo', archivo);  // nombre debe ser "archivo" (igual que en backend)
+
+    return this.http.post(`${this.baseUrl}/analizar/${idReserva}`, formData, {
       responseType: 'text'
     });
   }
@@ -29,4 +30,11 @@ export class CurriculumService {
   obtenerReportePorReserva(idReserva: number): Observable<Curriculum> {
     return this.http.get<Curriculum>(`${this.baseUrl}/reporte/${idReserva}`);
   }
+
+  descargarReportePDF(idReserva: number): Observable<Blob> {
+  return this.http.get(`${this.baseUrl}/reporte/${idReserva}/pdf`, {
+    responseType: 'blob'  // importante para recibir archivos
+  });
+
+}
 }
