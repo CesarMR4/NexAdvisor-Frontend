@@ -33,6 +33,8 @@
       <span>{{ asesor.sector }}</span>
       <span>{{ asesor.email }}</span>
       <app-ver-puntuacion [idAsesor]="asesor.id"></app-ver-puntuacion>
+
+       <button (click)="verHorarios(asesor.id)">Ver Horarios</button>
     </li>
   </ul>
 

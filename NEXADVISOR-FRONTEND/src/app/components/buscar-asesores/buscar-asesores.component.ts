@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { AsesorService } from '../../services/asesor.service';
 import { Asesor } from '../../models/Asesor';
 import { VerPuntuacionComponent } from '../ver-puntuacion/ver-puntuacion.component'; // 👈 Agrega esto
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-buscar-asesores',
@@ -23,7 +25,7 @@ export class BuscarAsesoresComponent {
   cargando: boolean = false;
   errorMensaje: string = '';
 
-  constructor(private asesorService: AsesorService) {}
+  constructor(private asesorService: AsesorService, private router: Router) {}
 
   buscar() {
     this.errorMensaje = '';
@@ -57,4 +59,7 @@ export class BuscarAsesoresComponent {
       });
     }
   }
+  verHorarios(asesorId: number) {
+  this.router.navigate(['/horarios-estudiante', asesorId]);
+}
 }

@@ -34,12 +34,22 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./components/foro/foro.component').then(m => m.ForoComponent)
 },
-  { path: 'registro-estudiante', component: RegistroEstudianteComponent },
-  {path:'perfil-estudiante', component: PerfilEstudianteComponent},
-  { path: 'editar-perfil-estudiante', component: EditarPerfilEstudianteComponent },
-  { path: 'registro-asesor', component: RegistroAsesorComponent },
-  { path: 'buscar-asesores', component: BuscarAsesoresComponent },
-  { path: 'ver-perfil-asesor/:id', component: PerfilAsesorComponent },
-  { path: 'comentarios-asesor', component: ComentariosAsesorComponent },
-  { path: '**', redirectTo: 'inicio' }
+{
+  path: 'contactar',
+  loadComponent: () =>
+    import('./components/contactar/contactar.component').then(m => m.ContactarComponent)
+},
+{
+  path: 'horarios-estudiante/:id',
+  loadComponent: () =>
+    import('./components/horarios-estudiante/horarios-estudiante.component').then(m => m.HorariosEstudianteComponent)
+},
+{ path: 'registro-estudiante', component: RegistroEstudianteComponent },
+{path:'perfil-estudiante', component: PerfilEstudianteComponent},
+{ path: 'editar-perfil-estudiante', component: EditarPerfilEstudianteComponent },
+{ path: 'registro-asesor', component: RegistroAsesorComponent },
+{ path: 'buscar-asesores', component: BuscarAsesoresComponent },
+{ path: 'ver-perfil-asesor/:id', component: PerfilAsesorComponent },
+{ path: 'comentarios-asesor', component: ComentariosAsesorComponent },
+{ path: '**', redirectTo: 'inicio' }
 ];

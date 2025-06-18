@@ -1,0 +1,18 @@
+<div class="contactar-container">
+  <h2>Lista de Asesores Disponibles</h2>
+
+  <div *ngIf="cargando">Cargando asesores...</div>
+
+  <div *ngIf="!cargando && asesores.length === 0">
+    No hay asesores disponibles por el momento.
+  </div>
+
+  <ul *ngIf="asesores.length > 0">
+    <li *ngFor="let asesor of asesores" class="asesor-card">
+      <strong>{{ asesor.nombre }}</strong> – {{ asesor.carrera }} | {{ asesor.sector }}
+      <br />
+      <button (click)="verPerfil(asesor.id)">Ver Perfil</button>
+      <button (click)="verHorarios(asesor.id)">Ver Horarios</button>
+    </li>
+  </ul>
+</div>

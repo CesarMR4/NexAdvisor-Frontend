@@ -9,7 +9,7 @@ import { Auxiliar } from '../models/Auxiliar';
 })
 export class AsesorService {
 
-  private baseUrl = 'http://localhost:8080/api/asesores';
+  private baseUrl = 'http://localhost:8080/asesores';
 
   constructor(private http: HttpClient) { }
 
@@ -35,5 +35,8 @@ export class AsesorService {
   resetPassword(aux: Auxiliar): Observable<string> {
     return this.http.put(`${this.baseUrl}/reset-password`, aux, { responseType: 'text' });
   }
+  getAllAsesores(): Observable<Asesor[]> {
+  return this.http.get<Asesor[]>(`${this.baseUrl}`);
+}
 
 }
