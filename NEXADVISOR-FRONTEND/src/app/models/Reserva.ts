@@ -6,6 +6,7 @@ export class Reserva{
     fechaReserva: Date = new Date();
     horaReserva: String = "";
     estado: String = "";
+    puntuacion?: number;
     comentarioAsesor: String ="";
     estudiante: Estudiante = new Estudiante();
     asesor: Asesor = new Asesor();

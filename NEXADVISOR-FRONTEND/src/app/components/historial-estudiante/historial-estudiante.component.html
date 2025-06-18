@@ -1,0 +1,41 @@
+<div>
+  <h2>Historial de Reservas</h2>
+
+  <table *ngIf="reservas.length > 0" border="1" style="width: 100%; margin-bottom: 20px;">
+    <thead>
+      <tr>
+        <th>Asesor</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Estado</th>
+        <th>Puntuar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reserva of reservas">
+        <td>{{ reserva.asesor.nombre }}</td>
+        <td>{{ reserva.fechaReserva | date: 'shortDate' }}</td>
+        <td>{{ reserva.horaReserva }}</td>
+        <td>{{ reserva.estado }}</td>
+        <td>
+          <button (click)="seleccionarAsesor(reserva.asesor.id)">Seleccionar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="puntuacion.idAsesor">
+    <h3>Puntuar asesor</h3>
+    <label>Puntaje (1-5):</label>
+    <input type="number" [(ngModel)]="puntuacion.puntaje" min="1" max="5">
+
+    <label>Comentario:</label>
+    <input type="text" [(ngModel)]="puntuacion.comentario">
+
+    <button (click)="registrarPuntuacion()">Enviar</button>
+
+    <p style="color: green;" *ngIf="mensaje">{{ mensaje }}</p>
+  </div>
+
+  <p *ngIf="reservas.length === 0">No tienes reservas registradas aún.</p>
+</div>

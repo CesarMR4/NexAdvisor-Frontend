@@ -44,6 +44,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/horarios-estudiante/horarios-estudiante.component').then(m => m.HorariosEstudianteComponent)
   },
+  {
+  path: 'historial',
+  loadComponent: () =>
+    import('./components/historial-estudiante/historial-estudiante.component').then(m => m.HistorialEstudianteComponent)
+  },
   { path: 'solicitud', component: SolicitudesEstudianteComponent },
   { path: 'registro-estudiante', component: RegistroEstudianteComponent },
   { path: 'perfil-estudiante', component: PerfilEstudianteComponent },

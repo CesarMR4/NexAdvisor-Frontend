@@ -1,19 +1,44 @@
 <div>
-  <h2>Registrar Puntuación</h2>
+  <h2>Asesores con los que tuviste reserva</h2>
 
-  <label>ID Estudiante:</label>
-  <input type="number" [(ngModel)]="puntuacion.idEstudiante">
+  <table *ngIf="reservas.length > 0" border="1" style="width: 100%; margin-bottom: 20px;">
+    <thead>
+      <tr>
+        <th>Nombre del Asesor</th>
+        <th>Carrera</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reserva of reservas">
+        <td>{{ reserva.asesor.nombre }}</td>
+        <td>{{ reserva.asesor.carrera }}</td>
+        <td>
+          <button (click)="seleccionarAsesor(reserva.asesor.id)">Seleccionar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-  <label>ID Asesor:</label>
-  <input type="number" [(ngModel)]="puntuacion.idAsesor">
+  <div *ngIf="puntuacion.idAsesor !== 0">
+    <h3>Registrar Puntuación</h3>
 
-  <label>Puntaje (1 a 5):</label>
-  <input type="number" [(ngModel)]="puntuacion.puntaje" min="1" max="5">
+    <label>Puntaje (1 a 5):</label>
+    <input type="number" [(ngModel)]="puntuacion.puntaje" min="1" max="5" />
 
-  <label>Comentario:</label>
-  <input type="text" [(ngModel)]="puntuacion.comentario">
+    <br />
 
-  <button (click)="registrar()">Registrar</button>
+    <label>Comentario:</label>
+    <input type="text" [(ngModel)]="puntuacion.comentario" style="width: 100%;" />
 
-  <p>{{ mensaje }}</p>
+    <br /><br />
+
+    <button (click)="registrar()">Registrar Puntuación</button>
+
+    <p>{{ mensaje }}</p>
+  </div>
+
+  <p *ngIf="reservas.length === 0" style="color: gray;">
+    No tienes reservas pendientes de calificación.
+  </p>
 </div>
