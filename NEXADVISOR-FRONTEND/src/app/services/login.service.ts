@@ -11,10 +11,13 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
   login(credentials: { email: string; password: string }, tipo: 'asesor' | 'estudiante'): Observable<any> {
-    const endpoint = tipo === 'asesor'
+ /*   const endpoint = tipo === 'asesor'
       ? `${this.baseUrl}/asesores/login/asesor`
       : `${this.baseUrl}/estudiante/login/estudiante`;
-
+*/
+const endpoint = tipo === 'asesor'
+  ? 'http://localhost:8080/asesores/login/asesor'
+  : 'http://localhost:8080/estudiante/login/estudiante';
     return this.http.post(endpoint, credentials);
   }
 }
