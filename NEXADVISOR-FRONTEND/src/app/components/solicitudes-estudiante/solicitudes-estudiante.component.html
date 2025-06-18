@@ -1,0 +1,35 @@
+<div class="solicitudes-container">
+  <h2>Mis Solicitudes</h2>
+
+  <div *ngIf="cargando">Cargando...</div>
+  <div *ngIf="error">{{ error }}</div>
+
+  <table *ngIf="!cargando && reservas.length > 0">
+    <thead>
+      <tr>
+        <th>Asesor</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Estado</th>
+        <th>Comentario del Asesor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reserva of reservas">
+        <td>{{ reserva.asesor.nombre }}</td>
+        <td>{{ reserva.fechaReserva | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ reserva.horaReserva }}</td>
+        <td>
+          <span class="estado" [ngClass]="reserva.estado.toLowerCase()">
+            {{ reserva.estado }}
+          </span>
+        </td>
+        <td>{{ reserva.comentarioAsesor || '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!cargando && reservas.length === 0" class="alerta-vacia">
+    No tienes solicitudes registradas.
+  </div>
+</div>

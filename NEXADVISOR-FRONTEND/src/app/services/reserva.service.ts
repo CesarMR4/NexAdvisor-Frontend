@@ -42,5 +42,9 @@ export class ReservaService {
   insertar(reserva: Reserva): Observable<void> {
   return this.http.post<void>(`${this.baseUrl}`, reserva);
 }
+getByEstudiante(idEstudiante: number): Observable<Reserva[]> {
+  return this.http.get<Reserva[]>(`${this.baseUrl}/estudiante/${idEstudiante}`);
+}
+
 
 }

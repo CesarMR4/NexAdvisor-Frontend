@@ -7,6 +7,7 @@ import { PerfilAsesorComponent } from './components/ver-perfil-asesor/ver-perfil
 import { ComentariosAsesorComponent } from './components/comentarios-asesor/comentarios-asesor.component';
 import { PerfilEstudianteComponent } from './components/perfil-estudiante/perfil-estudiante.component';
 import { EditarPerfilEstudianteComponent } from './components/editar-perfil-estudiante/editar-perfil-estudiante.component';
+import { SolicitudesEstudianteComponent } from './components/solicitudes-estudiante/solicitudes-estudiante.component';
 
 // ⚠️ QUITA este import si el componente es standalone
 // import { LoginComponent } from './components/login/login.component';
@@ -44,6 +45,7 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./components/horarios-estudiante/horarios-estudiante.component').then(m => m.HorariosEstudianteComponent)
 },
+{ path: 'solicitud', component: SolicitudesEstudianteComponent },
 { path: 'registro-estudiante', component: RegistroEstudianteComponent },
 {path:'perfil-estudiante', component: PerfilEstudianteComponent},
 { path: 'editar-perfil-estudiante', component: EditarPerfilEstudianteComponent },
