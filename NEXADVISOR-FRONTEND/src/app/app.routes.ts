@@ -9,9 +9,6 @@ import { PerfilEstudianteComponent } from './components/perfil-estudiante/perfil
 import { EditarPerfilEstudianteComponent } from './components/editar-perfil-estudiante/editar-perfil-estudiante.component';
 import { SolicitudesEstudianteComponent } from './components/solicitudes-estudiante/solicitudes-estudiante.component';
 
-// ⚠️ QUITA este import si el componente es standalone
-// import { LoginComponent } from './components/login/login.component';
-
 export const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
   {
@@ -22,36 +19,45 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
   },
-  {path: 'dashboard-estudiante',
-  loadComponent: () =>
-    import('./components/dashboard-estudiante/dashboard-estudiante.component').then(m => m.DashboardEstudianteComponent)},
   {
-  path: 'dashboard-asesor',
-  loadComponent: () =>
-    import('./components/dashboard-asesor/dashboard-asesor.component').then(m => m.DashboardAsesorComponent)
+    path: 'dashboard-estudiante',
+    loadComponent: () =>
+      import('./components/dashboard-estudiante/dashboard-estudiante.component').then(m => m.DashboardEstudianteComponent)
   },
   {
-  path: 'foro',
-  loadComponent: () =>
-    import('./components/foro/foro.component').then(m => m.ForoComponent)
-},
-{
-  path: 'contactar',
-  loadComponent: () =>
-    import('./components/contactar/contactar.component').then(m => m.ContactarComponent)
-},
-{
-  path: 'horarios-estudiante/:id',
-  loadComponent: () =>
-    import('./components/horarios-estudiante/horarios-estudiante.component').then(m => m.HorariosEstudianteComponent)
-},
-{ path: 'solicitud', component: SolicitudesEstudianteComponent },
-{ path: 'registro-estudiante', component: RegistroEstudianteComponent },
-{path:'perfil-estudiante', component: PerfilEstudianteComponent},
-{ path: 'editar-perfil-estudiante', component: EditarPerfilEstudianteComponent },
-{ path: 'registro-asesor', component: RegistroAsesorComponent },
-{ path: 'buscar-asesores', component: BuscarAsesoresComponent },
-{ path: 'ver-perfil-asesor/:id', component: PerfilAsesorComponent },
-{ path: 'comentarios-asesor', component: ComentariosAsesorComponent },
-{ path: '**', redirectTo: 'inicio' }
+    path: 'dashboard-asesor',
+    loadComponent: () =>
+      import('./components/dashboard-asesor/dashboard-asesor.component').then(m => m.DashboardAsesorComponent)
+  },
+  {
+    path: 'foro',
+    loadComponent: () =>
+      import('./components/foro/foro.component').then(m => m.ForoComponent)
+  },
+  {
+    path: 'contactar',
+    loadComponent: () =>
+      import('./components/contactar/contactar.component').then(m => m.ContactarComponent)
+  },
+  {
+    path: 'horarios-estudiante/:id',
+    loadComponent: () =>
+      import('./components/horarios-estudiante/horarios-estudiante.component').then(m => m.HorariosEstudianteComponent)
+  },
+  { path: 'solicitud', component: SolicitudesEstudianteComponent },
+  { path: 'registro-estudiante', component: RegistroEstudianteComponent },
+  { path: 'perfil-estudiante', component: PerfilEstudianteComponent },
+  { path: 'editar-perfil-estudiante', component: EditarPerfilEstudianteComponent },
+  { path: 'registro-asesor', component: RegistroAsesorComponent },
+  { path: 'buscar-asesores', component: BuscarAsesoresComponent },
+  { path: 'ver-perfil-asesor/:id', component: PerfilAsesorComponent },
+  { path: 'comentarios-asesor', component: ComentariosAsesorComponent },
+
+  // 👇 NUEVA RUTA AÑADIDA: ver-puntuacion
+  {
+    path: 'ver-puntuacion',
+    loadComponent: () => import('./components/asesor-con-puntuacion/asesor-con-puntuacion.component').then(m => m.AsesorConPuntuacionComponent)
+  },
+
+  { path: '**', redirectTo: 'inicio' }
 ];

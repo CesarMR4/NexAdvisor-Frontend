@@ -23,4 +23,7 @@ export class PuntuacionService {
   listarPorAsesor(idAsesor: number): Observable<Puntuacion[]> {
     return this.http.get<Puntuacion[]>(`${this.baseUrl}/asesor/${idAsesor}`);
   }
+  obtenerPromedioPorAsesor(idAsesor: number): Observable<number> {
+  return this.http.get<number>(`${this.baseUrl}/promedio/${idAsesor}`);
+}
 }
