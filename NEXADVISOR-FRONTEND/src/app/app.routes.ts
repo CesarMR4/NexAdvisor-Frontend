@@ -28,6 +28,11 @@ export const routes: Routes = [
   path: 'dashboard-asesor',
   loadComponent: () =>
     import('./components/dashboard-asesor/dashboard-asesor.component').then(m => m.DashboardAsesorComponent)
+  },
+  {
+  path: 'foro',
+  loadComponent: () =>
+    import('./components/foro/foro.component').then(m => m.ForoComponent)
 },
   { path: 'registro-estudiante', component: RegistroEstudianteComponent },
   {path:'perfil-estudiante', component: PerfilEstudianteComponent},

@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';  // <-- Agrega esto
 import { RegistroAsesorComponent } from './components/registro-asesor/registro-asesor.component';
 import { VerPuntuacionComponent } from './components/ver-puntuacion/ver-puntuacion.component';
+import { ForoComponent } from './components/foro/foro.component';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,8 @@ import { VerPuntuacionComponent } from './components/ver-puntuacion/ver-puntuaci
     RouterModule,
     RegistroAsesorComponent,
     VerPuntuacionComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ForoComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
