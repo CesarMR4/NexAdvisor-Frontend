@@ -1,3 +1,4 @@
+// foro.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Comentario } from '../../models/Comentario';
 import { Respuesta } from '../../models/Respuesta';
@@ -18,9 +19,11 @@ export class ForoComponent implements OnInit {
   nuevoContenidoRespuesta = '';
   respuestaParaComentarioId: number | null = null;
 
+  // Variables para editar
   comentarioEditandoId: number | null = null;
   respuestaEditandoId: number | null = null;
 
+  // Formularios para edición
   editarComentarioForm: FormGroup;
   editarRespuestaForm: FormGroup;
 
@@ -30,6 +33,7 @@ export class ForoComponent implements OnInit {
     public authService: AuthService,
     private fb: FormBuilder
   ) {
+    // Formularios para edición con validaciones intermedias (min/max length)
     this.editarComentarioForm = this.fb.group({
       contenido: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(500)]]
     });
@@ -62,7 +66,7 @@ export class ForoComponent implements OnInit {
 
     const nuevo = new Comentario();
     nuevo.contenido = this.nuevoComentario;
-    nuevo.estudiante = { id: userId } as any; 
+    nuevo.estudiante = { id: userId } as any; // asegurarse que sea el tipo correcto
 
     this.comentarioService.crear(nuevo).subscribe(() => {
       this.nuevoComentario = '';
@@ -87,6 +91,7 @@ export class ForoComponent implements OnInit {
     });
   }
 
+  // --- Métodos para editar Comentarios ---
   activarEdicionComentario(comentario: Comentario) {
     this.comentarioEditandoId = comentario.id;
     this.editarComentarioForm.setValue({ contenido: comentario.contenido });
