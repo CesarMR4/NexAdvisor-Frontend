@@ -6,24 +6,28 @@ import { ComentarioService } from '../../services/comentarios.service';
 import { RespuestaService } from '../../services/respuesta.service';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-foro',
+  standalone: true, // 👈 ESTA LÍNEA ES CLAVE
   templateUrl: './foro.component.html',
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   styleUrls: ['./foro.component.css']
 })
 export class ForoComponent implements OnInit {
   comentarios: Comentario[] = [];
   respuestas: Respuesta[] = [];
+  respuestasPorComentario: { [comentarioId: number]: Respuesta[] } = {};
+
   nuevoComentario = '';
   nuevoContenidoRespuesta = '';
   respuestaParaComentarioId: number | null = null;
 
-  // Variables para editar
   comentarioEditandoId: number | null = null;
   respuestaEditandoId: number | null = null;
 
-  // Formularios para edición
   editarComentarioForm: FormGroup;
   editarRespuestaForm: FormGroup;
 
@@ -33,7 +37,6 @@ export class ForoComponent implements OnInit {
     public authService: AuthService,
     private fb: FormBuilder
   ) {
-    // Formularios para edición con validaciones intermedias (min/max length)
     this.editarComentarioForm = this.fb.group({
       contenido: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(500)]]
     });
@@ -48,14 +51,28 @@ export class ForoComponent implements OnInit {
 
   cargarDatos() {
     this.comentarioService.listar().subscribe(data => this.comentarios = data);
-    this.respuestaService.listar().subscribe(data => this.respuestas = data);
+    this.respuestaService.listar().subscribe(data => {
+      this.respuestas = data;
+      this.agruparRespuestasPorComentario();
+    });
   }
 
-  esDueñoComentario(comentario: Comentario): boolean {
+  agruparRespuestasPorComentario(): void {
+    this.respuestasPorComentario = {};
+    for (let respuesta of this.respuestas) {
+      const idComentario = respuesta.comentario.id;
+      if (!this.respuestasPorComentario[idComentario]) {
+        this.respuestasPorComentario[idComentario] = [];
+      }
+      this.respuestasPorComentario[idComentario].push(respuesta);
+    }
+  }
+
+  esDuenoComentario(comentario: Comentario): boolean {
     return comentario.estudiante.id === this.authService.getUserId();
   }
 
-  esDueñoRespuesta(respuesta: Respuesta): boolean {
+  esDuenoRespuesta(respuesta: Respuesta): boolean {
     return respuesta.estudiante.id === this.authService.getUserId();
   }
 
@@ -66,7 +83,7 @@ export class ForoComponent implements OnInit {
 
     const nuevo = new Comentario();
     nuevo.contenido = this.nuevoComentario;
-    nuevo.estudiante = { id: userId } as any; // asegurarse que sea el tipo correcto
+    nuevo.estudiante = { id: userId } as any;
 
     this.comentarioService.crear(nuevo).subscribe(() => {
       this.nuevoComentario = '';
@@ -91,7 +108,6 @@ export class ForoComponent implements OnInit {
     });
   }
 
-  // --- Métodos para editar Comentarios ---
   activarEdicionComentario(comentario: Comentario) {
     this.comentarioEditandoId = comentario.id;
     this.editarComentarioForm.setValue({ contenido: comentario.contenido });
@@ -123,7 +139,6 @@ export class ForoComponent implements OnInit {
     });
   }
 
-  // --- Métodos para editar Respuestas ---
   activarEdicionRespuesta(respuesta: Respuesta) {
     this.respuestaEditandoId = respuesta.id;
     this.editarRespuestaForm.setValue({ contenido: respuesta.contenido });

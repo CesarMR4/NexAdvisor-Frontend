@@ -1,3 +1,4 @@
+<h1>¡Foro cargado!</h1>
 <div *ngFor="let comentario of comentarios" class="comentario">
 
   <!-- Edición Comentario -->
@@ -12,12 +13,12 @@
   <ng-template #verComentario>
     <p>{{ comentario.contenido }}</p>
     <small>por {{ comentario.estudiante.nombre }}</small>
-    <button *ngIf="esDueñoComentario(comentario)" (click)="activarEdicionComentario(comentario)">Editar</button>
-    <button *ngIf="esDueñoComentario(comentario)" (click)="eliminarComentario(comentario.id)">Eliminar</button>
+    <button *ngIf="esDuenoComentario(comentario)" (click)="activarEdicionComentario(comentario)">Editar</button>
+    <button *ngIf="esDuenoComentario(comentario)" (click)="eliminarComentario(comentario.id)">Eliminar</button>
   </ng-template>
 
-  <!-- Respuestas -->
-  <div *ngFor="let respuesta of respuestas.filter(r => r.comentario.id === comentario.id)" class="respuesta">
+  <!-- Respuestas agrupadas -->
+  <div *ngFor="let respuesta of respuestasPorComentario[comentario.id] || []" class="respuesta">
 
     <!-- Edición Respuesta -->
     <div *ngIf="respuestaEditandoId === respuesta.id; else verRespuesta">
@@ -31,10 +32,10 @@
     <ng-template #verRespuesta>
       <p>{{ respuesta.contenido }}</p>
       <small>por {{ respuesta.estudiante.nombre }}</small>
-      <button *ngIf="esDueñoRespuesta(respuesta)" (click)="activarEdicionRespuesta(respuesta)">Editar</button>
-      <button *ngIf="esDueñoRespuesta(respuesta)" (click)="eliminarRespuesta(respuesta.id)">Eliminar</button>
+      <button *ngIf="esDuenoRespuesta(respuesta)" (click)="activarEdicionRespuesta(respuesta)">Editar</button>
+      <button *ngIf="esDuenoRespuesta(respuesta)" (click)="eliminarRespuesta(respuesta.id)">Eliminar</button>
     </ng-template>
 
   </div>
-
+  
 </div>
