@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Horario } from '../../models/Horario';
 import { HorarioService } from '../../services/horario.service';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-horarios-asesor',
-  templateUrl: './horarios-asesor.component.html'
+  selector: 'app-horario-asesor',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './horario-asesor.component.html'
 })
 export class HorariosAsesorComponent implements OnInit {
   horarios: Horario[] = [];

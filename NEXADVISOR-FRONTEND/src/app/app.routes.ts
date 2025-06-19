@@ -8,6 +8,7 @@ import { ComentariosAsesorComponent } from './components/comentarios-asesor/come
 import { PerfilEstudianteComponent } from './components/perfil-estudiante/perfil-estudiante.component';
 import { EditarPerfilEstudianteComponent } from './components/editar-perfil-estudiante/editar-perfil-estudiante.component';
 import { SolicitudesEstudianteComponent } from './components/solicitudes-estudiante/solicitudes-estudiante.component';
+import { HorariosAsesorComponent } from './components/horario-asesor/horario-asesor.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -49,6 +50,11 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./components/historial-estudiante/historial-estudiante.component').then(m => m.HistorialEstudianteComponent)
   },
+  {
+  path: 'horarios-asesor',
+  loadComponent: () =>
+    import('./components/horario-asesor/horario-asesor.component').then(m => m.HorariosAsesorComponent)
+  },
   { path: 'solicitud', component: SolicitudesEstudianteComponent },
   { path: 'registro-estudiante', component: RegistroEstudianteComponent },
   { path: 'perfil-estudiante', component: PerfilEstudianteComponent },
@@ -63,6 +69,8 @@ export const routes: Routes = [
     path: 'ver-puntuacion',
     loadComponent: () => import('./components/asesor-con-puntuacion/asesor-con-puntuacion.component').then(m => m.AsesorConPuntuacionComponent)
   },
+
+  
 
   { path: '**', redirectTo: 'inicio' }
 ];

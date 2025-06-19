@@ -1,22 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
 import { AsesorService } from '../../services/asesor.service';
 import { Asesor } from '../../models/Asesor';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contactar',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './contactar.component.html',
-  styleUrl: './contactar.component.css'
+  styleUrls: ['./contactar.component.css']
 })
 export class ContactarComponent implements OnInit {
-    asesores: Asesor[] = [];
-    cargando: boolean = true;
+  asesores: Asesor[] = [];
+  cargando: boolean = true;
 
-constructor(private asesorService: AsesorService, private router: Router) {}
-ngOnInit(): void {
+  constructor(
+    private asesorService: AsesorService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
     this.asesorService.getAllAsesores().subscribe({
       next: (data) => {
+        console.log('Asesores recibidos:', data); // Agregado para debug
         this.asesores = data;
         this.cargando = false;
       },
