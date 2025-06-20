@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Asesor } from '../../models/Asesor';
 import { AsesorService } from '../../services/asesor.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -13,32 +12,55 @@ import { CommonModule } from '@angular/common';
 })
 export class RegistroAsesorComponent {
 
-  asesor: Asesor = new Asesor();
+  asesor = {
+    nombre: '',
+    email: '',
+    password: '',
+    direccion: '',
+    telefono: '',
+    sector: '',
+    carrera: '',
+  };
+
+  curriculumFile: File | null = null;
 
   constructor(private asesorService: AsesorService) {}
 
   registrar() {
-    this.asesor.fechaRegistro = new Date();
-    this.asesor.rol = 'asesor';
+    if (!this.curriculumFile) {
+      alert("Debes seleccionar un archivo PDF como currículum.");
+      return;
+    }
 
-    this.asesorService.registrar(this.asesor).subscribe({
+    const formData = new FormData();
+    formData.append('nombre', this.asesor.nombre);
+    formData.append('email', this.asesor.email);
+    formData.append('password', this.asesor.password);
+    formData.append('direccion', this.asesor.direccion);
+    formData.append('telefono', this.asesor.telefono);
+    formData.append('sector', this.asesor.sector);
+    formData.append('carrera', this.asesor.carrera);
+    formData.append('curriculum', this.curriculumFile);
+
+    this.asesorService.registrar(formData).subscribe({
       next: res => {
-        console.log('Asesor registrado correctamente', res);
+        console.log('✅ Asesor registrado correctamente', res);
+        alert('Asesor registrado correctamente');
       },
       error: err => {
-        console.error('Error al registrar asesor', err);
+        console.error('❌ Error al registrar asesor', err);
+        alert('Error al registrar asesor');
       }
     });
   }
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.asesor.curriculum = reader.result as string;
-      };
-      reader.readAsDataURL(file);
+    if (file && file.type === 'application/pdf') {
+      this.curriculumFile = file;
+    } else {
+      alert('El archivo debe ser un PDF.');
+      this.curriculumFile = null;
     }
   }
 }

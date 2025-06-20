@@ -13,10 +13,10 @@ export class AsesorService {
 
   constructor(private http: HttpClient) { }
 
-  registrar(asesor: Asesor): Observable<void> {
-    // Cambiar URL para registrar según backend
-    return this.http.post<void>(`${this.baseUrl}/registrar`, asesor);
-  }
+registrar(formData: FormData): Observable<any> {
+  return this.http.post(`${this.baseUrl}/registrar`, formData);
+}
+
 
   getAsesorById(id: number): Observable<Asesor> {
     return this.http.get<Asesor>(`${this.baseUrl}/${id}`);
