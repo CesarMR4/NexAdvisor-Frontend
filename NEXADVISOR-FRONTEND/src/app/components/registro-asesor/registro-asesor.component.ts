@@ -48,9 +48,13 @@ export class RegistroAsesorComponent {
         alert('Asesor registrado correctamente');
       },
       error: err => {
-        console.error('❌ Error al registrar asesor', err);
-        alert('Error al registrar asesor');
-      }
+  console.error('❌ Error al registrar asesor', err);
+  if (err.status === 201 || err.status === 200) {
+    alert('Asesor registrado correctamente (aunque el backend devolvió formato inesperado)');
+  } else {
+    alert('Error al registrar asesor');
+  }
+}
     });
   }
 

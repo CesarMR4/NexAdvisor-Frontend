@@ -30,8 +30,8 @@
       <input type="text" [(ngModel)]="asesor.sector" name="sector" required>
     </div>
     <div>
-      <label>Currículum (PDF):</label>
-      <input type="file" (change)="onFileSelected($event)" accept=".pdf" required>
+      <label for="curriculum">Currículum (PDF):</label>
+      <input type="file" (change)="onFileSelected($event)" accept="application/pdf" />
     </div>
     <button type="submit">Registrarse</button>
   </form>

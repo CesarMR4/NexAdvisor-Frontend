@@ -1,14 +1,15 @@
-<div *ngIf="asesor" class="card">
-  <h2>{{ asesor?.nombre }}</h2>
+<div *ngIf="asesor" class="card p-4 shadow rounded bg-white">
+  <h2 class="text-2xl font-bold mb-4">{{ asesor.nombre }}</h2>
+  <p><strong>Email:</strong> {{ asesor.email }}</p>
+  <p><strong>Carrera:</strong> {{ asesor.carrera }}</p>
+  <p><strong>Sector:</strong> {{ asesor.sector }}</p>
+  <p><strong>Teléfono:</strong> {{ asesor.telefono }}</p>
+  <p><strong>Dirección:</strong> {{ asesor.direccion }}</p>
 
-  <p><strong>Email:</strong> {{ asesor?.email }}</p>
-  <p><strong>Teléfono:</strong> {{ asesor?.telefono }}</p>
-  <p><strong>Dirección:</strong> {{ asesor?.direccion }}</p>
-  <p><strong>Sector:</strong> {{ asesor?.sector }}</p>
-  <p><strong>Carrera:</strong> {{ asesor?.carrera }}</p>
-  <p><strong>Fecha de registro:</strong> {{ asesor?.fechaRegistro | date }}</p>
-
-  <div *ngIf="asesor?.curriculum">
-    <a [href]="asesor.curriculum" target="_blank">📄 Ver Curriculum Vitae</a>
-  </div>
+  <p><strong>Currículum:</strong> 
+    <a *ngIf="asesor.curriculum" [href]="asesor.curriculum" target="_blank" rel="noopener noreferrer">
+      📄 Ver Curriculum
+    </a>
+    <span *ngIf="!asesor.curriculum" class="text-gray-500 italic">No disponible</span>
+  </p>
 </div>

@@ -24,8 +24,10 @@ export class PerfilAsesorComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.asesorService.getAsesorById(id).subscribe((data) => {
-        this.asesor = data;
-      });
+  // Construye la ruta al endpoint de descarga
+  data.curriculum = `http://localhost:8080/asesores/${id}/curriculum`;
+  this.asesor = data;
+});
     }
   }
 }
