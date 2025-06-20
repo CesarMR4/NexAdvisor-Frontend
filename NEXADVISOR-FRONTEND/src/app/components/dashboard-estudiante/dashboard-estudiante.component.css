@@ -1,4 +1,4 @@
-.dashboard-content {
+/*.dashboard-content {
   padding: 20px;
 }
 
@@ -15,4 +15,29 @@ a {
   color: #2c3e50;
   text-decoration: none;
   font-weight: bold;
+}
+*/
+
+.dashboard-content {
+  padding: 40px;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #a8e6cf, #d0f4f4); /* celeste + verde suave */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-content h2 {
+  font-size: 32px;
+  color: #2e7d32; /* verde más fuerte */
+  margin-bottom: 15px;
+}
+
+.mensaje {
+  font-size: 18px;
+  color: #00695c; /* celeste oscuro */
 }

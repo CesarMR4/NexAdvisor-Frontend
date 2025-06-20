@@ -1,3 +1,4 @@
+/*
 import { Component } from '@angular/core';
 import { Estudiante } from '../../models/Estudiante';
 import { AuthService } from '../../services/auth.service';
@@ -31,15 +32,21 @@ export class PerfilEstudianteComponent {
   this.router.navigate(['/editar-perfil-estudiante']);
 }
 }
-/* CON EL BACKEND YA CONECTADO
+*/
+// CON EL BACKEND YA CONECTADO
 
 import { Component, OnInit } from '@angular/core';
 import { Estudiante } from '../../models/Estudiante';
 import { EstudianteService } from '../../services/estudiante.service';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { CommonModule, DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-perfil-estudiante',
+  standalone: true,
+  imports: [CommonModule, DatePipe],
   templateUrl: './perfil-estudiante.component.html',
   styleUrls: ['./perfil-estudiante.component.css']
 })
@@ -50,14 +57,15 @@ export class PerfilEstudianteComponent implements OnInit {
 
   constructor(
     private estudianteService: EstudianteService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     const user = this.authService.getUser();
 
     if (user && user.tipoUsuario === 'estudiante') {
-      this.estudianteService.obtenerEstudiantePorId(user.id).subscribe({
+      this.estudianteService.getEstudianteById(user.id).subscribe({
         next: (data) => {
           this.estudiante = data;
           this.cargando = false;
@@ -72,4 +80,9 @@ export class PerfilEstudianteComponent implements OnInit {
       this.cargando = false;
     }
   }
-}*/
+
+  editarPerfil(): void {
+    this.router.navigate(['/editar-perfil-estudiante']); // 👈 Ruta de edición
+  }
+}
+
