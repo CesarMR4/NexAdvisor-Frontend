@@ -82,7 +82,7 @@ export class PerfilEstudianteComponent implements OnInit {
   }
 
   editarPerfil(): void {
-    this.router.navigate(['/editar-perfil-estudiante']); // 👈 Ruta de edición
+    this.router.navigate(['/editar-perfil-estudiante']); 
   }
 }
 
