@@ -5,7 +5,7 @@ export class Estudiante{
     password: String = "";
     direccion: String = "";
     telefono: String = "";
-    curriculum?: String = "";
+    curriculum: any = null;
     carrera: String = "";
     fechaRegistro: Date = new Date();
     rol: String = "estudiante";

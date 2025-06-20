@@ -1,7 +1,7 @@
 <div class="registro-container">
   <h2>Registro del Estudiante</h2>
 
-  <form (ngSubmit)="registrar()" #form="ngForm">
+  <form (ngSubmit)="registrar()" enctype="multipart/form-data">
     <div>
       <label>Nombre:</label>
       <input type="text" [(ngModel)]="estudiante.nombre" name="nombre" required>
@@ -31,6 +31,8 @@
       <label>Carrera:</label>
       <input type="text" [(ngModel)]="estudiante.carrera" name="carrera" required>
     </div>
+
+    
 
     <button type="submit">Registrarse</button>
   </form>

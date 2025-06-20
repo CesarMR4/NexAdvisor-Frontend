@@ -6,10 +6,10 @@ import { EstudianteService } from '../../services/estudiante.service';
 
 @Component({
   selector: 'app-registro-estudiante',
-  standalone: true, // 👈 Esto es CLAVE
-  imports: [CommonModule, FormsModule], // 👈 Importas lo necesario para usar ngModel y ngForm
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './registro-estudiante.component.html',
-  styleUrls: ['./registro-estudiante.component.css'] // 👈 era `styleUrl`, lo correcto es `styleUrls`
+  styleUrls: ['./registro-estudiante.component.css']
 })
 export class RegistroEstudianteComponent {
 
@@ -17,17 +17,19 @@ export class RegistroEstudianteComponent {
 
   constructor(private estudianteService: EstudianteService) {}
 
-  registrar() {
-    this.estudiante.fechaRegistro = new Date();
-    this.estudiante.rol = "estudiante";
+registrar() {
+  this.estudiante.fechaRegistro = new Date();
+  this.estudiante.rol = "estudiante";
 
-    this.estudianteService.registrar(this.estudiante).subscribe({
-      next: res => {
-        console.log('Estudiante registrado correctamente', res);
-      },
-      error: err => {
-        console.error('Error al registrar estudiante', err);
-      }
-    });
-  }
+  this.estudianteService.registrar(this.estudiante).subscribe({
+    next: (res) => {
+      console.log('✅ Registro exitoso:', res.mensaje);
+      alert(res.mensaje); // <- muestra el mensaje del backend
+    },
+    error: (err) => {
+      console.error('❌ Error en registro:', err);
+      alert('Error inesperado al registrar estudiante');
+    }
+  });
+}
 }

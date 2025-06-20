@@ -14,10 +14,10 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   email = '';
   password = '';
   tipoUsuario: 'asesor' | 'estudiante' = 'estudiante';
+  errorLogin: string | null = null; // ❗ Para mostrar mensaje de error
 
   constructor(
     private loginService: LoginService,
@@ -27,59 +27,41 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('LoginComponent cargado');
     this.route.queryParams.subscribe(params => {
       const rol = params['rol'];
-      console.log('Rol recibido por queryParams:', rol);
       if (rol === 'asesor' || rol === 'estudiante') {
         this.tipoUsuario = rol;
       }
     });
   }
 
-login() {
-  const credentials = {
-    email: this.email,
-    password: this.password
-  };
+  login() {
+    const credentials = {
+      email: this.email,
+      password: this.password
+    };
 
-  this.loginService.login(credentials, this.tipoUsuario).subscribe({
-    next: (usuario) => {
-      console.log('Usuario autenticado:', usuario);
-      this.authService.setUser({
-        id: usuario.id,
-        nombre: usuario.nombre,
-        tipoUsuario: this.tipoUsuario
-      });
+    this.loginService.login(credentials, this.tipoUsuario).subscribe({
+      next: (usuario) => {
+        this.authService.setUser({
+          id: usuario.id,
+          nombre: usuario.nombre,
+          tipoUsuario: this.tipoUsuario
+        });
 
-      if (this.tipoUsuario === 'estudiante') {
-        this.router.navigate(['/dashboard-estudiante']);
-      } else {
-        this.router.navigate(['/dashboard-asesor']); // Luego lo crearás
+        if (this.tipoUsuario === 'estudiante') {
+          this.router.navigate(['/dashboard-estudiante']);
+        } else {
+          this.router.navigate(['/dashboard-asesor']);
+        }
+      },
+      error: (err) => {
+        console.error('Error de login:', err);
+        this.errorLogin = 'Correo o contraseña incorrectos. Inténtalo de nuevo.';
       }
-    },
-   error: () => {
-  // TEMPORAL: simular login cuando hay error
-  console.warn('Simulando login por error en backend');
-
-  const nombreSimulado = this.tipoUsuario === 'estudiante' ? 'Estudiante Demo' : 'Asesor Demo';
-
-  this.authService.setUser({
-    id: 999,
-    nombre: nombreSimulado,
-    tipoUsuario: this.tipoUsuario
-  });
-
-  if (this.tipoUsuario === 'estudiante') {
-    this.router.navigate(['/dashboard-estudiante']);
-  } else {
-    this.router.navigate(['/dashboard-asesor']);
+    });
   }
-}
-  });
-}
 
-  // ✅ Nuevo método agregado
   irARegistro() {
     if (this.tipoUsuario === 'estudiante') {
       this.router.navigate(['/registro-estudiante']);

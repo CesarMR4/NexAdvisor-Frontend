@@ -12,9 +12,9 @@ export class EstudianteService {
 
   constructor(private http: HttpClient) { }
 
-  registrar(estudiante: Estudiante): Observable<void> {
-    return this.http.post<void>(this.baseUrl, estudiante);
-  }
+  registrar(estudiante: Estudiante): Observable<{ mensaje: string }> {
+  return this.http.post<{ mensaje: string }>(this.baseUrl, estudiante);
+}
 
   getEstudianteById(id: number): Observable<Estudiante> {
     return this.http.get<Estudiante>(`${this.baseUrl}/${id}`);
