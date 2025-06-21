@@ -60,7 +60,7 @@ export class HorariosEstudianteComponent implements OnInit {
   const reserva: Reserva = {
     id: 0,
     fechaReserva: new Date(),
-    horaReserva: this.horarioSeleccionado.Hora_inicio.toString().substring(0, 5),
+    horaReserva: this.horarioSeleccionado.horaInicio.toString().substring(0, 5),
     estado: 'pendiente',
     comentarioAsesor: '',
     estudiante: estudiante,

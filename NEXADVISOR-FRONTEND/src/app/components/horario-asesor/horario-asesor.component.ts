@@ -4,6 +4,7 @@ import { HorarioService } from '../../services/horario.service';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Asesor } from '../../models/Asesor';
 
 @Component({
   selector: 'app-horario-asesor',
@@ -20,54 +21,72 @@ export class HorariosAsesorComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {
-    const asesor = this.authService.getUser();
+ ngOnInit(): void {
+  console.log('🟢 Componente horario-asesor cargado');
+
+  this.authService.currentUser.subscribe(asesor => {
+    console.log('👤 Asesor obtenido desde observable:', asesor);
 
     if (!asesor) {
-      alert('Error: No se encontró al asesor autenticado.');
+      console.error('❌ No se encontró al asesor autenticado.');
       return;
     }
 
     this.horarioService.getByAsesor(asesor.id).subscribe(data => {
       this.horarios = data;
+      console.log('📥 Horarios recibidos:', data);
     });
-  }
+  });
+}
 
   agregarHorario(): void {
     const nuevoHorario = new Horario();
-    nuevoHorario.dia = 0; // por defecto Lunes
+    nuevoHorario.dia = 0;
     this.horarios.push(nuevoHorario);
+    console.log('🆕 Horario agregado:', nuevoHorario);
   }
 
   eliminarHorario(horario: Horario): void {
     if (horario.id) {
       this.horarioService.eliminar(horario.id).subscribe(() => {
         this.horarios = this.horarios.filter(h => h !== horario);
+        console.log('🗑️ Horario eliminado:', horario);
       });
     } else {
       this.horarios = this.horarios.filter(h => h !== horario);
+      console.log('🗑️ Horario quitado localmente:', horario);
     }
   }
 
   guardarCambios(): void {
-    const asesor = this.authService.getUser();
+    console.log('➡️ Click en guardarCambios detectado');
 
-    if (!asesor) {
-      alert('Error: No se encontró al asesor autenticado.');
+    const asesorData = this.authService.getUser();
+    if (!asesorData) {
+      console.error('❌ No se encontró al asesor autenticado.');
       return;
     }
 
     this.horarios.forEach(horario => {
-      // Asignar asesor
-      horario.asesor.id = asesor.id;
+      const asesor = new Asesor();
+      asesor.id = asesorData.id;
+      horario.asesor = asesor;
+
+      console.log('📤 Enviando horario al backend:', horario);
 
       if (horario.id) {
-        this.horarioService.actualizar(horario.id, horario).subscribe();
+        this.horarioService.actualizar(horario.id, horario).subscribe({
+          next: () => console.log('✅ Horario actualizado correctamente'),
+          error: err => console.error('❌ Error al actualizar horario', err)
+        });
       } else {
-        this.horarioService.insertar(horario).subscribe();
+        this.horarioService.insertar(horario).subscribe({
+          next: () => console.log('✅ Horario registrado correctamente'),
+          error: err => console.error('❌ Error al registrar horario', err)
+        });
       }
     });
 
-    alert('Horarios guardados exitosamente');
+    console.log('✅ Todos los horarios fueron procesados.');
   }
 }

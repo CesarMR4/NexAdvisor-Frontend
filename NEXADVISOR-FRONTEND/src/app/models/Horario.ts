@@ -1,8 +1,9 @@
 import { Asesor } from "./Asesor";
-export class Horario{
+
+export class Horario {
     id: number = 0;
-    dia: number =0;
-    Hora_inicio: Date = new Date();
-    Hora_fin: Date = new Date();
+    dia: number = 0;
+    horaInicio: Date = new Date(); 
+    horaFin: Date = new Date();    
     asesor: Asesor = new Asesor();
 }
