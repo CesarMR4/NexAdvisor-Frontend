@@ -20,17 +20,17 @@ export class HorarioService {
     return this.http.get<Horario[]>(this.baseUrl);
   }
 
-  insertar(horario: Horario): Observable<void> {
-    return this.http.post<void>(this.baseUrl, horario);
-  }
+  insertar(horario: Horario): Observable<any> {
+  return this.http.post<any>(this.baseUrl, horario);
+}
 
   eliminar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  actualizar(id: number, horario: Horario): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/${id}`, horario);
-  }
+ actualizar(id: number, horario: Horario): Observable<any> {
+  return this.http.put<any>(`${this.baseUrl}/${id}`, horario);
+}
 
   obtenerPorId(id: number): Observable<Horario> {
     return this.http.get<Horario>(`${this.baseUrl}/${id}`);

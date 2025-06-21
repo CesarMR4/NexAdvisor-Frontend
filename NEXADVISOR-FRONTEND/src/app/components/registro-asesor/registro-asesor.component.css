@@ -39,3 +39,48 @@ button {
   display: block;
   margin: 1rem auto 0 auto; 
 }
+.btn-volver {
+  background-color: #ddd;
+  border: none;
+  padding: 8px 12px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-volver:hover {
+  background-color: #ccc;
+}
+.botones-registro {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.btn-volver {
+  background-color: #d9534f; /* rojo medio */
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-volver:hover {
+  background-color: #c9302c;
+}
+
+.btn-registrar {
+  background-color: #5cb85c; /* verde Bootstrap */
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-registrar:hover {
+  background-color: #449d44;
+}

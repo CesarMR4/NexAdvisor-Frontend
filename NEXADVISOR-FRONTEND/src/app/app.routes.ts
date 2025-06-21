@@ -56,10 +56,16 @@ export const routes: Routes = [
     import('./components/horario-asesor/horario-asesor.component').then(m => m.HorariosAsesorComponent)
   },
   { path: 'solicitud', component: SolicitudesEstudianteComponent },
-  { path: 'registro-estudiante', component: RegistroEstudianteComponent },
+  {
+  path: 'registro-asesor',
+  loadComponent: () => import('./components/registro-asesor/registro-asesor.component').then(m => m.RegistroAsesorComponent)
+},
+{
+  path: 'registro-estudiante',
+  loadComponent: () => import('./components/registro-estudiante/registro-estudiante.component').then(m => m.RegistroEstudianteComponent)
+},
   { path: 'perfil-estudiante', component: PerfilEstudianteComponent },
   { path: 'editar-perfil-estudiante', component: EditarPerfilEstudianteComponent },
-  { path: 'registro-asesor', component: RegistroAsesorComponent },
   { path: 'buscar-asesores', component: BuscarAsesoresComponent },
   { path: 'ver-perfil-asesor/:id', component: PerfilAsesorComponent },
   { path: 'comentarios-asesor', component: ComentariosAsesorComponent },

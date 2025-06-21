@@ -1,52 +1,82 @@
 .horario-container {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 16px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', sans-serif;
 }
 
 h2 {
   text-align: center;
-  color: #343a40;
-  margin-bottom: 20px;
+  color: #2c3e50;
+  font-size: 26px;
+  margin-bottom: 25px;
 }
 
-table {
+.tabla-horario {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
 }
 
-th, td {
+th {
+  background-color: #007bff;
+  color: white;
+  font-weight: 500;
+  padding: 14px;
   text-align: center;
-  padding: 12px;
-  border-bottom: 1px solid #ccc;
 }
 
-select, input[type="time"] {
-  padding: 6px;
+td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+select,
+input[type="time"] {
+  padding: 8px 12px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+select:focus,
+input[type="time"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
 }
 
 .botones {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 10px;
+  gap: 20px;
+  margin-top: 25px;
 }
 
 .btn {
-  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.btn .icono {
+  font-size: 18px;
 }
 
 .btn.agregar {
