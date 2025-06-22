@@ -1,31 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap');
+
+/* ===== Layout general ===== */
+.layout {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(140deg, #e8f5e9, #e3f2fd); /* verde + celeste suave */
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+
+/* ===== Publicidad lateral ===== */
+.ads {
+  width: 160px;
+  background-color: #ffffff;
+  padding: 20px 10px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== Contenedor principal ===== */
 .detalle-container {
-  max-width: 700px;
-  margin: auto;
-  padding: 20px;
+  flex: 1;
+  max-width: 880px;
+  background-color: #ffffff;
+  margin: 40px 20px;
+  padding: 40px 35px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.detalle-container h2 {
+  color: #1976d2; /* azul coherente con foro */
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 
 .meta {
-  font-size: 0.9rem;
-  color: gray;
+  font-size: 14px;
+  color: #616161;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.contenido p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* ===== Respuestas ===== */
+hr {
+  margin: 35px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.respuestas h3 {
+  font-size: 22px;
+  color: #0d47a1;
+  margin-bottom: 20px;
+}
+
+.respuesta {
+  background-color: #e3f2fd;
+  padding: 18px 20px;
+  border-left: 5px solid #42a5f5;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.respuesta p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.respuesta small {
+  font-size: 12px;
+  color: #666;
+}
+
+/* ===== Formulario para responder ===== */
+.formulario-respuesta {
+  margin-top: 40px;
+  background-color: #f1f8e9;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
+
+.respuesta-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.formulario-respuesta h4 {
+  font-size: 18px;
+  color: #2e7d32;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 textarea {
   width: 100%;
-  padding: 8px;
-  margin-top: 8px;
-  box-sizing: border-box;
+  padding: 14px;
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
+  font-size: 15px;
+  resize: none;
+  font-family: 'Poppins', sans-serif;
+  transition: border 0.3s;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #4fc3f7;
+  background-color: #f9f9f9;
 }
 
 button {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background-color: #4CAF50;
+  margin-top: 15px;
+  background-color: #2e7d32;
   color: white;
+  padding: 12px 20px;
   border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
-  border-radius: 4px;
+  transition: background 0.3s ease, transform 0.1s ease;
 }
 
-.respuesta {
-  margin-bottom: 20px;
+button:hover {
+  background-color: #388e3c;
+  transform: scale(1.02);
 }

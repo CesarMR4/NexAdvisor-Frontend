@@ -1,19 +1,40 @@
-<div class="detalle-container" *ngIf="publicacion">
-  <h2>{{ publicacion.titulo }}</h2>
-  <p class="meta">Publicado por {{ publicacion.estudiante.nombre }} - {{ publicacion.fechaPublicacion | date:'short' }}</p>
-  <p>{{ publicacion.contenido }}</p>
+<div class="layout">
+  <!-- Publicidad izquierda -->
+  <aside class="ads"></aside>
 
-  <hr>
+  <!-- Contenido principal -->
+  <main class="detalle-container" *ngIf="publicacion">
+    <h2>{{ publicacion.titulo }}</h2>
+    <p class="meta">
+      Publicado por {{ publicacion.estudiante?.nombre || 'Anónimo' }} -
+      {{ publicacion.fechaPublicacion | date:'short' }}
+    </p>
 
-  <h3>Respuestas</h3>
-  <div *ngFor="let respuesta of respuestas" class="respuesta">
-    <strong>{{ respuesta.estudiante.nombre }}</strong>:
-    <p>{{ respuesta.contenido }}</p>
-    <small>{{ respuesta.fechaRespuesta | date:'short' }}</small>
+    <div class="contenido">
+      <p>{{ publicacion.contenido }}</p>
+    </div>
+
     <hr>
-  </div>
 
-  <h4>Agregar respuesta</h4>
-  <textarea [(ngModel)]="nuevaRespuesta" rows="4"></textarea>
-  <button (click)="publicarRespuesta()">Responder</button>
+    <section class="respuestas">
+      <h3>Respuestas</h3>
+
+      <div *ngFor="let respuesta of respuestas" class="respuesta">
+        <strong>{{ respuesta.estudiante?.nombre || 'Anónimo' }}</strong>
+        <p>{{ respuesta.contenido }}</p>
+        <small>{{ respuesta.fechaRespuesta | date:'short' }}</small>
+      </div>
+    </section>
+
+    <section class="formulario-respuesta">
+      <div class="respuesta-wrapper">
+        <h4>Agregar respuesta</h4>
+        <textarea [(ngModel)]="nuevaRespuesta" rows="4" placeholder="Escribe tu respuesta..."></textarea>
+        <button (click)="publicarRespuesta()">Responder</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Publicidad derecha -->
+  <aside class="ads"></aside>
 </div>

@@ -1,39 +1,56 @@
-<div class="foro-container">
-  <h2>Foro de Estudiantes</h2>
+<div class="layout">
+  <!-- Publicidad izquierda -->
+  <aside class="ads ads-left">
+    <!-- Espacio reservado para Google Ads -->
+  </aside>
 
-  <div class="formulario">
-    <h3>Crear nueva publicación</h3>
-    <input type="text" [(ngModel)]="nuevaPublicacion.titulo" placeholder="Título" />
-    <textarea [(ngModel)]="nuevaPublicacion.contenido" placeholder="Contenido" rows="4"></textarea>
-    <button (click)="publicar()">Publicar</button>
-  </div>
+  <!-- Contenido principal -->
+  <main class="foro-container">
+    <h2>Foro de Estudiantes</h2>
 
-  <hr />
+    <section class="formulario">
+      <h3>Crear nueva publicación</h3>
 
-  <div class="lista-publicaciones">
-    <h3>Publicaciones recientes</h3>
-    <div *ngFor="let pub of publicaciones" class="publicacion">
-      <h4>{{ pub.titulo }}</h4>
+      <div class="form-wrapper">
+        <div class="form-group">
+          <label for="titulo">Título</label>
+          <input id="titulo" type="text" [(ngModel)]="nuevaPublicacion.titulo" placeholder="Escribe el título aquí" />
+        </div>
 
-      <!-- Protegido contra errores de fecha y nombre -->
-      <p class="meta">
-        Por {{ pub.estudiante?.nombre || 'Anónimo' }} -
-        {{ pub.fechaPublicacion ? (pub.fechaPublicacion | date: 'short') : 'Sin fecha' }}
-      </p>
+        <div class="form-group">
+          <label for="contenido">Contenido</label>
+          <textarea id="contenido" [(ngModel)]="nuevaPublicacion.contenido" placeholder="Escribe tu mensaje..." rows="5"></textarea>
+        </div>
 
-      <!-- Protegido contra contenido undefined -->
-      <p>{{ pub.contenido ? (pub.contenido | slice: 0:200) : '' }}...</p>
+        <div class="form-group">
+          <button (click)="publicar()">Publicar</button>
+        </div>
+      </div>
+    </section>
 
-      <!-- Ver más solo si pub.id no es undefined -->
-      <button *ngIf="pub.id != null" (click)="verDetalle(pub.id)">Ver más</button>
+    <hr />
 
-      <!-- Mostrar botón solo si pub.estudiante?.id y user.id coinciden -->
-      <button
-        class="eliminar"
-        *ngIf="pub.id != null && pub.estudiante?.id === user.id"
-        (click)="eliminar(pub.id)">
-        Eliminar
-      </button>
-    </div>
-  </div>
+    <section class="lista-publicaciones">
+      <h3>Publicaciones recientes</h3>
+
+      <article *ngFor="let pub of publicaciones" class="publicacion">
+        <h4>{{ pub.titulo }}</h4>
+        <p class="meta">
+          Por {{ pub.estudiante?.nombre || 'Anónimo' }} -
+          {{ pub.fechaPublicacion ? (pub.fechaPublicacion | date: 'short') : 'Sin fecha' }}
+        </p>
+        <p>{{ pub.contenido ? (pub.contenido | slice: 0:200) : '' }}...</p>
+
+        <div class="acciones">
+          <button *ngIf="pub.id != null" class="ver" (click)="verDetalle(pub.id)">Ver más</button>
+          <button *ngIf="pub.id != null && pub.estudiante?.id === user.id" class="eliminar" (click)="eliminar(pub.id)">Eliminar</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Publicidad derecha -->
+  <aside class="ads ads-right">
+    <!-- Espacio reservado para Google Ads -->
+  </aside>
 </div>
