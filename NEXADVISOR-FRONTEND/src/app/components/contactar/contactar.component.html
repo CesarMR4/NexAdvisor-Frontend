@@ -12,7 +12,9 @@
       <strong>{{ asesor.nombre }}</strong> – {{ asesor.carrera }} | {{ asesor.sector }}
       <br />
       <button (click)="verPerfil(asesor.id)">Ver Perfil</button>
-      <button (click)="verHorarios(asesor.id)">Ver Horarios</button>
+      <button [routerLink]="['/horarios-estudiante', asesor.id]">
+  Ver Horarios
+</button>
     </li>
   </ul>
 </div>

@@ -5,20 +5,24 @@ import { ReservaService } from '../../services/reserva.service';
 import { ActivatedRoute } from '@angular/router';
 import { Reserva } from '../../models/Reserva';
 import { Estudiante } from '../../models/Estudiante';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-horarios-estudiante',
-  templateUrl: './horarios-estudiante.component.html'
+   selector: 'app-horarios-estudiante',
+  standalone: true,
+  imports: [CommonModule], // agrega aquí FormsModule si usas ngModel
+  templateUrl: './horarios-estudiante.component.html',
+  styleUrls: ['./horarios-estudiante.component.css']
 })
 export class HorariosEstudianteComponent implements OnInit {
   horariosPorDia: { [key: string]: Horario[] } = {};
   diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
   diasMap: { [key: number]: string } = {
-    1: 'Lunes',
-    2: 'Martes',
-    3: 'Miércoles',
-    4: 'Jueves',
-    5: 'Viernes'
+    0: 'Lunes',
+    1: 'Martes',
+    2: 'Miércoles',
+    3: 'Jueves',
+    4: 'Viernes'
   };
 
   horarioSeleccionado: Horario | null = null;
@@ -30,14 +34,19 @@ export class HorariosEstudianteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const asesorId = +this.route.snapshot.paramMap.get('id')!;
-    this.horarioService.getByAsesor(asesorId).subscribe(horarios => {
-      this.horariosPorDia = this.diasSemana.reduce((acc, dia) => {
-        acc[dia] = horarios.filter(h => this.diasMap[h.dia] === dia);
-        return acc;
-      }, {} as { [key: string]: Horario[] });
-    });
-  }
+  console.log('🟢 HorariosEstudianteComponent cargado');
+
+  const asesorId = +this.route.snapshot.paramMap.get('id')!;
+  console.log('Asesor ID recibido:', asesorId);
+  
+  this.horarioService.getByAsesor(asesorId).subscribe(horarios => {
+    console.log('Horarios recibidos:', horarios);
+    this.horariosPorDia = this.diasSemana.reduce((acc, dia) => {
+      acc[dia] = horarios.filter(h => this.diasMap[h.dia] === dia);
+      return acc;
+    }, {} as { [key: string]: Horario[] });
+  });
+}
 
   seleccionarHorario(horario: Horario) {
     this.horarioSeleccionado = horario;
@@ -76,6 +85,9 @@ export class HorariosEstudianteComponent implements OnInit {
       alert('Ocurrió un error al registrar la reserva.');
     }
   });
+}
+esArrayYNoVacio(lista: any): boolean {
+  return Array.isArray(lista) && lista.length > 0;
 }
 
 }

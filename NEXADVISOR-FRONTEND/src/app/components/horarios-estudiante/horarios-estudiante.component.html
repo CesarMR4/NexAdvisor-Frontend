@@ -1,11 +1,20 @@
-<div *ngFor="let dia of diasSemana" class="col">
-  <h3>{{ dia }}</h3>
-  <div *ngFor="let horario of horariosPorDia[dia]">
-    <div>
-      {{ horario.horaInicio }} - {{ horario.horaFin }}
+<h1 class="titulo-horarios">🗓️ Horarios Disponibles del Asesor</h1>
+
+<div class="contenedor-horarios">
+  <div *ngFor="let dia of diasSemana" class="dia-card">
+    <h2 class="titulo-dia">{{ dia }}</h2>
+
+    <div *ngIf="esArrayYNoVacio(horariosPorDia[dia]); else sinHorarios">
+      <div *ngFor="let horario of horariosPorDia[dia]" class="horario-card">
+        <div class="icono-hora">🕒</div>
+        <div class="horario-detalle">
+          <span class="hora-texto">{{ horario.horaInicio }} - {{ horario.horaFin }}</span>
+        </div>
+      </div>
     </div>
-    <button (click)="seleccionarHorario(horario)">Seleccionar</button>
+
+    <ng-template #sinHorarios>
+      <p class="mensaje-vacio">Sin horarios disponibles para este día.</p>
+    </ng-template>
   </div>
 </div>
-
-<button (click)="confirmarSeleccion()">Listo</button>

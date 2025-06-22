@@ -1,0 +1,65 @@
+.titulo-horarios {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #3f51b5;
+}
+
+.contenedor-horarios {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.dia-card {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.titulo-dia {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #444;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.horario-card {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #cce5ff;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.horario-card:hover {
+  background-color: #e8f0fe;
+}
+
+.icono-hora {
+  font-size: 1.5rem;
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.horario-detalle .hora-texto {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.mensaje-vacio {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+  margin-top: 10px;
+}
