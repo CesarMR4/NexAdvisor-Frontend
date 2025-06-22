@@ -1,5 +1,5 @@
-export class Auxiliar {
-  email: string = '';
-  numeroTelefonico: string = '';
-  nuevaPassword: string = '';
+export interface Auxiliar {
+  email: string;
+  nuevaPassword: string;
+  numeroTelefonico: string;
 }

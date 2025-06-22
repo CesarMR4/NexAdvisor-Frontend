@@ -1,5 +1,45 @@
-.recuperar-contrasena-container {
-  max-width: 500px;
-  margin: auto;
-  padding: 1rem;
+.recuperar-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f7f7f7;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background-color: #2a9d8f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #21867a;
+}
+
+.mensaje {
+  color: green;
+  margin-top: 15px;
+}
+
+.error {
+  color: red;
+  margin-top: 15px;
 }

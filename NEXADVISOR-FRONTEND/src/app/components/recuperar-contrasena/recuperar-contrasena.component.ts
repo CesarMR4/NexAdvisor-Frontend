@@ -1,51 +1,61 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Auxiliar } from '../../models/Auxiliar';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AsesorService } from '../../services/asesor.service';
-import { Auxiliar } from '../../models/auxiliar';
-
-
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-recuperar-contrasena',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './recuperar-contrasena.component.html',
   styleUrls: ['./recuperar-contrasena.component.css']
-  
 })
-export class RecuperarContrasenaComponent {
-  email: string = '';
-  nuevaPassword: string = '';
-  numeroTelefonico: string = '';
-  mostrarConfirmacion: boolean = false;
+export class RecuperarContrasenaComponent implements OnInit {
+
+  datos: Auxiliar = {
+    email: '',
+    numeroTelefonico: '',
+    nuevaPassword: ''
+  };
+
+  tipoUsuario: 'estudiante' | 'asesor' = 'estudiante';
   mensaje: string = '';
+  error: string = '';
 
-  constructor(private asesorService: AsesorService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-  solicitarConfirmacion() {
-    if (!this.email || !this.nuevaPassword) {
-      this.mensaje = 'Debe ingresar correo y nueva contraseña';
-      return;
-    }
-    this.mostrarConfirmacion = true;
-    this.mensaje = '';
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const rol = params['rol'];
+      if (rol === 'asesor' || rol === 'estudiante') {
+        this.tipoUsuario = rol;
+      }
+    });
   }
 
-  confirmarYActualizar() {
-    const request: Auxiliar = {
-      email: this.email,
-      nuevaPassword: this.nuevaPassword,
-      numeroTelefonico: this.numeroTelefonico
-    };
+  recuperar(): void {
+    this.mensaje = '';
+    this.error = '';
 
-    this.asesorService.resetPassword(request).subscribe({
-      next: (respuesta: string) => {
+    const url = this.tipoUsuario === 'estudiante'
+      ? 'http://localhost:8080/estudiante/reset-password'
+      : 'http://localhost:8080/asesor/reset-password';
+
+    this.http.put(url, this.datos, { responseType: 'text' }).subscribe({
+      next: (respuesta) => {
         this.mensaje = respuesta;
-        this.mostrarConfirmacion = false;
+        setTimeout(() => this.router.navigate(['/login'], { queryParams: { rol: this.tipoUsuario } }), 2500);
       },
-      error: () => {
-        this.mensaje = 'Ocurrió un error al actualizar la contraseña.';
+      error: (err) => {
+        this.error = 'Ocurrió un error al intentar cambiar la contraseña.';
+        console.error(err);
       }
     });
   }

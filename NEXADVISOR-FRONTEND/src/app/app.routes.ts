@@ -22,6 +22,12 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
   },
+
+  {
+  path: 'recuperar-contrasena',
+  loadComponent: () => import('./components/recuperar-contrasena/recuperar-contrasena.component').then(m => m.RecuperarContrasenaComponent)
+  },
+  
   {
     path: 'dashboard-estudiante',
     loadComponent: () =>

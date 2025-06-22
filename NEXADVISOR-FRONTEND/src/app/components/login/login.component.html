@@ -24,7 +24,9 @@
     {{ errorLogin }}
   </div>
       <a (click)="irARegistro()" class="forgot">Registrar</a>
-      <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
+     <a [routerLink]="['/recuperar-contrasena']" [queryParams]="{ rol: tipoUsuario }" class="forgot">
+  ¿Olvidaste tu contraseña?
+</a>
        
     </div>
   </div>
