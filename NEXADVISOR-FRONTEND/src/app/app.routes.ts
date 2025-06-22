@@ -82,6 +82,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/asesor-con-puntuacion/asesor-con-puntuacion.component').then(m => m.AsesorConPuntuacionComponent)
   },
+  {
+  path: 'reserva-asesor',
+  loadComponent: () =>
+    import('./components/reserva-asesor/reserva-asesor.component').then(m => m.ReservaAsesorComponent)
+},
   { path: '**', redirectTo: 'inicio' }
 ];
 

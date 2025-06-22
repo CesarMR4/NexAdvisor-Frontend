@@ -12,6 +12,7 @@ import { RegistroAsesorComponent } from './components/registro-asesor/registro-a
 import { VerPuntuacionComponent } from './components/ver-puntuacion/ver-puntuacion.component';
 import { ForoComponent } from './components/foro/foro.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReservaAsesorComponent } from './components/reserva-asesor/reserva-asesor.component';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegistroAsesorComponent,
     VerPuntuacionComponent,
     ReactiveFormsModule,
-    ForoComponent
+    ForoComponent,
+    ReservaAsesorComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

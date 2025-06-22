@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Reserva } from '../../models/Reserva';
 import { ReservaService } from '../../services/reserva.service';
 import { AuthService } from '../../services/auth.service';
-
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-reserva-asesor',
-  templateUrl: './reserva-asesor.component.html'
+  standalone: true,
+  imports: [CommonModule, FormsModule], // <-- necesario para [(ngModel)]
+  templateUrl: './reserva-asesor.component.html',
+  styleUrls: ['./reserva-asesor.component.css']
 })
 export class ReservaAsesorComponent implements OnInit {
   reservas: Reserva[] = [];
