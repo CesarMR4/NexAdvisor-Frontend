@@ -1,0 +1,31 @@
+.detalle-container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.respuesta {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,19 @@
+<div class="detalle-container" *ngIf="publicacion">
+  <h2>{{ publicacion.titulo }}</h2>
+  <p class="meta">Publicado por {{ publicacion.estudiante.nombre }} - {{ publicacion.fechaPublicacion | date:'short' }}</p>
+  <p>{{ publicacion.contenido }}</p>
+
+  <hr>
+
+  <h3>Respuestas</h3>
+  <div *ngFor="let respuesta of respuestas" class="respuesta">
+    <strong>{{ respuesta.estudiante.nombre }}</strong>:
+    <p>{{ respuesta.contenido }}</p>
+    <small>{{ respuesta.fechaRespuesta | date:'short' }}</small>
+    <hr>
+  </div>
+
+  <h4>Agregar respuesta</h4>
+  <textarea [(ngModel)]="nuevaRespuesta" rows="4"></textarea>
+  <button (click)="publicarRespuesta()">Responder</button>
+</div>

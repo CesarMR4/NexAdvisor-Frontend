@@ -1,41 +1,39 @@
-<h1>¡Foro cargado!</h1>
-<div *ngFor="let comentario of comentarios" class="comentario">
+<div class="foro-container">
+  <h2>Foro de Estudiantes</h2>
 
-  <!-- Edición Comentario -->
-  <div *ngIf="comentarioEditandoId === comentario.id; else verComentario">
-    <form [formGroup]="editarComentarioForm" (ngSubmit)="enviarEdicionComentario()">
-      <textarea formControlName="contenido"></textarea>
-      <button type="submit" [disabled]="editarComentarioForm.invalid">Guardar</button>
-      <button type="button" (click)="cancelarEdicionComentario()">Cancelar</button>
-    </form>
+  <div class="formulario">
+    <h3>Crear nueva publicación</h3>
+    <input type="text" [(ngModel)]="nuevaPublicacion.titulo" placeholder="Título" />
+    <textarea [(ngModel)]="nuevaPublicacion.contenido" placeholder="Contenido" rows="4"></textarea>
+    <button (click)="publicar()">Publicar</button>
   </div>
 
-  <ng-template #verComentario>
-    <p>{{ comentario.contenido }}</p>
-    <small>por {{ comentario.estudiante.nombre }}</small>
-    <button *ngIf="esDuenoComentario(comentario)" (click)="activarEdicionComentario(comentario)">Editar</button>
-    <button *ngIf="esDuenoComentario(comentario)" (click)="eliminarComentario(comentario.id)">Eliminar</button>
-  </ng-template>
+  <hr />
 
-  <!-- Respuestas agrupadas -->
-  <div *ngFor="let respuesta of respuestasPorComentario[comentario.id] || []" class="respuesta">
+  <div class="lista-publicaciones">
+    <h3>Publicaciones recientes</h3>
+    <div *ngFor="let pub of publicaciones" class="publicacion">
+      <h4>{{ pub.titulo }}</h4>
 
-    <!-- Edición Respuesta -->
-    <div *ngIf="respuestaEditandoId === respuesta.id; else verRespuesta">
-      <form [formGroup]="editarRespuestaForm" (ngSubmit)="enviarEdicionRespuesta()">
-        <textarea formControlName="contenido"></textarea>
-        <button type="submit" [disabled]="editarRespuestaForm.invalid">Guardar</button>
-        <button type="button" (click)="cancelarEdicionRespuesta()">Cancelar</button>
-      </form>
+      <!-- Protegido contra errores de fecha y nombre -->
+      <p class="meta">
+        Por {{ pub.estudiante?.nombre || 'Anónimo' }} -
+        {{ pub.fechaPublicacion ? (pub.fechaPublicacion | date: 'short') : 'Sin fecha' }}
+      </p>
+
+      <!-- Protegido contra contenido undefined -->
+      <p>{{ pub.contenido ? (pub.contenido | slice: 0:200) : '' }}...</p>
+
+      <!-- Ver más solo si pub.id no es undefined -->
+      <button *ngIf="pub.id != null" (click)="verDetalle(pub.id)">Ver más</button>
+
+      <!-- Mostrar botón solo si pub.estudiante?.id y user.id coinciden -->
+      <button
+        class="eliminar"
+        *ngIf="pub.id != null && pub.estudiante?.id === user.id"
+        (click)="eliminar(pub.id)">
+        Eliminar
+      </button>
     </div>
-
-    <ng-template #verRespuesta>
-      <p>{{ respuesta.contenido }}</p>
-      <small>por {{ respuesta.estudiante.nombre }}</small>
-      <button *ngIf="esDuenoRespuesta(respuesta)" (click)="activarEdicionRespuesta(respuesta)">Editar</button>
-      <button *ngIf="esDuenoRespuesta(respuesta)" (click)="eliminarRespuesta(respuesta.id)">Eliminar</button>
-    </ng-template>
-
   </div>
-  
 </div>
