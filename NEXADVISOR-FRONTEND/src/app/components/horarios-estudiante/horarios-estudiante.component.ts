@@ -89,5 +89,9 @@ export class HorariosEstudianteComponent implements OnInit {
 esArrayYNoVacio(lista: any): boolean {
   return Array.isArray(lista) && lista.length > 0;
 }
+solicitarHorario(horario: Horario) {
+  this.horarioSeleccionado = horario;
+  this.confirmarSeleccion(); // Reutilizamos tu función actual
+}
 
 }

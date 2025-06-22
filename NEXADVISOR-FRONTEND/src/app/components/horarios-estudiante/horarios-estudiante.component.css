@@ -63,3 +63,18 @@
   color: #888;
   margin-top: 10px;
 }
+.btn-solicitar {
+  margin-left: auto;
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.btn-solicitar:hover {
+  background-color: #45a049;
+}
