@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Client, Message, over } from 'stompjs';
-import * as SockJS from 'sockjs-client';
+import SockJS from 'sockjs-client';
 
 @Injectable({
   providedIn: 'root'

@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
@@ -7,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';  // <-- Agrega esto
+import { CommonModule } from '@angular/common';
 import { RegistroAsesorComponent } from './components/registro-asesor/registro-asesor.component';
 import { VerPuntuacionComponent } from './components/ver-puntuacion/ver-puntuacion.component';
 import { ForoComponent } from './components/foro/foro.component';
@@ -18,7 +19,7 @@ import { ReservaAsesorComponent } from './components/reserva-asesor/reserva-ases
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,        // <-- Aquí
+    CommonModule,
     MatInputModule,
     HttpClientModule,
     MatButtonModule,

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   email = '';
   password = '';
   tipoUsuario: 'asesor' | 'estudiante' = 'estudiante';
-  errorLogin: string | null = null; // ❗ Para mostrar mensaje de error
+  errorLogin: string | null = null;
 
   constructor(
     private loginService: LoginService,
