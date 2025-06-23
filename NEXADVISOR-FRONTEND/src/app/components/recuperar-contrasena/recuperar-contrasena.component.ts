@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./recuperar-contrasena.component.css']
 })
 export class RecuperarContrasenaComponent implements OnInit {
+  paso: 1 | 2 = 1;
 
   datos: Auxiliar = {
     email: '',
@@ -40,13 +41,22 @@ export class RecuperarContrasenaComponent implements OnInit {
     });
   }
 
-  recuperar(): void {
+  continuarPaso2(): void {
+    if (!this.datos.email || !this.datos.nuevaPassword) {
+      this.error = 'Debe ingresar correo y nueva contraseña antes de continuar.';
+      return;
+    }
+    this.error = '';
+    this.paso = 2;
+  }
+
+  confirmarCambio(): void {
     this.mensaje = '';
     this.error = '';
 
-const url = this.tipoUsuario === 'estudiante'
-  ? 'http://localhost:8080/estudiante/reset-password'
-  : 'http://localhost:8080/asesores/reset-password'; 
+    const url = this.tipoUsuario === 'estudiante'
+      ? 'http://localhost:8080/estudiante/reset-password'
+      : 'http://localhost:8080/asesores/reset-password'; // <- corregido
 
     this.http.put(url, this.datos, { responseType: 'text' }).subscribe({
       next: (respuesta) => {

@@ -1,15 +1,22 @@
 <div class="recuperar-container">
   <h2>Recuperar Contraseña - {{ tipoUsuario | titlecase }}</h2>
 
-  <form (ngSubmit)="recuperar()" autocomplete="off">
+  <!-- Paso 1 -->
+  <form *ngIf="paso === 1" (ngSubmit)="continuarPaso2()" autocomplete="off">
     <label>Email registrado:</label>
     <input type="email" [(ngModel)]="datos.email" name="email" required />
 
-    <label>Número de teléfono registrado:</label>
-    <input type="text" [(ngModel)]="datos.numeroTelefonico" name="telefono" required />
-
     <label>Nueva contraseña:</label>
     <input type="password" [(ngModel)]="datos.nuevaPassword" name="nuevaPassword" required />
+
+    <button type="submit">Aceptar</button>
+  </form>
+
+  <!-- Paso 2 -->
+  <form *ngIf="paso === 2" (ngSubmit)="confirmarCambio()" autocomplete="off">
+    <p>Para confirmar tu identidad, responde la siguiente pregunta:</p>
+    <label>¿Cuál es tu número de teléfono registrado?</label>
+    <input type="text" [(ngModel)]="datos.numeroTelefonico" name="telefono" required />
 
     <button type="submit">Cambiar contraseña</button>
   </form>
