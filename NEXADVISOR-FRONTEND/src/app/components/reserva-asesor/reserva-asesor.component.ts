@@ -19,11 +19,12 @@ export class ReservaAsesorComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {
+ ngOnInit(): void {
   const user = this.authService.getUser();
   if (user && user.tipoUsuario === 'asesor') {
     this.reservaService.getByAsesor(user.id).subscribe(reservas => {
       this.reservas = reservas;
+      console.log('Reservas completas:', this.reservas); // ✅ Aquí ves si estudiante es null
     });
   }
 }
