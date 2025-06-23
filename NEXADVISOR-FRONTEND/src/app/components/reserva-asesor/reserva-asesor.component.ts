@@ -20,13 +20,13 @@ export class ReservaAsesorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const asesor = this.authService.getUser();
-    if (asesor && asesor.id) {
-      this.reservaService.getByAsesor(asesor.id).subscribe(data => {
-        this.reservas = data;
-      });
-    }
+  const user = this.authService.getUser();
+  if (user && user.tipoUsuario === 'asesor') {
+    this.reservaService.getByAsesor(user.id).subscribe(reservas => {
+      this.reservas = reservas;
+    });
   }
+}
 
   eliminarReserva(id: number): void {
     this.reservaService.eliminar(id).subscribe(() => {
