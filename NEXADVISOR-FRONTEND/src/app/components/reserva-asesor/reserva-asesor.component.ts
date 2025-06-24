@@ -17,6 +17,7 @@ import { ReservaDTO } from '../../models/ReservaDTO';
 
 export class ReservaAsesorComponent implements OnInit {
   reservas: ReservaDTO[] = [];
+  comentarios: { [key: number]: string } = {};
 
   constructor(
     private reservaService: ReservaService,
@@ -39,11 +40,13 @@ export class ReservaAsesorComponent implements OnInit {
     });
   }
 
-  actualizarComentario(reserva: ReservaDTO, comentario: string): void {
-    this.reservaService.actualizarComentario(reserva.id, comentario).subscribe(() => {
-      alert('Comentario actualizado');
-    });
-  }
+  actualizarComentario(reserva: ReservaDTO): void {
+  const comentario = this.comentarios[reserva.id] || '';
+  this.reservaService.actualizarComentario(reserva.id, comentario).subscribe(() => {
+    reserva.comentarioAsesor = comentario;
+    alert('Comentario enviado correctamente');
+  });
+}
 
   actualizarEstado(reserva: ReservaDTO, nuevoEstado: string): void {
     this.reservaService.actualizarEstado(reserva.id, nuevoEstado).subscribe(() => {

@@ -8,20 +8,23 @@
         <th>Fecha</th>
         <th>Hora</th>
         <th>Estado</th>
+        <th>Comentario</th> <!-- NUEVA COLUMNA -->
         <th>Puntuar</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let reserva of reservas">
-        <td>{{ reserva.asesor.nombre }}</td>
-        <td>{{ reserva.fechaReserva | date: 'shortDate' }}</td>
-        <td>{{ reserva.horaReserva }}</td>
-        <td>{{ reserva.estado }}</td>
-        <td>
-          <button (click)="seleccionarAsesor(reserva.asesor.id)">Seleccionar</button>
-        </td>
-      </tr>
-    </tbody>
+  <tr *ngFor="let reserva of reservas">
+    <td>{{ reserva.asesor.nombre }}</td>
+    <td>{{ reserva.fechaReserva | date: 'shortDate' }}</td>
+    <td>{{ reserva.horaReserva }}</td>
+    <td>{{ reserva.estado }}</td>
+    <td>{{ reserva.comentarioAsesor || 'Sin comentario' }}</td> <!-- ✅ CORRECTO -->
+    <td>
+      <button (click)="seleccionarAsesor(reserva.asesor.id)">Seleccionar</button>
+      <button>Subir CV</button>
+    </td>
+  </tr>
+</tbody>
   </table>
 
   <div *ngIf="puntuacion.idAsesor">

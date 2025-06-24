@@ -36,6 +36,7 @@ export class HistorialEstudianteComponent implements OnInit {
       this.puntuacion.idEstudiante = idEstudiante;
       this.reservaService.getByEstudiante(idEstudiante).subscribe(res => {
         this.reservas = res;
+        console.log("Reservas recibidas:", res); 
       });
     }
   }

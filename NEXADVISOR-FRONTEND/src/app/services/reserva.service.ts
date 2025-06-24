@@ -32,14 +32,10 @@ export class ReservaService {
 
   // Actualizar el comentario del asesor
   actualizarComentario(id: number, comentario: string): Observable<void> {
-    return this.http.put<void>(
-      `${this.baseUrl}/comentario/${id}`,
-      comentario,
-      {
-        headers: new HttpHeaders({ 'Content-Type': 'text/plain' })
-      }
-    );
-  }
+  return this.http.put<void>(`${this.baseUrl}/comentario/${id}`, comentario, {
+    headers: { 'Content-Type': 'text/plain' }
+  });
+}
   insertar(reserva: Reserva): Observable<void> {
   return this.http.post<void>(`${this.baseUrl}`, reserva);
 }

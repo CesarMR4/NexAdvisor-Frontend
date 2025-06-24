@@ -17,11 +17,11 @@
         <td>{{ reserva.fechaReserva | date:'shortDate' }}</td>
         <td>{{ reserva.horaReserva }}</td>
         <td>{{ reserva.estado }}</td>
+       <td>
+  <input type="text" [(ngModel)]="comentarios[reserva.id]" placeholder="Comentario" />
+</td>
         <td>
-          <input [(ngModel)]="reserva.comentarioAsesor" placeholder="Comentario" class="comentario-input">
-        </td>
-        <td>
-          <button class="btn btn-responder" (click)="actualizarComentario(reserva, reserva.comentarioAsesor)">Responder</button>
+         <button (click)="actualizarComentario(reserva)">Responder</button>
           <button class="btn btn-aceptar" (click)="actualizarEstado(reserva, 'Aceptada')">Aceptar</button>
           <button class="btn btn-rechazar" (click)="actualizarEstado(reserva, 'Rechazada')">Rechazar</button>
           <button class="btn btn-eliminar" (click)="eliminarReserva(reserva.id)">Eliminar</button>
