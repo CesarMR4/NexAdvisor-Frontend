@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let reserva of reservas">
-        <td>{{ reserva.estudiante?.nombre || 'Sin nombre' }}</td>
+        <td>{{ reserva.estudianteNombre || 'Sin nombre' }}</td>
         <td>{{ reserva.fechaReserva | date:'shortDate' }}</td>
         <td>{{ reserva.horaReserva }}</td>
         <td>{{ reserva.estado }}</td>

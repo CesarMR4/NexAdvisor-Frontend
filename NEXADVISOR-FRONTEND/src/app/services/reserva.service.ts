@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Reserva } from '../models/Reserva';
-
+import { ReservaDTO } from '../models/ReservaDTO';
+ 
 @Injectable({
   providedIn: 'root'
 })
@@ -12,8 +13,8 @@ export class ReservaService {
   constructor(private http: HttpClient) {}
 
   // Obtener reservas por ID del asesor
-  getByAsesor(idAsesor: number): Observable<Reserva[]> {
-    return this.http.get<Reserva[]>(`${this.baseUrl}/asesor/${idAsesor}`);
+  getByAsesor(id: number): Observable<ReservaDTO[]> {
+    return this.http.get<ReservaDTO[]>(`${this.baseUrl}/asesor/${id}`);
   }
 
   // Eliminar una reserva
