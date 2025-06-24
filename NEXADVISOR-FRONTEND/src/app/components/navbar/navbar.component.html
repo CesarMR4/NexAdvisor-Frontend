@@ -1,31 +1,29 @@
-<nav class="navbar">
-  <div class="navbar-left">
-    <div class="greeting" *ngIf="user">
+<nav class="navbar navbar-expand navbar-custom">
+  <div class="container-fluid">
+    <!-- Saludo -->
+    <span class="navbar-text me-auto" *ngIf="user">
       👋 Bienvenido, <strong>{{ user.nombre }}</strong>
-    </div>
-  </div>
+    </span>
 
-  <div class="navbar-right">
-    <!-- Menú para estudiante -->
-    <ul *ngIf="user?.tipoUsuario === 'estudiante'" class="menu">
-      <li><a routerLink="/perfil-estudiante">Perfil</a></li>
-      <li><a routerLink="/contactar">Contactar</a></li>
-      <li><a routerLink="/solicitud">Solicitudes</a></li>
-      <li><a routerLink="/ver-puntuacion">Puntuaciones</a></li>
-      <li><a routerLink="/historial">Historial</a></li>
-      <li><a routerLink="/foro">Foro</a></li>
-      <li><a routerLink="/buscar-asesores">Buscar Asesores</a></li>
-      <li><a href="#" (click)="logout()">Cerrar sesión</a></li>
+    <!-- Menú estudiante -->
+    <ul class="navbar-nav ms-auto" *ngIf="user?.tipoUsuario === 'estudiante'">
+      <li class="nav-item"><a routerLink="/perfil-estudiante" class="nav-link">Perfil</a></li>
+      <li class="nav-item"><a routerLink="/contactar" class="nav-link">Contactar</a></li>
+      <li class="nav-item"><a routerLink="/solicitud" class="nav-link">Solicitudes</a></li>
+      <li class="nav-item"><a routerLink="/ver-puntuacion" class="nav-link">Puntuaciones</a></li>
+      <li class="nav-item"><a routerLink="/historial" class="nav-link">Historial</a></li>
+      <li class="nav-item"><a routerLink="/foro" class="nav-link">Foro</a></li>
+      <li class="nav-item"><a routerLink="/buscar-asesores" class="nav-link">Buscar Asesores</a></li>
+      <li class="nav-item"><a href="#" class="nav-link" (click)="logout()">Cerrar sesión</a></li>
     </ul>
 
-   <!-- Menú para asesor -->
-<ul *ngIf="user?.tipoUsuario === 'asesor'" class="menu">
-  <!-- <li><a routerLink="/perfil-asesor">Perfil</a></li> -->
-  <li><a routerLink="/reserva-asesor">Reservas</a></li>
-  <li><a routerLink="/comentarios-asesor">Comentarios</a></li>
-  <li><a routerLink="/comentarios-asesor">Notificaciones</a></li>
-  <li><a routerLink="/horarios-asesor">Horarios</a></li>
-  <li><a href="#" (click)="logout()">Cerrar sesión</a></li>
-</ul>
+    <!-- Menú asesor -->
+    <ul class="navbar-nav ms-auto" *ngIf="user?.tipoUsuario === 'asesor'">
+      <li class="nav-item"><a routerLink="/reserva-asesor" class="nav-link">Reservas</a></li>
+      <li class="nav-item"><a routerLink="/comentarios-asesor" class="nav-link">Comentarios</a></li>
+      <li class="nav-item"><a routerLink="/comentarios-asesor" class="nav-link">Notificaciones</a></li>
+      <li class="nav-item"><a routerLink="/horarios-asesor" class="nav-link">Horarios</a></li>
+      <li class="nav-item"><a href="#" class="nav-link" (click)="logout()">Cerrar sesión</a></li>
+    </ul>
   </div>
 </nav>

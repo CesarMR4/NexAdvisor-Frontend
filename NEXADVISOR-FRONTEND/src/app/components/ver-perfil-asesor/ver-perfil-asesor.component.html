@@ -1,15 +1,44 @@
-<div *ngIf="asesor" class="card p-4 shadow rounded bg-white">
-  <h2 class="text-2xl font-bold mb-4">{{ asesor.nombre }}</h2>
-  <p><strong>Email:</strong> {{ asesor.email }}</p>
-  <p><strong>Carrera:</strong> {{ asesor.carrera }}</p>
-  <p><strong>Sector:</strong> {{ asesor.sector }}</p>
-  <p><strong>Teléfono:</strong> {{ asesor.telefono }}</p>
-  <p><strong>Dirección:</strong> {{ asesor.direccion }}</p>
-
-  <p><strong>Currículum:</strong> 
-    <a *ngIf="asesor.curriculum" [href]="asesor.curriculum" target="_blank" rel="noopener noreferrer">
-      📄 Ver Curriculum
-    </a>
-    <span *ngIf="!asesor.curriculum" class="text-gray-500 italic">No disponible</span>
-  </p>
-</div>
+<section class="perfil-asesor-section">
+  <div class="container">
+    <div class="perfil-card">
+      <div class="perfil-header">
+        <h2>{{ asesor?.nombre }}</h2>
+      </div>
+      <div class="perfil-info">
+        <div class="info-item">
+          <label>Email:</label>
+          <div class="info-data">{{ asesor?.email }}</div>
+        </div>
+        <div class="info-item">
+          <label>Carrera:</label>
+          <div class="info-data">{{ asesor?.carrera }}</div>
+        </div>
+        <div class="info-item">
+          <label>Sector:</label>
+          <div class="info-data">{{ asesor?.sector }}</div>
+        </div>
+        <div class="info-item">
+          <label>Teléfono:</label>
+          <div class="info-data">{{ asesor?.telefono }}</div>
+        </div>
+        <div class="info-item">
+          <label>Dirección:</label>
+          <div class="info-data">{{ asesor?.direccion }}</div>
+        </div>
+        <div class="info-item">
+          <label>Currículum:</label>
+          <div class="info-data">
+            <ng-container *ngIf="asesor?.curriculum; else sinCurriculum">
+              <a [href]="asesor?.curriculum" target="_blank" rel="noopener noreferrer" class="curriculum-link">
+                📄 Ver Currículum
+              </a>
+            </ng-container>
+            <ng-template #sinCurriculum>
+              <span class="text-muted">No disponible</span>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

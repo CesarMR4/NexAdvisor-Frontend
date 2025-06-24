@@ -1,30 +1,66 @@
-.perfil-container {
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #eef9f9;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.perfil-wrapper {
+  background-color: #f4f5f7;
+  min-height: 100vh;
+  padding: 40px 0;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.perfil-container h2 {
+.container-perfil {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.card-perfil {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 30px;
+}
+
+.perfil-title {
   text-align: center;
   color: #2a5d77;
   margin-bottom: 25px;
 }
 
-.perfil-item {
-  font-size: 16px;
-  margin-bottom: 12px;
+hr {
+  border: none;
+  height: 1px;
+  background: #ddd;
+  margin-bottom: 25px;
 }
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.info-label {
+  font-weight: bold;
+  color: #388e3c;
+  width: 40%;
+}
+
+.info-data {
+  width: 60%;
+  color: #333;
+}
+
+.btn-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
 .btn-editar {
   background: linear-gradient(45deg, #4caf50, #81c784);
   color: white;
   border: none;
-  padding: 10px 18px;
-  border-radius: 25px;
+  padding: 10px 22px;
+  border-radius: 30px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 16px;
   box-shadow: 0 4px 6px rgba(76, 175, 80, 0.4);
   transition: background 0.3s ease;
 }
@@ -32,4 +68,3 @@
 .btn-editar:hover {
   background: linear-gradient(45deg, #388e3c, #66bb6a);
 }
-
