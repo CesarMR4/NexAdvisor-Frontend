@@ -1,26 +1,64 @@
-<div class="recuperar-container">
-  <h2>Recuperar Contraseña - {{ tipoUsuario | titlecase }}</h2>
+<div class="container recuperar-container">
+  <div class="card card-recuperar mx-auto text-center">
+    <div class="card-header bg-nexadvisor text-white">
+      <h2>Recuperar Contraseña - {{ tipoUsuario | titlecase }}</h2>
+    </div>
+    <div class="card-body">
+      <!-- Paso 1 -->
+      <form *ngIf="paso === 1" (ngSubmit)="continuarPaso2()" autocomplete="off">
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+          </div>
+          <input
+            type="email"
+            [(ngModel)]="datos.email"
+            name="email"
+            class="form-control"
+            placeholder="Email registrado"
+            required
+          />
+        </div>
 
-  <!-- Paso 1 -->
-  <form *ngIf="paso === 1" (ngSubmit)="continuarPaso2()" autocomplete="off">
-    <label>Email registrado:</label>
-    <input type="email" [(ngModel)]="datos.email" name="email" required />
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+          </div>
+          <input
+            type="password"
+            [(ngModel)]="datos.nuevaPassword"
+            name="nuevaPassword"
+            class="form-control"
+            placeholder="Nueva contraseña"
+            required
+          />
+        </div>
 
-    <label>Nueva contraseña:</label>
-    <input type="password" [(ngModel)]="datos.nuevaPassword" name="nuevaPassword" required />
+        <button type="submit" class="btn btn-nex w-100">Aceptar</button>
+      </form>
 
-    <button type="submit">Aceptar</button>
-  </form>
+      <!-- Paso 2 -->
+      <form *ngIf="paso === 2" (ngSubmit)="confirmarCambio()" autocomplete="off">
+        <p class="mb-3">Para confirmar tu identidad, responde la siguiente pregunta:</p>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+          </div>
+          <input
+            type="text"
+            [(ngModel)]="datos.numeroTelefonico"
+            name="telefono"
+            class="form-control"
+            placeholder="¿Cuál es tu número de teléfono registrado?"
+            required
+          />
+        </div>
 
-  <!-- Paso 2 -->
-  <form *ngIf="paso === 2" (ngSubmit)="confirmarCambio()" autocomplete="off">
-    <p>Para confirmar tu identidad, responde la siguiente pregunta:</p>
-    <label>¿Cuál es tu número de teléfono registrado?</label>
-    <input type="text" [(ngModel)]="datos.numeroTelefonico" name="telefono" required />
+        <button type="submit" class="btn btn-nex w-100">Cambiar contraseña</button>
+      </form>
 
-    <button type="submit">Cambiar contraseña</button>
-  </form>
-
-  <p class="mensaje" *ngIf="mensaje">{{ mensaje }}</p>
-  <p class="error" *ngIf="error">{{ error }}</p>
+      <p class="mensaje" *ngIf="mensaje">{{ mensaje }}</p>
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </div>
+  </div>
 </div>

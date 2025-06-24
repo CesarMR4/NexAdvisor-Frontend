@@ -34,17 +34,38 @@
       <h3>Publicaciones recientes</h3>
 
       <article *ngFor="let pub of publicaciones" class="publicacion">
-        <h4>{{ pub.titulo }}</h4>
-        <p class="meta">
-          Por {{ pub.estudiante?.nombre || 'Anónimo' }} -
-          {{ pub.fechaPublicacion ? (pub.fechaPublicacion | date: 'short') : 'Sin fecha' }}
-        </p>
-        <p>{{ pub.contenido ? (pub.contenido | slice: 0:200) : '' }}...</p>
+        <!-- Si está en edición -->
+        <div *ngIf="editandoId === pub.id; else modoLectura">
+          <div class="form-group">
+            <label for="tituloEdit">Editar Título</label>
+            <input id="tituloEdit" type="text" [(ngModel)]="editandoPublicacion.titulo" />
+          </div>
+          <div class="form-group">
+            <label for="contenidoEdit">Editar Contenido</label>
+            <textarea id="contenidoEdit" [(ngModel)]="editandoPublicacion.contenido" rows="4"></textarea>
+          </div>
+          <div class="botones-edicion">
+          <button (click)="guardarEdicion()">Guardar</button>
+          <button (click)="cancelarEdicion()">Cancelar</button>
+          </div>
 
-        <div class="acciones">
-          <button *ngIf="pub.id != null" class="ver" (click)="verDetalle(pub.id)">Ver más</button>
-          <button *ngIf="pub.id != null && pub.estudiante?.id === user.id" class="eliminar" (click)="eliminar(pub.id)">Eliminar</button>
         </div>
+
+        <!-- Vista normal -->
+        <ng-template #modoLectura>
+          <h4>{{ pub.titulo }}</h4>
+          <p class="meta">
+            Por {{ pub.estudiante?.nombre || 'Anónimo' }} -
+            {{ pub.fechaPublicacion ? (pub.fechaPublicacion | date: 'short') : 'Sin fecha' }}
+          </p>
+          <p>{{ pub.contenido ? (pub.contenido | slice: 0:200) : '' }}...</p>
+
+          <div class="acciones">
+            <button *ngIf="pub.id != null" class="ver" (click)="verDetalle(pub.id)">Ver más</button>
+            <button *ngIf="pub.id != null && pub.estudiante?.id === user.id" class="eliminar" (click)="eliminar(pub.id)">Eliminar</button>
+            <button *ngIf="pub.id != null && pub.estudiante?.id === user.id" class="editar" (click)="editar(pub)">Editar</button>
+          </div>
+        </ng-template>
       </article>
     </section>
   </main>

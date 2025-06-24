@@ -24,4 +24,11 @@ export class PublicacionForoService {
   eliminar(id: number): Observable<any> {
     return this.http.delete(`${this.url}/${id}`);
   }
+
+  editar(publicacion: PublicacionForo): Observable<void> {
+  return this.http.put<void>(`${this.url}`, publicacion);
+}
+
+
+  
 }

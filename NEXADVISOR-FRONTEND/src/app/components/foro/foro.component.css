@@ -184,3 +184,19 @@ button.eliminar {
 button.eliminar:hover {
   background-color: #c62828;
 }
+/* Separación entre botones dentro de .acciones */
+.acciones button {
+  margin-right: 10px;
+  margin-top: 6px;
+}
+
+/* Separación entre botones en modo edición */
+.publicacion .form-group button {
+  margin-right: 10px;
+  margin-top: 8px;
+}
+/* Espaciado entre los botones de edición */
+.botones-edicion button {
+  margin-right: 12px;
+  margin-top: 10px;
+}

@@ -85,4 +85,61 @@ ngOnInit(): void {
       this.publicacionService.eliminar(id).subscribe(() => this.listarPublicaciones());
     }
   }
+
+// Propiedades nuevas
+editandoId: number | null = null;
+editandoPublicacion: PublicacionForo = {
+  id: 0,
+  titulo: '',
+  contenido: '',
+  fechaPublicacion: new Date(),
+  estudiante: {} as Estudiante
+};
+
+// Método para iniciar edición
+editar(pub: PublicacionForo): void {
+  this.editandoId = pub.id!;
+  this.editandoPublicacion = {
+    id: pub.id!,
+    titulo: pub.titulo,
+    contenido: pub.contenido,
+    fechaPublicacion: pub.fechaPublicacion,
+    estudiante: pub.estudiante
+  };
 }
+
+// Cancelar edición
+cancelarEdicion(): void {
+  this.editandoId = null;
+  this.editandoPublicacion = {
+    id: 0,
+    titulo: '',
+    contenido: '',
+    fechaPublicacion: new Date(),
+    estudiante: {} as Estudiante
+  };
+}
+
+
+
+
+// Guardar cambios
+guardarEdicion(): void {
+  if (!this.editandoPublicacion.titulo.trim() || !this.editandoPublicacion.contenido.trim()) return;
+
+  this.publicacionService.editar(this.editandoPublicacion).subscribe({
+    error: (e) => console.error('Error al guardar edición', e)
+  });
+
+  // Forzar recarga incluso si aún no terminó el backend
+  setTimeout(() => window.location.reload(), 500);
+}
+
+
+
+}
+
+
+
+
+
