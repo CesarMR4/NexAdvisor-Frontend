@@ -1,24 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AsesorService } from '../../services/asesor.service';
 import { AuthService } from '../../services/auth.service';
-import { Asesor } from '../../models/Asesor';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-editar-perfil-asesor',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './editar-perfil-asesor.component.html',
   styleUrls: ['./editar-perfil-asesor.component.css']
 })
 export class EditarPerfilAsesorComponent implements OnInit {
 
   form!: FormGroup;
-  isSaving: boolean = false;
-  asesorOriginal!: Asesor;
+  isLoading = false;
+  successMessage = '';
 
   constructor(
     private fb: FormBuilder,
     private asesorService: AsesorService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -27,14 +31,12 @@ export class EditarPerfilAsesorComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       direccion: [''],
       carrera: [''],
-      telefono: [''],
-      sector: ['']
+      telefono: ['']
     });
 
     const id = this.authService.getUserId();
     if (id) {
       this.asesorService.getAsesorById(id).subscribe(asesor => {
-        this.asesorOriginal = asesor; // 👉 guardamos asesor completo
         this.form.patchValue(asesor);
       });
     }
@@ -42,22 +44,21 @@ export class EditarPerfilAsesorComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
-      this.isSaving = true;
+      this.isLoading = true;
+      this.successMessage = '';
       const id = this.authService.getUserId();
       if (id) {
-        const asesorActualizado: Asesor = {
-          ...this.asesorOriginal,
-          ...this.form.value // fusionamos campos editables
-        };
-
-        this.asesorService.updateAsesor(id, asesorActualizado).subscribe({
+        this.asesorService.updateAsesor(id, this.form.value).subscribe({
           next: () => {
-            alert('Perfil actualizado correctamente');
-            this.isSaving = false;
+            this.successMessage = 'Perfil actualizado correctamente';
+            this.isLoading = false;
+            setTimeout(() => {
+              this.router.navigate(['/perfil-asesor']);
+            }, 2000);
           },
           error: () => {
-            alert('Error al actualizar perfil');
-            this.isSaving = false;
+            alert('Error al actualizar el perfil');
+            this.isLoading = false;
           }
         });
       }

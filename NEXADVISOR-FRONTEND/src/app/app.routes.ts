@@ -57,6 +57,13 @@ export const routes: Routes = [
     loadComponent: () => import('./components/historial-estudiante/historial-estudiante.component').then(m => m.HistorialEstudianteComponent)
   },
   {
+  path: 'perfil-asesor/editar',
+  loadComponent: () => import('./components/editar-perfil-asesor/editar-perfil-asesor.component').then(m => m.EditarPerfilAsesorComponent)
+  },
+ 
+
+  
+  {
     path: 'ver-puntuacion',
     loadComponent: () => import('./components/asesor-con-puntuacion/asesor-con-puntuacion.component').then(m => m.AsesorConPuntuacionComponent)
   },
