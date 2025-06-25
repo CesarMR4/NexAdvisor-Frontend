@@ -1,77 +1,15 @@
-/*
 import { Component, OnInit } from '@angular/core';
 import { ReservaService } from '../../services/reserva.service';
 import { PuntuacionService } from '../../services/puntuacion.service';
-import { AuthService } from '../../services/auth.service';
-import { Reserva } from '../../models/Reserva';
-import { Puntuacion } from '../../models/Puntuacion';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-@Component({
-  standalone: true,
-  selector: 'app-historial-estudiante',
-  templateUrl: './historial-estudiante.component.html',
-  imports: [CommonModule, FormsModule], // asegúrate de incluir FormsModule también
-  styleUrls: ['./historial-estudiante.component.css']
-})
-export class HistorialEstudianteComponent implements OnInit {
-  reservas: Reserva[] = [];
-  puntuacion: Puntuacion = {
-    idEstudiante: 0,
-    idAsesor: 0,
-    puntaje: 0,
-    comentario: ''
-  };
-  mensaje: string = '';
-
-  constructor(
-    private reservaService: ReservaService,
-    private puntuacionService: PuntuacionService,
-    private authService: AuthService
-  ) {}
-
-  ngOnInit(): void {
-    const idEstudiante = this.authService.getUserId();
-    if (idEstudiante) {
-      this.puntuacion.idEstudiante = idEstudiante;
-      this.reservaService.getByEstudiante(idEstudiante).subscribe(res => {
-        this.reservas = res;
-        console.log("Reservas recibidas:", res); 
-      });
-    }
-  }
-
-  seleccionarAsesor(idAsesor: number) {
-    this.puntuacion.idAsesor = idAsesor;
-  }
-
-  registrarPuntuacion() {
-    if (this.puntuacion.puntaje < 1 || this.puntuacion.puntaje > 5) {
-      this.mensaje = 'El puntaje debe estar entre 1 y 5.';
-      return;
-    }
-
-    this.puntuacionService.registrarPuntuacion(this.puntuacion).subscribe({
-      next: () => {
-        this.mensaje = 'Puntuación registrada correctamente.';
-        this.puntuacion.puntaje = 0;
-        this.puntuacion.comentario = '';
-      },
-      error: () => {
-        this.mensaje = 'Error al registrar la puntuación.';
-      }
-    });
-  }
-}
-*/
-import { Component, OnInit } from '@angular/core';
-import { ReservaService } from '../../services/reserva.service';
-import { PuntuacionService } from '../../services/puntuacion.service';
+import { ComentarioService } from '../../services/comentarios.service';
 import { AuthService } from '../../services/auth.service';
 import { CurriculumService } from '../../services/curriculum.service';
+
 import { Reserva } from '../../models/Reserva';
 import { Puntuacion } from '../../models/Puntuacion';
+import { Comentario } from '../../models/Comentario';
+import { Estudiante } from '../../models/Estudiante';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -92,9 +30,13 @@ export class HistorialEstudianteComponent implements OnInit {
   };
   mensaje: string = '';
 
+  comentarioNuevo: Comentario = new Comentario();
+  comentarioReservaActiva: Reserva | null = null;
+
   constructor(
     private reservaService: ReservaService,
     private puntuacionService: PuntuacionService,
+    private comentarioService: ComentarioService,
     private authService: AuthService,
     private curriculumService: CurriculumService
   ) {}
@@ -132,11 +74,11 @@ export class HistorialEstudianteComponent implements OnInit {
   }
 
   cancelarPuntuacion() {
-  this.puntuacion.idAsesor = 0;
-  this.puntuacion.puntuacion = 0;
-  this.puntuacion.comentario = '';
-  this.mensaje = '';
-}
+    this.puntuacion.idAsesor = 0;
+    this.puntuacion.puntuacion = 0;
+    this.puntuacion.comentario = '';
+    this.mensaje = '';
+  }
 
   abrirSelectorArchivo(reservaId: number) {
     const input = document.getElementById(`inputCV-${reservaId}`) as HTMLInputElement;
@@ -157,5 +99,52 @@ export class HistorialEstudianteComponent implements OnInit {
       });
     }
   }
+
+  abrirFormularioComentario(reserva: Reserva) {
+  const idEstudiante = this.authService.getUserId();
+  const estudianteLogueado = this.authService.getCurrentEstudiante(); // ⬅️ usa tu método correcto
+
+  if (!idEstudiante || !estudianteLogueado) {
+    alert('No se pudo obtener los datos del estudiante');
+    return;
+  }
+
+  this.comentarioReservaActiva = reserva;
+  this.comentarioNuevo = {
+    id: 0,
+    contenido: '',
+    fechacreacion: new Date(),
+    estudiante: {
+      id: estudianteLogueado.id,
+      nombre: estudianteLogueado.nombre,
+      email: estudianteLogueado.email,
+      password: estudianteLogueado.password,
+      direccion: estudianteLogueado.direccion,
+      telefono: estudianteLogueado.telefono,
+      curriculum: estudianteLogueado.curriculum,
+      carrera: estudianteLogueado.carrera,
+      fechaRegistro: estudianteLogueado.fechaRegistro,
+      rol: estudianteLogueado.rol
+    },
+    asesor: reserva.asesor
+  };
 }
 
+  cancelarFormularioComentario() {
+    this.comentarioReservaActiva = null;
+    this.comentarioNuevo = new Comentario();
+  }
+
+  guardarComentario() {
+    this.comentarioService.crear(this.comentarioNuevo).subscribe({
+      next: () => {
+        alert('Comentario enviado correctamente');
+        this.cancelarFormularioComentario();
+      },
+      error: (err) => {
+        alert('Error al enviar el comentario');
+        console.error(err);
+      }
+    });
+  }
+}

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Estudiante } from '../models/Estudiante';
 
 export interface Usuario {
   id: number;
@@ -74,4 +75,15 @@ export class AuthService {
   logout() {
     this.clearUser();
   }
+  
+getCurrentEstudiante(): Estudiante | null {
+  const userJson = localStorage.getItem('usuario');
+  if (userJson) {
+    const parsed = JSON.parse(userJson);
+    if (parsed.rol === 'estudiante') {
+      return parsed as Estudiante;
+    }
+  }
+  return null;
+}
 }

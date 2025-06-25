@@ -49,11 +49,12 @@ export class LoginComponent implements OnInit {
           tipoUsuario: this.tipoUsuario
         });
 
-        if (this.tipoUsuario === 'estudiante') {
-          this.router.navigate(['/dashboard-estudiante']);
-        } else {
-          this.router.navigate(['/dashboard-asesor']);
-        }
+          if (this.tipoUsuario === 'estudiante') {
+    localStorage.setItem('usuario', JSON.stringify(usuario)); // para getCurrentEstudiante()
+    this.router.navigate(['/dashboard-estudiante']);
+  } else {
+    this.router.navigate(['/dashboard-asesor']);
+  }
       },
       error: (err) => {
         console.error('Error de login:', err);

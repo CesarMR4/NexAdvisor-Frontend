@@ -1,0 +1,90 @@
+/* Estilo general */
+:host {
+  display: block;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Título */
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Encabezado */
+thead {
+  background-color: #3498db;
+  color: white;
+}
+
+thead th {
+  padding: 1rem;
+  text-align: left;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Filas */
+tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+tbody td {
+  padding: 1rem;
+  font-size: 0.95rem;
+  vertical-align: top;
+}
+
+/* Alternar color de fila */
+tbody tr:nth-child(even) {
+  background-color: #f5faff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    margin-bottom: 1rem;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #555;
+  }
+}

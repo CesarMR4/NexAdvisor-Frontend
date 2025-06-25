@@ -8,35 +8,41 @@
         <th>Fecha</th>
         <th>Hora</th>
         <th>Estado</th>
-        <th>Comentario</th>
+        <th>Comentario del Asesor</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let reserva of reservas">
-        <td>{{ reserva.asesor.nombre }}</td>
-        <td>{{ reserva.fechaReserva | date: 'shortDate' }}</td>
-        <td>{{ reserva.horaReserva }}</td>
-        <td>{{ reserva.estado }}</td>
-        <td>{{ reserva.comentarioAsesor || 'Sin comentario' }}</td>
-        <td>
-          <!-- Botón para puntuar asesor -->
-          <button
-            *ngIf="!puntuacion.idAsesor"
-            (click)="seleccionarAsesor(reserva.asesor.id)">
-            Puntuar
-          </button>
+      <ng-container *ngFor="let reserva of reservas">
+        <tr>
+          <td>{{ reserva.asesor.nombre }}</td>
+          <td>{{ reserva.fechaReserva | date: 'shortDate' }}</td>
+          <td>{{ reserva.horaReserva }}</td>
+          <td>{{ reserva.estado }}</td>
+          <td>{{ reserva.comentarioAsesor || 'Sin comentario' }}</td>
+          <td>
+            <button *ngIf="!puntuacion.idAsesor" (click)="seleccionarAsesor(reserva.asesor.id)">Puntuar</button>
+            <input type="file" id="inputCV-{{ reserva.id }}" hidden (change)="enviarCV($event, reserva.id)" />
+            <button (click)="abrirSelectorArchivo(reserva.id)">Subir CV</button>
+            <button (click)="abrirFormularioComentario(reserva)">Comentar</button>
+          </td>
+        </tr>
 
-          <!-- Botón para subir CV -->
-          <input
-            type="file"
-            id="inputCV-{{ reserva.id }}"
-            hidden
-            (change)="enviarCV($event, reserva.id)"
-          />
-          <button (click)="abrirSelectorArchivo(reserva.id)">Subir CV</button>
-        </td>
-      </tr>
+        <!-- Formulario para comentar: SOLO si coincide el ID -->
+        <tr *ngIf="comentarioReservaActiva?.id === reserva.id">
+          <td colspan="6">
+            <h4>Dejar comentario para {{ reserva.asesor.nombre }}</h4>
+            <textarea
+              [(ngModel)]="comentarioNuevo.contenido"
+              placeholder="Escribe tu comentario aquí"
+              rows="4"
+              cols="50"
+            ></textarea><br /><br />
+            <button (click)="guardarComentario()">Enviar comentario</button>
+            <button (click)="cancelarFormularioComentario()" style="margin-left: 10px;">Cancelar</button>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 

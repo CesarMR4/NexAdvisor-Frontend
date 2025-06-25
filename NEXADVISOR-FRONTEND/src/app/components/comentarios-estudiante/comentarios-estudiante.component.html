@@ -1,0 +1,28 @@
+<h2>Mis Comentarios</h2>
+
+<table *ngIf="comentarios.length > 0" border="1" style="width: 100%;">
+  <thead>
+    <tr>
+      <th>Contenido</th>
+      <th>Fecha</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of comentarios">
+      <td *ngIf="comentarioEditando?.id !== c.id">{{ c.contenido }}</td>
+      <td *ngIf="comentarioEditando?.id === c.id">
+        <input [(ngModel)]="contenidoEditado" />
+      </td>
+      <td>{{ c.fechacreacion | date:'short' }}</td>
+      <td>
+        <button *ngIf="comentarioEditando?.id !== c.id" (click)="editarComentario(c)">Editar</button>
+        <button *ngIf="comentarioEditando?.id === c.id" (click)="guardarEdicion()">Guardar</button>
+        <button *ngIf="comentarioEditando?.id === c.id" (click)="cancelarEdicion()">Cancelar</button>
+        <button (click)="eliminarComentario(c.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="comentarios.length === 0">No has dejado comentarios aún.</p>
