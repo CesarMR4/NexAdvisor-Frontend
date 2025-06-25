@@ -19,10 +19,13 @@ export class ComentarioService {
     return this.http.get<Comentario[]>(`${this.apiUrl}`);
   }
 
-  crear(comentario: Comentario): Observable<Comentario> {
-    const headers = this.crearHeaders();
-    return this.http.post<Comentario>(this.apiUrl, comentario, { headers }); // ✅ FIX
-  }
+  crear(comentario: Comentario): Observable<any> {
+  const headers = this.crearHeaders();
+  return this.http.post(this.apiUrl, comentario, {
+    headers,
+    responseType: 'text' as 'json'
+  });
+}
 
   actualizar(id: number, datos: Partial<Comentario>): Observable<Comentario> {
     const headers = this.crearHeaders();
