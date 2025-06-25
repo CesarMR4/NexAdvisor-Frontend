@@ -25,8 +25,14 @@
           <button class="btn btn-aceptar" (click)="actualizarEstado(reserva, 'Aceptada')">Aceptar</button>
           <button class="btn btn-rechazar" (click)="actualizarEstado(reserva, 'Rechazada')">Rechazar</button>
           <button class="btn btn-eliminar" (click)="eliminarReserva(reserva.id)">Eliminar</button>
+          <button 
+  *ngIf="reserva.tieneCurriculum" 
+  (click)="descargarCV(reserva.id)">
+  Descargar CV
+</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+

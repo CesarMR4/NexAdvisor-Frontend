@@ -8,32 +8,40 @@
         <th>Fecha</th>
         <th>Hora</th>
         <th>Estado</th>
-        <th>Comentario</th> <!-- NUEVA COLUMNA -->
+        <th>Comentario</th>
         <th>Puntuar</th>
       </tr>
     </thead>
     <tbody>
-  <tr *ngFor="let reserva of reservas">
-    <td>{{ reserva.asesor.nombre }}</td>
-    <td>{{ reserva.fechaReserva | date: 'shortDate' }}</td>
-    <td>{{ reserva.horaReserva }}</td>
-    <td>{{ reserva.estado }}</td>
-    <td>{{ reserva.comentarioAsesor || 'Sin comentario' }}</td> <!-- ✅ CORRECTO -->
-    <td>
-      <button (click)="seleccionarAsesor(reserva.asesor.id)">Seleccionar</button>
-      <button>Subir CV</button>
-    </td>
-  </tr>
-</tbody>
+      <tr *ngFor="let reserva of reservas">
+        <td>{{ reserva.asesor.nombre }}</td>
+        <td>{{ reserva.fechaReserva | date: 'shortDate' }}</td>
+        <td>{{ reserva.horaReserva }}</td>
+        <td>{{ reserva.estado }}</td>
+        <td>{{ reserva.comentarioAsesor || 'Sin comentario' }}</td>
+        <td>
+          <button (click)="seleccionarAsesor(reserva.asesor.id)">Seleccionar</button>
+
+          <!-- Botón subir CV -->
+          <input
+            type="file"
+            id="inputCV-{{reserva.id}}"
+            hidden
+            (change)="enviarCV($event, reserva.id)"
+          />
+          <button (click)="abrirSelectorArchivo(reserva.id)">Subir CV</button>
+        </td>
+      </tr>
+    </tbody>
   </table>
 
   <div *ngIf="puntuacion.idAsesor">
     <h3>Puntuar asesor</h3>
     <label>Puntaje (1-5):</label>
-    <input type="number" [(ngModel)]="puntuacion.puntaje" min="1" max="5">
+    <input type="number" [(ngModel)]="puntuacion.puntaje" min="1" max="5" />
 
     <label>Comentario:</label>
-    <input type="text" [(ngModel)]="puntuacion.comentario">
+    <input type="text" [(ngModel)]="puntuacion.comentario" />
 
     <button (click)="registrarPuntuacion()">Enviar</button>
 
