@@ -22,7 +22,7 @@ export class VerPuntuacionComponent implements OnInit {
       this.puntuacionService.listarPorAsesor(this.idAsesor).subscribe({
         next: (puntuaciones: Puntuacion[]) => {
           if (puntuaciones.length > 0) {
-            const suma = puntuaciones.reduce((acc, p) => acc + p.puntaje, 0);
+           const suma = puntuaciones.reduce((acc, p) => acc + p.puntuacion, 0);
             this.promedio = suma / puntuaciones.length;
             this.cantidad = puntuaciones.length;
           } else {

@@ -87,7 +87,7 @@ export class HistorialEstudianteComponent implements OnInit {
   puntuacion: Puntuacion = {
     idEstudiante: 0,
     idAsesor: 0,
-    puntaje: 0,
+    puntuacion: 0,
     comentario: ''
   };
   mensaje: string = '';
@@ -114,7 +114,7 @@ export class HistorialEstudianteComponent implements OnInit {
   }
 
   registrarPuntuacion() {
-    if (this.puntuacion.puntaje < 1 || this.puntuacion.puntaje > 5) {
+    if (this.puntuacion.puntuacion < 1 || this.puntuacion.puntuacion > 5) {
       this.mensaje = 'El puntaje debe estar entre 1 y 5.';
       return;
     }
@@ -122,7 +122,7 @@ export class HistorialEstudianteComponent implements OnInit {
     this.puntuacionService.registrarPuntuacion(this.puntuacion).subscribe({
       next: () => {
         this.mensaje = 'Puntuación registrada correctamente.';
-        this.puntuacion.puntaje = 0;
+        this.puntuacion.puntuacion = 0;
         this.puntuacion.comentario = '';
       },
       error: () => {
@@ -130,6 +130,13 @@ export class HistorialEstudianteComponent implements OnInit {
       }
     });
   }
+
+  cancelarPuntuacion() {
+  this.puntuacion.idAsesor = 0;
+  this.puntuacion.puntuacion = 0;
+  this.puntuacion.comentario = '';
+  this.mensaje = '';
+}
 
   abrirSelectorArchivo(reservaId: number) {
     const input = document.getElementById(`inputCV-${reservaId}`) as HTMLInputElement;
@@ -150,5 +157,5 @@ export class HistorialEstudianteComponent implements OnInit {
       });
     }
   }
-  
 }
+

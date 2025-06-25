@@ -1,7 +1,7 @@
 export interface Puntuacion {
-  id?: number; // Opcional porque al registrar aún no tiene id
+  id?: number;
   idEstudiante: number;
   idAsesor: number;
-  puntaje: number;
+  puntuacion: number;
   comentario: string;
 }

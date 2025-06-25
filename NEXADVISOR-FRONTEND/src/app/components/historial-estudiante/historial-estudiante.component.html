@@ -9,7 +9,7 @@
         <th>Hora</th>
         <th>Estado</th>
         <th>Comentario</th>
-        <th>Puntuar</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -20,12 +20,17 @@
         <td>{{ reserva.estado }}</td>
         <td>{{ reserva.comentarioAsesor || 'Sin comentario' }}</td>
         <td>
-          <button (click)="seleccionarAsesor(reserva.asesor.id)">Seleccionar</button>
+          <!-- Botón para puntuar asesor -->
+          <button
+            *ngIf="!puntuacion.idAsesor"
+            (click)="seleccionarAsesor(reserva.asesor.id)">
+            Puntuar
+          </button>
 
-          <!-- Botón subir CV -->
+          <!-- Botón para subir CV -->
           <input
             type="file"
-            id="inputCV-{{reserva.id}}"
+            id="inputCV-{{ reserva.id }}"
             hidden
             (change)="enviarCV($event, reserva.id)"
           />
@@ -35,15 +40,30 @@
     </tbody>
   </table>
 
-  <div *ngIf="puntuacion.idAsesor">
+  <!-- Formulario para puntuar asesor -->
+  <div *ngIf="puntuacion.idAsesor" style="margin-top: 20px;">
     <h3>Puntuar asesor</h3>
-    <label>Puntaje (1-5):</label>
-    <input type="number" [(ngModel)]="puntuacion.puntaje" min="1" max="5" />
 
-    <label>Comentario:</label>
-    <input type="text" [(ngModel)]="puntuacion.comentario" />
+    <label for="puntaje">Puntaje (1-5):</label><br />
+    <input
+      id="puntaje"
+      type="number"
+      [(ngModel)]="puntuacion.puntuacion"
+      min="1"
+      max="5"
+      required
+    /><br /><br />
+
+    <label for="comentario">Comentario:</label><br />
+    <input
+      id="comentario"
+      type="text"
+      [(ngModel)]="puntuacion.comentario"
+      placeholder="Comentario opcional"
+    /><br /><br />
 
     <button (click)="registrarPuntuacion()">Enviar</button>
+    <button (click)="cancelarPuntuacion()" style="margin-left: 10px;">Cancelar</button>
 
     <p style="color: green;" *ngIf="mensaje">{{ mensaje }}</p>
   </div>
