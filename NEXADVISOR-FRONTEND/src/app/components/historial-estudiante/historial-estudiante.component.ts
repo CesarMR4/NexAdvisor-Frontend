@@ -256,14 +256,14 @@ registrarPuntuacion() {
     const archivo = event.target.files[0];
     if (!archivo) return;
 
-    this.resultadoSubida[idReserva] = '⏳ Subiendo currículum...';
+   // this.resultadoSubida[idReserva] = '⏳ Subiendo currículum...';
 
     this.curriculumService.analizarCurriculum(idReserva, archivo).subscribe({
       next: (reporte: string) => {
-        this.resultadoSubida[idReserva] = '✅ Currículum enviado y analizado correctamente.';
+        this.resultadoSubida[idReserva] = 'Enviado';
       },
       error: () => {
-        this.resultadoSubida[idReserva] = '❌ Error al subir o analizar el currículum.';
+        this.resultadoSubida[idReserva] = 'Error al subir';
       }
     });
   }
