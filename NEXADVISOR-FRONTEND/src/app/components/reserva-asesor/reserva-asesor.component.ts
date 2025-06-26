@@ -105,37 +105,43 @@ export class ReservaAsesorComponent implements OnInit {
   }
   */
 
-  ngOnInit(): void {
+ngOnInit(): void {
   const user = this.authService.getUser();
   if (user && user.tipoUsuario === 'asesor') {
     this.reservaService.getByAsesor(user.id).subscribe(reservas => {
+      const reservasCompletas: (ReservaDTO & { tieneCurriculum?: boolean })[] = [];
       let pendientes = reservas.length;
+
+      if (pendientes === 0) {
+        this.reservas = [];
+        return;
+      }
 
       reservas.forEach(reservaDTO => {
         const reserva = reservaDTO as ReservaDTO & { tieneCurriculum?: boolean };
+
         this.curriculumService.obtenerReportePorReserva(reserva.id).subscribe({
-          next: () => {
+          next: (res) => {
+            console.log('📄 Reporte IA recibido:', res); // útil para depurar
             reserva.tieneCurriculum = true;
+            reservasCompletas.push(reserva);
             if (--pendientes === 0) {
-              this.reservas = reservas as (ReservaDTO & { tieneCurriculum?: boolean })[];
+              this.reservas = reservasCompletas;
             }
           },
           error: () => {
             reserva.tieneCurriculum = false;
+            reservasCompletas.push(reserva);
             if (--pendientes === 0) {
-              this.reservas = reservas as (ReservaDTO & { tieneCurriculum?: boolean })[];
+              this.reservas = reservasCompletas;
             }
           }
         });
       });
-
-      // Por si no hay reservas, evita que quede indefinido
-      if (reservas.length === 0) {
-        this.reservas = [];
-      }
     });
   }
 }
+
 
 
   eliminarReserva(id: number): void {

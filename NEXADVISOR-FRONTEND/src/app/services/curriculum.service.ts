@@ -37,9 +37,9 @@ analizarCurriculum(idReserva: number, archivo: File): Observable<string> {
 }
 */
 
-  obtenerReportePorReserva(idReserva: number): Observable<Curriculum> {
-    return this.http.get<Curriculum>(`${this.baseUrl}/reporte/${idReserva}`);
-  }
+obtenerReportePorReserva(idReserva: number): Observable<string> {
+  return this.http.get(`${this.baseUrl}/reporte/${idReserva}`, { responseType: 'text' });
+}
 
   descargarReportePDF(idReserva: number): Observable<Blob> {
   return this.http.get(`${this.baseUrl}/reporte/${idReserva}/pdf`, {

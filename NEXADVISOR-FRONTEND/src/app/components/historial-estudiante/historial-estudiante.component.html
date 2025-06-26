@@ -24,6 +24,12 @@
             <button *ngIf="!puntuacion.idAsesor" (click)="seleccionarAsesor(reserva.asesor.id)">Puntuar</button>
             <input type="file" id="inputCV-{{ reserva.id }}" hidden (change)="enviarCV($event, reserva.id)" />
             <button (click)="abrirSelectorArchivo(reserva.id)">Subir CV</button>
+
+            <!-- NUEVO: Mensaje de resultado del CV -->
+            <p *ngIf="resultadoSubida[reserva.id]" style="margin-top: 5px; font-size: 0.9em; color: green;">
+              {{ resultadoSubida[reserva.id] }}
+            </p>
+
             <button (click)="abrirFormularioComentario(reserva)">Comentar</button>
           </td>
         </tr>

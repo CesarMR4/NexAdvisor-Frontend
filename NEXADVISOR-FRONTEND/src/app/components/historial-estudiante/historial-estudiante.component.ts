@@ -33,6 +33,9 @@ export class HistorialEstudianteComponent implements OnInit {
   comentarioNuevo: Comentario = new Comentario();
   comentarioReservaActiva: Reserva | null = null;
 
+  // NUEVO: para mostrar mensajes por reserva (estado del CV)
+  resultadoSubida: { [id: number]: string } = {};
+
   constructor(
     private reservaService: ReservaService,
     private puntuacionService: PuntuacionService,
@@ -85,52 +88,51 @@ export class HistorialEstudianteComponent implements OnInit {
     if (input) input.click();
   }
 
-enviarCV(event: any, idReserva: number) {
-  const archivo = event.target.files[0];
-  if (!archivo) return;
+  enviarCV(event: any, idReserva: number) {
+    const archivo = event.target.files[0];
+    if (!archivo) return;
 
-  const formData = new FormData();
-  formData.append('archivo', archivo); // el nombre DEBE ser "archivo"
+    this.resultadoSubida[idReserva] = '⏳ Subiendo currículum...';
 
-  this.curriculumService.analizarCurriculum(idReserva, archivo).subscribe({
-    next: (reporte: string) => {
-      alert('Currículum enviado correctamente.');
-    },
-    error: () => {
-      alert('Ocurrió un error al enviar el currículum.');
-    }
-  });
-}
-
-  abrirFormularioComentario(reserva: Reserva) {
-  const idEstudiante = this.authService.getUserId();
-  const estudianteLogueado = this.authService.getCurrentEstudiante(); // ⬅️ usa tu método correcto
-
-  if (!idEstudiante || !estudianteLogueado) {
-    alert('No se pudo obtener los datos del estudiante');
-    return;
+    this.curriculumService.analizarCurriculum(idReserva, archivo).subscribe({
+      next: (reporte: string) => {
+        this.resultadoSubida[idReserva] = '✅ Currículum enviado y analizado correctamente.';
+      },
+      error: () => {
+        this.resultadoSubida[idReserva] = '❌ Error al subir o analizar el currículum.';
+      }
+    });
   }
 
-  this.comentarioReservaActiva = reserva;
-  this.comentarioNuevo = {
-    id: 0,
-    contenido: '',
-    fechacreacion: new Date(),
-    estudiante: {
-      id: estudianteLogueado.id,
-      nombre: estudianteLogueado.nombre,
-      email: estudianteLogueado.email,
-      password: estudianteLogueado.password,
-      direccion: estudianteLogueado.direccion,
-      telefono: estudianteLogueado.telefono,
-      curriculum: estudianteLogueado.curriculum,
-      carrera: estudianteLogueado.carrera,
-      fechaRegistro: estudianteLogueado.fechaRegistro,
-      rol: estudianteLogueado.rol
-    },
-    asesor: reserva.asesor
-  };
-}
+  abrirFormularioComentario(reserva: Reserva) {
+    const idEstudiante = this.authService.getUserId();
+    const estudianteLogueado = this.authService.getCurrentEstudiante();
+
+    if (!idEstudiante || !estudianteLogueado) {
+      alert('No se pudo obtener los datos del estudiante');
+      return;
+    }
+
+    this.comentarioReservaActiva = reserva;
+    this.comentarioNuevo = {
+      id: 0,
+      contenido: '',
+      fechacreacion: new Date(),
+      estudiante: {
+        id: estudianteLogueado.id,
+        nombre: estudianteLogueado.nombre,
+        email: estudianteLogueado.email,
+        password: estudianteLogueado.password,
+        direccion: estudianteLogueado.direccion,
+        telefono: estudianteLogueado.telefono,
+        curriculum: estudianteLogueado.curriculum,
+        carrera: estudianteLogueado.carrera,
+        fechaRegistro: estudianteLogueado.fechaRegistro,
+        rol: estudianteLogueado.rol
+      },
+      asesor: reserva.asesor
+    };
+  }
 
   cancelarFormularioComentario() {
     this.comentarioReservaActiva = null;

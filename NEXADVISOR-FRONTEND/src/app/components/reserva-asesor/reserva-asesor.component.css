@@ -84,3 +84,10 @@ h2 {
 .btn-eliminar:hover {
   background-color: #c0392b;
 }
+.btn-descargar {
+  background-color: #9b59b6; /* púrpura suave */
+  color: white;
+}
+.btn-descargar:hover {
+  background-color: #8e44ad;
+}
