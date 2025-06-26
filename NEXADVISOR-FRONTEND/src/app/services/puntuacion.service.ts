@@ -12,8 +12,8 @@ export class PuntuacionService {
 
   constructor(private http: HttpClient) {}
 
-  registrarPuntuacion(puntuacion: Puntuacion): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/registrar`, puntuacion);
+  registrarPuntuacion(puntuacion: Puntuacion, idReserva: number): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/registrar/${idReserva}`, puntuacion);
   }
 
   listarPuntuaciones(): Observable<Puntuacion[]> {
@@ -26,4 +26,6 @@ export class PuntuacionService {
   obtenerPromedioPorAsesor(idAsesor: number): Observable<number> {
   return this.http.get<number>(`${this.baseUrl}/promedio/${idAsesor}`);
 }
+
+
 }

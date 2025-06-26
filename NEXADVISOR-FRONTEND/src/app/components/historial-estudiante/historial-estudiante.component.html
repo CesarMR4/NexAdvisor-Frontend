@@ -21,7 +21,7 @@
           <td>{{ reserva.estado }}</td>
           <td>{{ reserva.comentarioAsesor || 'Sin comentario' }}</td>
           <td>
-            <button *ngIf="!puntuacion.idAsesor" (click)="seleccionarAsesor(reserva.asesor.id)">Puntuar</button>
+            <button *ngIf="reservaIdPuntuacion === 0" (click)="seleccionarReserva(reserva.id)">Puntuar</button>
             <input type="file" id="inputCV-{{ reserva.id }}" hidden (change)="enviarCV($event, reserva.id)" />
             <button (click)="abrirSelectorArchivo(reserva.id)">Subir CV</button>
 
@@ -53,7 +53,7 @@
   </table>
 
   <!-- Formulario para puntuar asesor -->
-  <div *ngIf="puntuacion.idAsesor" style="margin-top: 20px;">
+  <div *ngIf="reservaIdPuntuacion !== 0" style="margin-top: 20px;">
     <h3>Puntuar asesor</h3>
 
     <label for="puntaje">Puntaje (1-5):</label><br />
@@ -64,14 +64,6 @@
       min="1"
       max="5"
       required
-    /><br /><br />
-
-    <label for="comentario">Comentario:</label><br />
-    <input
-      id="comentario"
-      type="text"
-      [(ngModel)]="puntuacion.comentario"
-      placeholder="Comentario opcional"
     /><br /><br />
 
     <button (click)="registrarPuntuacion()">Enviar</button>
