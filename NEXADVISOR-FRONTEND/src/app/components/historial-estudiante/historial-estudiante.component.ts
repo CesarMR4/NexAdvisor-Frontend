@@ -217,23 +217,29 @@ export class HistorialEstudianteComponent implements OnInit {
     this.reservaIdPuntuacion = reservaId;
   }
 
-  registrarPuntuacion() {
-    if (this.puntuacion.puntuacion < 1 || this.puntuacion.puntuacion > 5) {
-      this.mensaje = 'El puntaje debe estar entre 1 y 5.';
-      return;
-    }
-
-    this.puntuacionService.registrarPuntuacion(this.puntuacion, this.reservaIdPuntuacion).subscribe({
-      next: () => {
-        this.mensaje = 'Puntuación registrada correctamente.';
-        this.puntuacion.puntuacion = 0;
-        this.reservaIdPuntuacion = 0;
-      },
-      error: () => {
-        this.mensaje = 'Error al registrar la puntuación. Es posible que ya hayas puntuado esta reserva.';
-      }
-    });
+registrarPuntuacion() {
+  if (this.puntuacion.puntuacion < 1 || this.puntuacion.puntuacion > 5) {
+    this.mensaje = 'El puntaje debe estar entre 1 y 5.';
+    return;
   }
+
+  this.puntuacionService.registrarPuntuacion(this.puntuacion, this.reservaIdPuntuacion).subscribe({
+    next: () => {
+      this.mensaje = 'Puntuación registrada correctamente.';
+      this.puntuacion.puntuacion = 0;
+      this.reservaIdPuntuacion = 0;
+    },
+    error: (err) => {
+      console.error('Error real al registrar la puntuación:', err);
+      if (err.error && typeof err.error === 'string' && err.error.includes('Ya se ha registrado')) {
+        this.mensaje = 'Ya has puntuado esta reserva.';
+      } else {
+        this.mensaje = 'Ocurrió un error al registrar la puntuación. Revisa la consola para más detalles.';
+      }
+    }
+  });
+}
+
 
   cancelarPuntuacion() {
     this.reservaIdPuntuacion = 0;

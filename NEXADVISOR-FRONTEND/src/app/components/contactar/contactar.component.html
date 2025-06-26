@@ -9,12 +9,16 @@
 
   <ul *ngIf="asesores.length > 0">
     <li *ngFor="let asesor of asesores" class="asesor-card">
-      <strong>{{ asesor.nombre }}</strong> – {{ asesor.carrera }} | {{ asesor.sector }}
+      <strong>
+        {{ asesor.nombre }}
+        <span *ngIf="promedios[asesor.id] !== undefined">
+          – ⭐ {{ promedios[asesor.id] | number:'1.1-1' }}
+        </span>
+      </strong>
+      – {{ asesor.carrera }} | {{ asesor.sector }}
       <br />
       <button (click)="verPerfil(asesor.id)">Ver Perfil</button>
-      <button [routerLink]="['/horarios-estudiante', asesor.id]">
-  Ver Horarios
-</button>
+      <button [routerLink]="['/horarios-estudiante', asesor.id]">Ver Horarios</button>
     </li>
   </ul>
 </div>
