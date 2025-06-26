@@ -1,18 +1,19 @@
 <div class="container">
   <h2>Subir y analizar currículum</h2>
 
-  <form [formGroup]="form" (ngSubmit)="analizar()">
-    <div>
-      <label for="textoCurriculum">Texto del currículum:</label><br>
-      <textarea id="textoCurriculum" formControlName="textoCurriculum" rows="10" cols="60"></textarea>
-    </div>
-    <button type="submit" [disabled]="form.invalid">Analizar</button>
-  </form>
+  <!-- ✅ Input para seleccionar el archivo PDF -->
+  <div>
+    <label for="archivo">Selecciona tu currículum (PDF):</label><br>
+    <input type="file" (change)="onArchivoSeleccionado($event)" accept=".pdf" required />
+  </div><br>
 
+  <!-- ✅ Botón para enviar el currículum -->
+  <button (click)="analizar()" [disabled]="!archivoSeleccionado">Analizar</button>
+
+  <!-- ✅ Mostrar reporte si lo hay -->
   <div *ngIf="resultadoIA">
     <h3>Reporte IA:</h3>
     <pre>{{ resultadoIA }}</pre>
+    <button (click)="descargarPDF()">Descargar reporte en PDF</button>
   </div>
 </div>
-
-<button (click)="descargarPDF()" *ngIf="resultadoIA">Descargar reporte en PDF</button>

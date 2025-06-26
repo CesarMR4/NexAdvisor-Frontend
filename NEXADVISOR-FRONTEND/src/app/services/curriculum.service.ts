@@ -26,6 +26,16 @@ export class CurriculumService {
       responseType: 'text'
     });
   }
+  /*
+analizarCurriculum(idReserva: number, archivo: File): Observable<string> {
+  const formData = new FormData();
+  formData.append('archivo', archivo); // ⚠️ nombre correcto
+
+  return this.http.post(`http://localhost:8080/curriculum/analizar/${idReserva}`, formData, {
+    responseType: 'text',
+  });
+}
+*/
 
   obtenerReportePorReserva(idReserva: number): Observable<Curriculum> {
     return this.http.get<Curriculum>(`${this.baseUrl}/reporte/${idReserva}`);
@@ -35,6 +45,9 @@ export class CurriculumService {
   return this.http.get(`${this.baseUrl}/reporte/${idReserva}/pdf`, {
     responseType: 'blob'  // importante para recibir archivos
   });
+
+
+  
 }
 
 }

@@ -85,20 +85,22 @@ export class HistorialEstudianteComponent implements OnInit {
     if (input) input.click();
   }
 
-  enviarCV(event: Event, reservaId: number) {
-    const input = event.target as HTMLInputElement;
-    const file = input?.files?.[0];
-    if (file) {
-      this.curriculumService.analizarCurriculum(reservaId, file).subscribe({
-        next: () => {
-          console.log(`CV de la reserva ${reservaId} enviado con éxito.`);
-        },
-        error: (err) => {
-          console.error('Error al enviar CV:', err);
-        }
-      });
+enviarCV(event: any, idReserva: number) {
+  const archivo = event.target.files[0];
+  if (!archivo) return;
+
+  const formData = new FormData();
+  formData.append('archivo', archivo); // el nombre DEBE ser "archivo"
+
+  this.curriculumService.analizarCurriculum(idReserva, archivo).subscribe({
+    next: (reporte: string) => {
+      alert('Currículum enviado correctamente.');
+    },
+    error: () => {
+      alert('Ocurrió un error al enviar el currículum.');
     }
-  }
+  });
+}
 
   abrirFormularioComentario(reserva: Reserva) {
   const idEstudiante = this.authService.getUserId();
