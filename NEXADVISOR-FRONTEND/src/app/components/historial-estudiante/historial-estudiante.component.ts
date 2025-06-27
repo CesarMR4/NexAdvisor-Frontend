@@ -232,9 +232,9 @@ registrarPuntuacion() {
     error: (err) => {
       console.error('Error real al registrar la puntuación:', err);
       if (err.error && typeof err.error === 'string' && err.error.includes('Ya se ha registrado')) {
-        this.mensaje = 'Ya has puntuado esta reserva.';
+        this.mensaje = 'Ya has puntuado esta reserva';
       } else {
-        this.mensaje = 'Ocurrió un error al registrar la puntuación. Revisa la consola para más detalles.';
+        this.mensaje = 'Ya has puntuado esta reserva';
       }
     }
   });
@@ -263,7 +263,7 @@ registrarPuntuacion() {
         this.resultadoSubida[idReserva] = 'Enviado';
       },
       error: () => {
-        this.resultadoSubida[idReserva] = 'Error al subir';
+        this.resultadoSubida[idReserva] = 'Ya habías enviado tu CV';
       }
     });
   }
