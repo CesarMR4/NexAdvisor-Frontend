@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class HorariosAsesorComponent implements OnInit {
   horarios: Horario[] = [];
-  diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+  diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes','Sabado','Domingo' ];
   asesorAutenticado: Asesor | null = null;
 
   constructor(

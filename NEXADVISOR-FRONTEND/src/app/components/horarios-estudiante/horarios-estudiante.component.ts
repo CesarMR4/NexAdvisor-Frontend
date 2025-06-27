@@ -20,13 +20,15 @@ import { AuthService } from '../../services/auth.service';
 export class HorariosEstudianteComponent implements OnInit {
   horariosPorDia: { [key: string]: Horario[] } = {};
   reservasEstudiante: Reserva[] = [];
-  diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+  diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes','Sabado', 'Domingo' ];
   diasMap: { [key: number]: string } = {
     0: 'Lunes',
     1: 'Martes',
     2: 'Miércoles',
     3: 'Jueves',
-    4: 'Viernes'
+    4: 'Viernes',
+    5: 'Sabado',
+    6: 'Domingo',
   };
 
   horarioSeleccionado: Horario | null = null;
