@@ -7,18 +7,25 @@
     No hay asesores disponibles por el momento.
   </div>
 
-  <ul *ngIf="asesores.length > 0">
-    <li *ngFor="let asesor of asesores" class="asesor-card">
-      <strong>
-        {{ asesor.nombre }}
-        <span *ngIf="promedios[asesor.id] !== undefined">
-          – ⭐ {{ promedios[asesor.id] | number:'1.1-1' }}
-        </span>
-      </strong>
-      – {{ asesor.carrera }} | {{ asesor.sector }}
-      <br />
-      <button (click)="verPerfil(asesor.id)">Ver Perfil</button>
-      <button [routerLink]="['/horarios-estudiante', asesor.id]">Ver Horarios</button>
-    </li>
-  </ul>
+ <ul *ngIf="asesores.length > 0">
+  <li *ngFor="let asesor of asesores" class="asesor-card">
+    <strong>
+      {{ asesor.nombre }}
+      <span *ngIf="promedios[asesor.id] !== undefined">
+        – ⭐ {{ promedios[asesor.id] | number:'1.1-1' }}
+      </span>
+    </strong>
+    – {{ asesor.carrera }} | {{ asesor.sector }}
+    <br />
+
+    <!-- Agrupamos los botones en una fila -->
+    <div class="botones-container">
+  <button class="btn-ver" (click)="verPerfil(asesor.id)">Ver Perfil</button>
+  <button class="btn-ver" [routerLink]="['/horarios-estudiante', asesor.id]">Ver Horarios</button>
+</div>
+    <div class="comentarios-btn-container">
+  <a class="btn-ver" [routerLink]="['/comentarios-asesor']">Comentarios</a>
+</div>
+  </li>
+</ul>
 </div>
