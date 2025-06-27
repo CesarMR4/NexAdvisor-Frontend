@@ -3,6 +3,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Comentario } from '../../models/Comentario';
 import { ComentarioService } from '../../services/comentarios.service';
 import { AuthService } from '../../services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-comentarios-asesor',
@@ -17,15 +18,16 @@ export class ComentariosAsesorComponent implements OnInit {
 
   constructor(
     private comentarioService: ComentarioService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
-    const asesor = this.authService.getUser();
-    if (asesor && asesor.id) {
-      this.comentarioService.getComentariosPorAsesor(asesor.id).subscribe(data => {
-        this.comentarios = data;
-      });
-    }
+ ngOnInit(): void {
+  const idAsesor = this.route.snapshot.paramMap.get('id');
+  if (idAsesor) {
+    this.comentarioService.getComentariosPorAsesor(+idAsesor).subscribe(data => {
+      this.comentarios = data;
+    });
   }
+}
 }

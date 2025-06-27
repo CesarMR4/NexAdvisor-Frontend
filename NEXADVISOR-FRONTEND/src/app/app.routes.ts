@@ -69,7 +69,7 @@ export const routes: Routes = [
   },
 
   // 🧑‍🏫 Asesor
-  { path: 'comentarios-asesor', component: ComentariosAsesorComponent },
+  { path: 'comentarios-asesor/:id', component: ComentariosAsesorComponent },
   {
     path: 'reserva-asesor',
     loadComponent: () => import('./components/reserva-asesor/reserva-asesor.component').then(m => m.ReservaAsesorComponent)
