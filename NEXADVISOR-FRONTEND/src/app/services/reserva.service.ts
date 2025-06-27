@@ -18,9 +18,9 @@ export class ReservaService {
   }
 
   // Eliminar una reserva
-  eliminar(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}?id=${id}`);
-  }
+  eliminar(id: number): Observable<string> {
+  return this.http.delete(`${this.baseUrl}?id=${id}`, { responseType: 'text' });
+}
 
   // Actualizar el estado de una reserva
   actualizarEstado(id: number, estado: string): Observable<void> {

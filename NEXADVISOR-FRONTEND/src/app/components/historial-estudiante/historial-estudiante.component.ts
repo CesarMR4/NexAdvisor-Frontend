@@ -315,4 +315,18 @@ registrarPuntuacion() {
       }
     });
   }
+  cancelarReserva(idReserva: number): void {
+  if (confirm('¿Estás seguro de cancelar esta reserva?')) {
+    this.reservaService.eliminar(idReserva).subscribe({
+      next: () => {
+        this.reservas = this.reservas.filter(r => r.id !== idReserva);
+      },
+      error: (err) => {
+  console.error('Error al cancelar reserva:', err);
+  const mensaje = err.error || 'Ocurrió un error al cancelar la reserva.';
+  alert(mensaje);
+}
+    });
+  }
+}
 }

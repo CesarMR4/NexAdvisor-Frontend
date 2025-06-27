@@ -148,6 +148,7 @@ ngOnInit(): void {
     this.reservaService.eliminar(id).subscribe(() => {
       this.reservas = this.reservas.filter(r => r.id !== id);
     });
+    
   }
 
   actualizarComentario(reserva: ReservaDTO): void {
