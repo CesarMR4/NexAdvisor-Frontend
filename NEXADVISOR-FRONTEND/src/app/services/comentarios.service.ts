@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Comentario } from '../models/Comentario';
 import { AuthService } from './auth.service';
+import { environment } from '../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComentarioService {
-  private apiUrl = 'http://localhost:8080/comentarios'; // Correcto: sin repetición
-
+  //private apiUrl = 'http://localhost:8080/comentarios'; 
+ private apiUrl = `${environment.apiUrl}/comentarios`;
   constructor(
     private http: HttpClient,
     private authService: AuthService
@@ -29,16 +30,16 @@ export class ComentarioService {
 
   actualizar(id: number, datos: Partial<Comentario>): Observable<Comentario> {
     const headers = this.crearHeaders();
-    return this.http.put<Comentario>(`${this.apiUrl}/${id}`, datos, { headers }); // ✅ FIX
+    return this.http.put<Comentario>(`${this.apiUrl}/${id}`, datos, { headers }); 
   }
 
   eliminar(id: number): Observable<void> {
     const headers = this.crearHeaders();
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers }); // ✅ FIX
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers }); 
   }
 
   getComentariosPorAsesor(idAsesor: number): Observable<Comentario[]> {
-    return this.http.get<Comentario[]>(`${this.apiUrl}/asesor/${idAsesor}`); // ✅ FIX
+    return this.http.get<Comentario[]>(`${this.apiUrl}/asesor/${idAsesor}`); 
   }
 
   private crearHeaders(): HttpHeaders {

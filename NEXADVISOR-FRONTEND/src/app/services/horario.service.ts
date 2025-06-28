@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Horario } from '../models/Horario';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HorarioService {
-  private baseUrl: string = 'http://localhost:8080/horario'; // Asegúrate que esto esté bien
+  //private baseUrl: string = 'http://localhost:8080/horario'; 
+  private baseUrl: string = `${environment.apiUrl}/horario`;
 
   constructor(private http: HttpClient) {}
 

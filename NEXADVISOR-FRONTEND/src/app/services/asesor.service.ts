@@ -3,13 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Asesor } from '../models/Asesor';
 import { Auxiliar } from '../models/Auxiliar';
+import { environment } from '../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AsesorService {
 
-  private baseUrl = 'http://localhost:8080/asesores';
+  //rivate apiUrl = 'http://localhost:8080'
+  private baseUrl = `${environment.apiUrl}/asesores`;
 
   constructor(private http: HttpClient) { }
 

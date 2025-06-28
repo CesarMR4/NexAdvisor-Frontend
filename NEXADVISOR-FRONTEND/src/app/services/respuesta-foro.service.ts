@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RespuestaForo } from '../models/RespuestaForo';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class RespuestaForoService {
-  private url = 'http://localhost:8080/respuesta-foro';
+  //private url = 'http://localhost:8080/respuesta-foro';
+  private url = `${environment.apiUrl}/respuesta-foro`;
 
   constructor(private http: HttpClient) {}
 

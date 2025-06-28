@@ -1,16 +1,17 @@
-// respuesta.service.ts (o respuesta.service.ts)
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Respuesta } from '../models/Respuesta';
 import { AuthService } from './auth.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RespuestaService {
 
-  private apiUrl = 'http://localhost:8080'; // Cambia esto según tu backend
+  //private apiUrl = 'http://localhost:8080'; 
+  private apiUrl = `${environment.apiUrl}/respuestas`;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -28,13 +29,13 @@ export class RespuestaService {
     return this.http.put<Respuesta>(`${this.apiUrl}/respuestas/${id}`, datos, { headers });
   }
 
-  // Aquí está el método eliminar que falta
+ 
   eliminar(id: number): Observable<void> {
     const headers = this.crearHeaders();
     return this.http.delete<void>(`${this.apiUrl}/respuestas/${id}`, { headers });
   }
 
-  // Método para crear headers con X-User-Id
+  
   private crearHeaders(): HttpHeaders {
     const userId = this.authService.getUserId();
     return new HttpHeaders({ 'X-User-Id': userId ? userId.toString() : '' });

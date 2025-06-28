@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Estudiante } from '../models/Estudiante';
+import { environment } from '../../environments/environment'; 
 
 export interface Usuario {
   id: number;
@@ -19,7 +20,8 @@ export class AuthService {
   private userSource = new BehaviorSubject<Usuario | null>(null);
   currentUser = this.userSource.asObservable();
 
-  private apiUrl = 'http://localhost:8080'; // Cambia al URL real si usas entorno productivo
+  //private apiUrl = 'http://localhost:8080'; // Cambia al URL real si usas entorno productivo
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
     this.cargarUsuarioDesdeStorage();

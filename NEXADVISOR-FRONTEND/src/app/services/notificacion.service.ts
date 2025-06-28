@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Client, Message, over } from 'stompjs';
 import SockJS from 'sockjs-client';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class NotificacionService {
   private stompClient: Client | null = null;
 
   conectar(idAsesor: number, callback: (mensaje: string) => void): void {
-    const socket = new SockJS('http://localhost:8080/ws');  // Tu endpoint websocket
+   // const socket = new SockJS('http://localhost:8080/ws');  
+   const socket = new SockJS(`${environment.apiUrl}/ws`);
     this.stompClient = over(socket);
 
     this.stompClient.connect({}, () => {
