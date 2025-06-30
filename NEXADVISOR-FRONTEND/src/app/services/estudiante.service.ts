@@ -9,8 +9,8 @@ import { environment } from '../../environments/environment';
 })
 export class EstudianteService {
 
-  //private baseUrl = 'http://localhost:8080/estudiante';
-    private baseUrl = `${environment.apiUrl}/estudiante`;
+  private baseUrl = 'http://localhost:8080/estudiante';
+  //private baseUrl = `${environment.apiUrl}/estudiante`;
   constructor(private http: HttpClient) { }
 
   registrar(estudiante: Estudiante): Observable<{ mensaje: string }> {

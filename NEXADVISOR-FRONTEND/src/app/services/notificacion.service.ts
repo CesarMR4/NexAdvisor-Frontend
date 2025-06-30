@@ -10,8 +10,8 @@ export class NotificacionService {
   private stompClient: Client | null = null;
 
   conectar(idAsesor: number, callback: (mensaje: string) => void): void {
-   // const socket = new SockJS('http://localhost:8080/ws');  
-   const socket = new SockJS(`${environment.apiUrl}/ws`);
+    const socket = new SockJS('http://localhost:8080/ws');  
+   //const socket = new SockJS(`${environment.apiUrl}/ws`);
     this.stompClient = over(socket);
 
     this.stompClient.connect({}, () => {
