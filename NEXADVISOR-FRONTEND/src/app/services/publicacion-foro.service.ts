@@ -26,8 +26,8 @@ export class PublicacionForoService {
     return this.http.delete(`${this.url}/${id}`);
   }
 
-  editar(publicacion: PublicacionForo): Observable<void> {
-  return this.http.put<void>(`${this.url}`, publicacion);
+editar(publicacion: PublicacionForo): Observable<void> {
+  return this.http.put<void>(`${this.url}/${publicacion.id}`, publicacion);
 }
 
 
