@@ -1,43 +1,78 @@
 <div class="registro-container">
   <h2>Registro de Asesor</h2>
-  <form (ngSubmit)="registrar()" enctype="multipart/form-data">
+
+  <form #form="ngForm" (ngSubmit)="registrar()" enctype="multipart/form-data" novalidate>
+
     <div>
       <label>Nombre:</label>
-      <input type="text" [(ngModel)]="asesor.nombre" name="nombre" required>
-    </div>
-    <div>
-      <label>Email:</label>
-      <input type="email" [(ngModel)]="asesor.email" name="email" required autocomplete="off">
-    </div>
-    <div>
-      <label>Contraseña:</label>
-      <input type="password" [(ngModel)]="asesor.password" name="password" required autocomplete="new-password">
-    </div>
-    <div>
-      <label>Dirección:</label>
-      <input type="text" [(ngModel)]="asesor.direccion" name="direccion" required>
-    </div>
-    <div>
-      <label>Teléfono:</label>
-      <input type="text" [(ngModel)]="asesor.telefono" name="telefono" required>
-    </div>
-    <div>
-      <label>Carrera:</label>
-      <input type="text" [(ngModel)]="asesor.carrera" name="carrera" required>
-    </div>
-    <div>
-      <label>Sector:</label>
-      <input type="text" [(ngModel)]="asesor.sector" name="sector" required>
-    </div>
-    <div>
-      <label for="curriculum">Currículum (PDF):</label>
-      <input type="file" (change)="onFileSelected($event)" accept="application/pdf" />
+      <input type="text" name="nombre" [(ngModel)]="asesor.nombre" required #nombreRef="ngModel">
+      <div *ngIf="nombreRef.invalid && nombreRef.touched" class="error">
+        <span>El nombre es obligatorio.</span>
+      </div>
     </div>
 
-    <!-- Botones alineados en fila -->
+    <div>
+      <label>Email:</label>
+      <input type="email" name="email" [(ngModel)]="asesor.email" required email #emailRef="ngModel" autocomplete="off">
+      <div *ngIf="emailRef.invalid && emailRef.touched" class="error">
+        <span *ngIf="emailRef.errors?.['required']">El correo es obligatorio.</span>
+        <span *ngIf="emailRef.errors?.['email']">Formato de correo inválido.</span>
+      </div>
+    </div>
+
+    <div>
+      <label>Contraseña:</label>
+      <input type="password" name="password" [(ngModel)]="asesor.password" required minlength="6" #passRef="ngModel" autocomplete="new-password">
+      <div *ngIf="passRef.invalid && passRef.touched" class="error">
+        <span *ngIf="passRef.errors?.['required']">La contraseña es obligatoria.</span>
+        <span *ngIf="passRef.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+      </div>
+    </div>
+
+
+    <div>
+      <label>Dirección:</label>
+      <input type="text" name="direccion" [(ngModel)]="asesor.direccion" required #dirRef="ngModel">
+      <div *ngIf="dirRef.invalid && dirRef.touched" class="error">
+        <span>La dirección es obligatoria.</span>
+      </div>
+    </div>
+
+    <div>
+      <label>Teléfono:</label>
+      <input type="text" name="telefono" [(ngModel)]="asesor.telefono" required pattern="^[0-9]{6,15}$" #telRef="ngModel">
+      <div *ngIf="telRef.invalid && telRef.touched" class="error">
+        <span *ngIf="telRef.errors?.['required']">El teléfono es obligatorio.</span>
+        <span *ngIf="telRef.errors?.['pattern']">Solo números</span>
+      </div>
+    </div>
+
+    <div>
+      <label>Carrera:</label>
+      <input type="text" name="carrera" [(ngModel)]="asesor.carrera" required #carreraRef="ngModel">
+      <div *ngIf="carreraRef.invalid && carreraRef.touched" class="error">
+        <span>La carrera es obligatoria.</span>
+      </div>
+    </div>
+
+    <div>
+      <label>Sector:</label>
+      <input type="text" name="sector" [(ngModel)]="asesor.sector" required #sectorRef="ngModel">
+      <div *ngIf="sectorRef.invalid && sectorRef.touched" class="error">
+        <span>El sector es obligatorio.</span>
+      </div>
+    </div>
+
+    <div>
+      <label for="curriculum">Currículum (PDF):</label>
+      <input type="file" (change)="onFileSelected($event)" accept="application/pdf">
+    </div>
+
+
     <div class="botones-registro">
       <button type="button" (click)="volverAlLogin()" class="btn-volver">⬅ Volver al login</button>
-      <button type="submit" class="btn-registrar">Registrarse</button>
+      <button type="submit" class="btn-registrar" [disabled]="form.invalid">Registrarse</button>
     </div>
+
   </form>
 </div>

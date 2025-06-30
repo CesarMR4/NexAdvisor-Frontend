@@ -84,3 +84,8 @@ button {
 .btn-registrar:hover {
   background-color: #449d44;
 }
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+}

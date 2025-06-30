@@ -1,39 +1,61 @@
 <div class="registro-container">
   <h2>Registro del Estudiante</h2>
 
-  <form (ngSubmit)="registrar()" enctype="multipart/form-data">
+  <form #form="ngForm" (ngSubmit)="registrar()" enctype="multipart/form-data" novalidate>
+
     <div>
       <label>Nombre:</label>
-      <input type="text" [(ngModel)]="estudiante.nombre" name="nombre" required>
+      <input type="text" name="nombre" [(ngModel)]="estudiante.nombre" required #nombreRef="ngModel">
+      <div *ngIf="nombreRef.invalid && nombreRef.touched" class="error">
+        <span>El nombre es obligatorio.</span>
+      </div>
     </div>
 
     <div>
       <label>Email:</label>
-      <input type="email" [(ngModel)]="estudiante.email" name="email" required>
+      <input type="email" name="email" [(ngModel)]="estudiante.email" required email #emailRef="ngModel">
+      <div *ngIf="emailRef.invalid && emailRef.touched" class="error">
+        <span *ngIf="emailRef.errors?.['required']">El correo es obligatorio.</span>
+        <span *ngIf="emailRef.errors?.['email']">El formato del correo es inválido.</span>
+      </div>
     </div>
 
     <div>
       <label>Contraseña:</label>
-      <input type="password" [(ngModel)]="estudiante.password" name="password" required>
+      <input type="password" name="password" [(ngModel)]="estudiante.password" required minlength="6" #passRef="ngModel">
+      <div *ngIf="passRef.invalid && passRef.touched" class="error">
+        <span *ngIf="passRef.errors?.['required']">La contraseña es obligatoria.</span>
+        <span *ngIf="passRef.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+      </div>
     </div>
+
 
     <div>
       <label>Dirección:</label>
-      <input type="text" [(ngModel)]="estudiante.direccion" name="direccion" required>
+      <input type="text" name="direccion" [(ngModel)]="estudiante.direccion" required #dirRef="ngModel">
+      <div *ngIf="dirRef.invalid && dirRef.touched" class="error">
+        <span>La dirección es obligatoria.</span>
+      </div>
     </div>
+
 
     <div>
       <label>Teléfono:</label>
-      <input type="text" [(ngModel)]="estudiante.telefono" name="telefono" required>
+      <input type="text" name="telefono" [(ngModel)]="estudiante.telefono" required pattern="^[0-9]{6,15}$" #telRef="ngModel">
+      <div *ngIf="telRef.invalid && telRef.touched" class="error">
+        <span *ngIf="telRef.errors?.['required']">El teléfono es obligatorio.</span>
+        <span *ngIf="telRef.errors?.['pattern']">Debe contener solo números </span>
+      </div>
     </div>
 
     <div>
       <label>Carrera:</label>
-      <input type="text" [(ngModel)]="estudiante.carrera" name="carrera" required>
+      <input type="text" name="carrera" [(ngModel)]="estudiante.carrera" required #carreraRef="ngModel">
+      <div *ngIf="carreraRef.invalid && carreraRef.touched" class="error">
+        <span>La carrera es obligatoria.</span>
+      </div>
     </div>
 
-    
-
-    <button type="submit">Registrarse</button>
+    <button type="submit" [disabled]="form.invalid">Registrarse</button>
   </form>
 </div>
