@@ -41,4 +41,7 @@
   <div *ngIf="!cargando && resultados.length === 0 && criterio" class="no-results">
     No se encontraron asesores con ese criterio.
   </div>
+  <div style="text-align: center; margin-top: 2rem;">
+  <button (click)="volverDashboard()" class="btn-volver">Volver al Panel</button>
+</div>
 </div>

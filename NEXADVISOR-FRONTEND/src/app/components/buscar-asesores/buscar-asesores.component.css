@@ -145,3 +145,19 @@ button:disabled {
 button:hover:not(:disabled) {
   background-color: #1e7e34; /* Verde oscuro */
 }
+.btn-volver {
+  background: linear-gradient(45deg, #1976d2, #64b5f6);
+  color: white;
+  padding: 0.55rem 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 4px 6px rgba(25, 118, 210, 0.4);
+  transition: background 0.3s ease;
+}
+
+.btn-volver:hover {
+  background: linear-gradient(45deg, #1565c0, #42a5f5);
+}

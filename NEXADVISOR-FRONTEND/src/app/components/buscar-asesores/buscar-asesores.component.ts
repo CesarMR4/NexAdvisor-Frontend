@@ -62,4 +62,7 @@ export class BuscarAsesoresComponent {
   verHorarios(asesorId: number) {
   this.router.navigate(['/horarios-estudiante', asesorId]);
 }
+ volverDashboard() {
+    this.router.navigate(['/dashboard-estudiante']);
+  }
 }

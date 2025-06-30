@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Asesor } from '../../models/Asesor';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-horario-asesor',
@@ -21,7 +22,8 @@ export class HorariosAsesorComponent implements OnInit {
 
   constructor(
     private horarioService: HorarioService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -118,5 +120,8 @@ export class HorariosAsesorComponent implements OnInit {
         });
       }
     });
+  }
+   volverDashboard() {
+    this.router.navigate(['/dashboard-asesor']);
   }
 }

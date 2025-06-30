@@ -65,6 +65,7 @@ import { CurriculumService } from '../../services/curriculum.service'; // 👈 I
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReservaDTO } from '../../models/ReservaDTO';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reserva-asesor',
@@ -80,7 +81,8 @@ export class ReservaAsesorComponent implements OnInit {
   constructor(
     private reservaService: ReservaService,
     private authService: AuthService,
-    private curriculumService: CurriculumService // 👈 Inyectado
+    private curriculumService: CurriculumService,
+    private router: Router // 👈 Inyectado
   ) {}
 /*
   ngOnInit(): void {
@@ -175,6 +177,9 @@ ngOnInit(): void {
       a.click();
       window.URL.revokeObjectURL(url);
     });
+  }
+  volverDashboard() {
+    this.router.navigate(['/dashboard-asesor']);
   }
 }
 

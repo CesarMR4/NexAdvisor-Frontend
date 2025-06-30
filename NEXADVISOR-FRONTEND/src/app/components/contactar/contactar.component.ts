@@ -101,4 +101,7 @@ export class ContactarComponent implements OnInit {
   verHorarios(id: number) {
     this.router.navigate(['/horarios-estudiante', id]);
   }
+   volverDashboard() {
+    this.router.navigate(['/dashboard-estudiante']);
+  }
 }

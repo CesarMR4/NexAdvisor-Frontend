@@ -84,5 +84,8 @@ export class PerfilEstudianteComponent implements OnInit {
   editarPerfil(): void {
     this.router.navigate(['/editar-perfil-estudiante']); 
   }
+  volverDashboard() {
+    this.router.navigate(['/dashboard-estudiante']);
+  }
 }
 

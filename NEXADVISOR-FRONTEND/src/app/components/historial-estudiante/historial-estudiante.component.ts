@@ -169,6 +169,7 @@ import { Estudiante } from '../../models/Estudiante';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -201,7 +202,8 @@ export class HistorialEstudianteComponent implements OnInit {
     private puntuacionService: PuntuacionService,
     private comentarioService: ComentarioService,
     private authService: AuthService,
-    private curriculumService: CurriculumService
+    private curriculumService: CurriculumService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -329,4 +331,7 @@ registrarPuntuacion() {
     });
   }
 }
+ volverDashboard() {
+    this.router.navigate(['/dashboard-estudiante']);
+  }
 }
