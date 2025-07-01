@@ -8,66 +8,69 @@
   <main class="foro-container">
     <h2>Foro de Estudiantes</h2>
 
-    <section class="formulario">
-      <h3>Crear nueva publicación</h3>
+<section class="formulario tarjeta-publicacion">
+  <div class="header-formulario">
+    <i class="fa fa-pencil-square-o icono-form"></i>
+    <h3>Crear nueva publicación</h3>
+  </div>
 
-      <div class="form-wrapper">
-        <div class="form-group">
-          <label for="titulo">Título</label>
-          <input id="titulo" type="text" [(ngModel)]="nuevaPublicacion.titulo" placeholder="Escribe el título aquí" />
-        </div>
+  <div class="form-wrapper">
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input id="titulo" type="text" [(ngModel)]="nuevaPublicacion.titulo" placeholder="Escribe el título aquí" />
+    </div>
 
-        <div class="form-group">
-          <label for="contenido">Contenido</label>
-          <textarea id="contenido" [(ngModel)]="nuevaPublicacion.contenido" placeholder="Escribe tu mensaje..." rows="5"></textarea>
-        </div>
+    <div class="form-group">
+      <label for="contenido">Contenido</label>
+      <textarea id="contenido" [(ngModel)]="nuevaPublicacion.contenido" placeholder="Escribe tu mensaje..." rows="5"></textarea>
+    </div>
 
-        <div class="form-group">
-          <button (click)="publicar()">Publicar</button>
-        </div>
-      </div>
-    </section>
+  <div class="form-group boton-publicar centrado">
+    <button (click)="publicar()">Publicar</button>
+  </div>
+  </div>
+</section>
+
 
     <hr />
 
     <section class="lista-publicaciones">
-      <h3>Publicaciones recientes</h3>
+  <h3>Publicaciones recientes</h3>
 
-      <article *ngFor="let pub of publicaciones" class="publicacion">
-        <!-- Si está en edición -->
+  <div class="foro-lista">
+    <div *ngFor="let pub of publicaciones" class="foro-item">
+      <div class="foro-izquierda">
+        <i class="fa fa-comments foro-icono" aria-hidden="true"></i>
+      </div>
+
+      <div class="foro-central">
         <div *ngIf="editandoId === pub.id; else modoLectura">
-          <div class="form-group">
-            <label for="tituloEdit">Editar Título</label>
-            <input id="tituloEdit" type="text" [(ngModel)]="editandoPublicacion.titulo" />
+          <input type="text" [(ngModel)]="editandoPublicacion.titulo" placeholder="Editar título" />
+          <textarea [(ngModel)]="editandoPublicacion.contenido" rows="3" placeholder="Editar contenido"></textarea>
+          <div class="acciones">
+            <button (click)="guardarEdicion()">Guardar</button>
+            <button (click)="cancelarEdicion()">Cancelar</button>
           </div>
-          <div class="form-group">
-            <label for="contenidoEdit">Editar Contenido</label>
-            <textarea id="contenidoEdit" [(ngModel)]="editandoPublicacion.contenido" rows="4"></textarea>
-          </div>
-          <div class="botones-edicion">
-          <button (click)="guardarEdicion()">Guardar</button>
-          <button (click)="cancelarEdicion()">Cancelar</button>
-          </div>
-
         </div>
 
-        <!-- Vista normal -->
         <ng-template #modoLectura>
           <h4>{{ pub.titulo }}</h4>
-          <p class="meta">
-            Por {{ pub.estudiante?.nombre || 'Anónimo' }} -
-            {{ pub.fechaPublicacion ? (pub.fechaPublicacion | date: 'short') : 'Sin fecha' }}
-          </p>
-          <p>{{ pub.contenido ? (pub.contenido | slice: 0:200) : '' }}...</p>
-
+          <p class="extracto">{{ pub.contenido | slice:0:140 }}...</p>
           <div class="acciones">
-            <button *ngIf="pub.id != null" class="ver" (click)="verDetalle(pub.id)">Ver más</button>
-            <button *ngIf="pub.id != null && pub.estudiante?.id === user.id" class="eliminar" (click)="eliminar(pub.id)">Eliminar</button>
-            <button *ngIf="pub.id != null && pub.estudiante?.id === user.id" class="editar" (click)="editar(pub)">Editar</button>
+            <button *ngIf="pub.id != null" (click)="verDetalle(pub.id)" class="ver">Ver más</button>
+            <button *ngIf="pub.estudiante?.id === user.id" (click)="editar(pub)" class="editar">Editar</button>
+            <button *ngIf="pub.id != null && pub.estudiante?.id === user.id" (click)="eliminar(pub.id)" class="eliminar">Eliminar</button>
           </div>
         </ng-template>
-      </article>
-    </section>
+      </div>
+
+      <div class="foro-derecha">
+        <p class="autor">Por {{ pub.estudiante?.nombre || 'Anónimo' }}</p>
+        <p class="fecha">{{ pub.fechaPublicacion | date: 'dd/MM/yyyy' }}</p>
+      </div>
+    </div>
+  </div>
+</section>
   </main>
 
   <!-- Publicidad derecha -->

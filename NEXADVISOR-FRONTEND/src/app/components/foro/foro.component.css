@@ -200,3 +200,125 @@ button.eliminar:hover {
   margin-right: 12px;
   margin-top: 10px;
 }
+.foro-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.foro-item {
+  display: flex;
+  background-color: #f1f8ff;
+  border-left: 6px solid #42a5f5;
+  border-radius: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.foro-izquierda {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.foro-icono {
+  font-size: 36px;
+  color: #42a5f5;
+}
+
+.foro-central {
+  flex: 1;
+}
+
+.foro-central h4 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #1565c0;
+  font-weight: 700;
+}
+
+.foro-central .extracto {
+  color: #333;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.foro-central input,
+.foro-central textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #b0bec5;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.foro-central textarea {
+  resize: none;
+}
+
+.foro-derecha {
+  text-align: right;
+  font-size: 13px;
+  color: #607d8b;
+}
+
+.foro-derecha .autor {
+  font-weight: 600;
+}
+
+.foro-derecha .fecha {
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.foro-item .acciones button {
+  margin-right: 8px;
+  margin-top: 5px;
+}
+
+.tarjeta-publicacion {
+  background-color: #e8f5e9;
+  border: 2px solid #c8e6c9;
+  border-radius: 16px;
+  padding: 35px 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.tarjeta-publicacion:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.header-formulario {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  justify-content: center;
+}
+
+.header-formulario h3 {
+  font-size: 22px;
+  color: #2e7d32;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.icono-form {
+  font-size: 24px;
+  color: #2e7d32;
+}
+
+.boton-publicar {
+  text-align: center;
+}
+
+.boton-publicar button i {
+  display: none;
+}

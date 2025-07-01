@@ -136,3 +136,64 @@ button:hover {
   background-color: #388e3c;
   transform: scale(1.02);
 }
+
+/* Cabecera con título más limpio */
+.cabecera-detalle {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.titulo-publicacion {
+  color: #1565c0;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.meta {
+  font-size: 14px;
+  color: #607d8b;
+  font-style: italic;
+}
+
+/* Bloque de contenido */
+.contenido {
+  background-color: #f1f8ff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  margin-bottom: 40px;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.7;
+}
+
+/* Respuesta */
+.respuesta {
+  background-color: #e8f5e9;
+  padding: 18px 20px;
+  border-left: 5px solid #66bb6a;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.autor-respuesta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #2e7d32;
+}
+
+.fecha {
+  color: #757575;
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* Centrar el botón de respuesta */
+.boton-centrado {
+  text-align: center;
+  margin-top: 16px;
+}

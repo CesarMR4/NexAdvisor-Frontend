@@ -4,36 +4,43 @@
 
   <!-- Contenido principal -->
   <main class="detalle-container" *ngIf="publicacion">
-    <h2>{{ publicacion.titulo }}</h2>
+  <section class="cabecera-detalle">
+    <h2 class="titulo-publicacion">{{ publicacion.titulo }}</h2>
     <p class="meta">
-      Publicado por {{ publicacion.estudiante?.nombre || 'Anónimo' }} -
-      {{ publicacion.fechaPublicacion | date:'short' }}
+      Publicado por <strong>{{ publicacion.estudiante?.nombre || 'Anónimo' }}</strong> el
+      {{ publicacion.fechaPublicacion | date:'dd/MM/yyyy' }}
     </p>
+  </section>
 
-    <div class="contenido">
-      <p>{{ publicacion.contenido }}</p>
-    </div>
+  <section class="contenido">
+    <p>{{ publicacion.contenido }}</p>
+  </section>
 
-    <hr>
+  <hr />
 
-    <section class="respuestas">
-      <h3>Respuestas</h3>
+  <section class="respuestas">
+    <h3>Respuestas</h3>
 
-      <div *ngFor="let respuesta of respuestas" class="respuesta">
+    <div *ngFor="let respuesta of respuestas" class="respuesta">
+      <div class="autor-respuesta">
         <strong>{{ respuesta.estudiante?.nombre || 'Anónimo' }}</strong>
-        <p>{{ respuesta.contenido }}</p>
-        <small>{{ respuesta.fechaRespuesta | date:'short' }}</small>
+        <span class="fecha">{{ respuesta.fechaRespuesta | date:'dd/MM/yyyy' }}</span>
       </div>
-    </section>
+      <p>{{ respuesta.contenido }}</p>
+    </div>
+  </section>
 
-    <section class="formulario-respuesta">
-      <div class="respuesta-wrapper">
-        <h4>Agregar respuesta</h4>
-        <textarea [(ngModel)]="nuevaRespuesta" rows="4" placeholder="Escribe tu respuesta..."></textarea>
+  <section class="formulario-respuesta">
+    <div class="respuesta-wrapper">
+      <h4>Agregar una respuesta</h4>
+      <textarea [(ngModel)]="nuevaRespuesta" rows="4" placeholder="Escribe tu respuesta..."></textarea>
+      <div class="boton-centrado">
         <button (click)="publicarRespuesta()">Responder</button>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
+
 
   <!-- Publicidad derecha -->
   <aside class="ads"></aside>

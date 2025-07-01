@@ -4,22 +4,23 @@
   <table *ngIf="reservas.length > 0" border="1" style="width: 100%; margin-bottom: 20px;">
     <thead>
       <tr>
-        <th>Asesor</th>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>Estado</th>
-        <th>Comentario del Asesor</th>
-        <th>Acciones</th>
+        <th class="centrado">Asesor</th>
+        <th class="centrado">Fecha</th>
+        <th class="centrado">Hora</th>
+        <th class="centrado">Estado</th>
+        <th class="centrado">Comentario del Asesor</th>
+        <th class="centrado">Acciones</th>
       </tr>
     </thead>
     <tbody>
       <ng-container *ngFor="let reserva of reservas">
         <tr>
-          <td>{{ reserva.asesor.nombre }}</td>
-          <td>{{ reserva.fechaReserva | date: 'shortDate' }}</td>
-          <td>{{ reserva.horaReserva }}</td>
-          <td>{{ reserva.estado }}</td>
-          <td>{{ reserva.comentarioAsesor || 'Sin comentario' }}</td>
+            <td class="centrado">{{ reserva.asesor.nombre }}</td>
+            <td class="centrado">{{ reserva.fechaReserva | date: 'dd/MM/yyyy' }}</td>
+            <td class="centrado">{{ reserva.horaReserva }}</td>
+            <td class="centrado">{{ reserva.estado }}</td>
+            <td class="centrado">{{ reserva.comentarioAsesor || 'Sin comentario' }}</td>
+
           <td>
             <div style="display: flex; align-items: center; justify-content: space-between;">
               <div style="display: flex; gap: 8px;">
