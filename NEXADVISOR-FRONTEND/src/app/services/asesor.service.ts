@@ -10,7 +10,8 @@ import { environment } from '../../environments/environment';
 })
 export class AsesorService {
 
-  private baseUrl = 'http://localhost:8080'
+  private baseUrl = 'http://localhost:8080/asesores'
+
   //private baseUrl = `${environment.apiUrl}/asesores`;
 
   constructor(private http: HttpClient) { }

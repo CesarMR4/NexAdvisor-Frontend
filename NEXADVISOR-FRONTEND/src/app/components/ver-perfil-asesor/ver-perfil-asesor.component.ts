@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AsesorService } from '../../services/asesor.service';
 import { Asesor } from '../../models/Asesor';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-perfil-asesor',
@@ -25,7 +26,8 @@ export class PerfilAsesorComponent implements OnInit {
     if (id) {
       this.asesorService.getAsesorById(id).subscribe((data) => {
   // Construye la ruta al endpoint de descarga
-  data.curriculum = `http://localhost:8080/asesores/${id}/curriculum`;
+  //data.curriculum = `http://localhost:8080/asesores/${id}/curriculum`;
+  data.curriculum = `${environment.apiUrl}/asesores/${id}/curriculum`;
   this.asesor = data;
 });
     }

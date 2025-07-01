@@ -3,6 +3,7 @@
 
   <form #form="ngForm" (ngSubmit)="registrar()" enctype="multipart/form-data" novalidate>
 
+    <!-- NOMBRE -->
     <div>
       <label>Nombre:</label>
       <input type="text" name="nombre" [(ngModel)]="asesor.nombre" required #nombreRef="ngModel">
@@ -11,6 +12,7 @@
       </div>
     </div>
 
+    <!-- EMAIL -->
     <div>
       <label>Email:</label>
       <input type="email" name="email" [(ngModel)]="asesor.email" required email #emailRef="ngModel" autocomplete="off">
@@ -20,6 +22,7 @@
       </div>
     </div>
 
+    <!-- CONTRASEÑA -->
     <div>
       <label>Contraseña:</label>
       <input type="password" name="password" [(ngModel)]="asesor.password" required minlength="6" #passRef="ngModel" autocomplete="new-password">
@@ -29,7 +32,7 @@
       </div>
     </div>
 
-
+    <!-- DIRECCIÓN -->
     <div>
       <label>Dirección:</label>
       <input type="text" name="direccion" [(ngModel)]="asesor.direccion" required #dirRef="ngModel">
@@ -38,15 +41,17 @@
       </div>
     </div>
 
+    <!-- TELÉFONO -->
     <div>
       <label>Teléfono:</label>
       <input type="text" name="telefono" [(ngModel)]="asesor.telefono" required pattern="^[0-9]{6,15}$" #telRef="ngModel">
       <div *ngIf="telRef.invalid && telRef.touched" class="error">
         <span *ngIf="telRef.errors?.['required']">El teléfono es obligatorio.</span>
-        <span *ngIf="telRef.errors?.['pattern']">Solo números</span>
+        <span *ngIf="telRef.errors?.['pattern']">Solo números (6–15 dígitos).</span>
       </div>
     </div>
 
+    <!-- CARRERA -->
     <div>
       <label>Carrera:</label>
       <input type="text" name="carrera" [(ngModel)]="asesor.carrera" required #carreraRef="ngModel">
@@ -55,6 +60,7 @@
       </div>
     </div>
 
+    <!-- SECTOR -->
     <div>
       <label>Sector:</label>
       <input type="text" name="sector" [(ngModel)]="asesor.sector" required #sectorRef="ngModel">
@@ -63,12 +69,13 @@
       </div>
     </div>
 
+    <!-- CURRÍCULUM -->
     <div>
       <label for="curriculum">Currículum (PDF):</label>
       <input type="file" (change)="onFileSelected($event)" accept="application/pdf">
     </div>
 
-
+    <!-- BOTONES -->
     <div class="botones-registro">
       <button type="button" (click)="volverAlLogin()" class="btn-volver">⬅ Volver al login</button>
       <button type="submit" class="btn-registrar" [disabled]="form.invalid">Registrarse</button>
