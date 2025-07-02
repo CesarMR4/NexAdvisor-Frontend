@@ -1,7 +1,7 @@
 <div class="registro-container">
   <h2>Registro del Estudiante</h2>
 
-  <form #form="ngForm" (ngSubmit)="registrar()" enctype="multipart/form-data" novalidate>
+  <form #form="ngForm" (ngSubmit)="registrar()" enctype="multipart/form-data" novalidate autocomplete="off">
 
     <div>
       <label>Nombre:</label>
@@ -13,7 +13,7 @@
 
     <div>
       <label>Email:</label>
-      <input type="email" name="email" [(ngModel)]="estudiante.email" required email #emailRef="ngModel">
+      <input type="email" name="email" [(ngModel)]="estudiante.email" required email #emailRef="ngModel" autocomplete="off">
       <div *ngIf="emailRef.invalid && emailRef.touched" class="error">
         <span *ngIf="emailRef.errors?.['required']">El correo es obligatorio.</span>
         <span *ngIf="emailRef.errors?.['email']">El formato del correo es inválido.</span>
@@ -22,13 +22,12 @@
 
     <div>
       <label>Contraseña:</label>
-      <input type="password" name="password" [(ngModel)]="estudiante.password" required minlength="6" #passRef="ngModel">
+      <input type="password" name="password" [(ngModel)]="estudiante.password" required minlength="6" #passRef="ngModel" autocomplete="off">
       <div *ngIf="passRef.invalid && passRef.touched" class="error">
         <span *ngIf="passRef.errors?.['required']">La contraseña es obligatoria.</span>
         <span *ngIf="passRef.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
       </div>
     </div>
-
 
     <div>
       <label>Dirección:</label>
@@ -37,7 +36,6 @@
         <span>La dirección es obligatoria.</span>
       </div>
     </div>
-
 
     <div>
       <label>Teléfono:</label>

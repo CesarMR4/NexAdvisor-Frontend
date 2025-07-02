@@ -65,6 +65,6 @@ export class EditarPerfilAsesorComponent implements OnInit {
     }
   }
    volverDashboard() {
-    this.router.navigate(['/perfil-asesor']);
+    this.router.navigate(['/dashboard-asesor']);
   }
 }
