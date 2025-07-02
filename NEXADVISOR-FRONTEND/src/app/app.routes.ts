@@ -60,6 +60,10 @@ export const routes: Routes = [
   path: 'perfil-asesor/editar',
   loadComponent: () => import('./components/editar-perfil-asesor/editar-perfil-asesor.component').then(m => m.EditarPerfilAsesorComponent)
   },
+  {
+  path: 'ver-notificaciones',
+  loadComponent: () => import('./components/notificaciones-asesor/notificaciones-asesor.component').then(m => m.NotificacionesAsesorComponent)
+},
  
 
   

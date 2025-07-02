@@ -1,0 +1,18 @@
+<div class="notificaciones-container">
+  <h2>🔔 Notificaciones</h2>
+
+  <ul *ngIf="reservas.length > 0; else noNotificaciones">
+    <li *ngFor="let reserva of reservas">
+      ✅ El estudiante <strong>{{ reserva.estudianteNombre }}</strong> ha realizado una reserva.
+      <button (click)="irADetalles()">Ver detalles</button>
+    </li>
+  </ul>
+
+  <ng-template #noNotificaciones>
+    <p>No hay notificaciones por el momento.</p>
+  </ng-template>
+
+  <div style="text-align: center; margin-top: 25px;">
+    <button (click)="volverDashboard()" class="btn-volver">⬅️ Volver al Panel</button>
+  </div>
+</div>
