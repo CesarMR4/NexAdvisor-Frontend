@@ -1,28 +1,10 @@
-/*.dashboard-content {
-  padding: 20px;
-}
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-ul li {
-  margin-bottom: 10px;
-}
-
-a {
-  color: #2c3e50;
-  text-decoration: none;
-  font-weight: bold;
-}
-*/
 
 .inicio-estudiante-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: calc(100vh - 70px); 
   background: linear-gradient(to bottom right, #e0f7e9, #d0f0ff);
   padding: 2rem;
 }

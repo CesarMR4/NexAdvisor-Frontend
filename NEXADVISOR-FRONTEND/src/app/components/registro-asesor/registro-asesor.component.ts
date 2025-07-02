@@ -61,7 +61,7 @@ volverAlLogin() {
           showConfirmButton: false
         });
 
-        // Opcional: limpiar campos del formulario
+       
         this.asesor = {
           nombre: '',
           email: '',

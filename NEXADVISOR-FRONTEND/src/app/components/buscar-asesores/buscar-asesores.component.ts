@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AsesorService } from '../../services/asesor.service';
 import { Asesor } from '../../models/Asesor';
-import { VerPuntuacionComponent } from '../ver-puntuacion/ver-puntuacion.component'; // 👈 Agrega esto
+import { VerPuntuacionComponent } from '../ver-puntuacion/ver-puntuacion.component';
 import { Router } from '@angular/router';
 
 
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   imports: [
     CommonModule,
     FormsModule,
-    VerPuntuacionComponent  // 👈 Importa el componente aquí
+    VerPuntuacionComponent  
   ],
   templateUrl: './buscar-asesores.component.html',
   styleUrls: ['./buscar-asesores.component.css']

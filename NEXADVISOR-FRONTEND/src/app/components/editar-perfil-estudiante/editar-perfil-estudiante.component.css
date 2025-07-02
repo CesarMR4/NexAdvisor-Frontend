@@ -9,12 +9,10 @@ form {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Cada grupo de campo con algo de espacio */
 div {
   margin-bottom: 15px;
 }
 
-/* Etiquetas */
 label {
   display: block;
   font-weight: 600;
@@ -22,7 +20,6 @@ label {
   color: #333;
 }
 
-/* Inputs */
 input {
   width: 100%;
   padding: 10px 12px;
@@ -38,14 +35,13 @@ input:focus {
   box-shadow: 0 0 6px #81c784aa;
 }
 
-/* Mensajes de error */
+
 div[style*="color:red"] {
   font-size: 0.85rem;
   margin-top: 4px;
   color: #e53935;
 }
 
-/* Botones */
 button[type="submit"] {
   background: linear-gradient(45deg, #4caf50, #81c784);
   color: white;
@@ -68,7 +64,6 @@ button[type="submit"]:hover:not(:disabled) {
   background: linear-gradient(45deg, #388e3c, #66bb6a);
 }
 
-/* Botón cancelar */
 .btn-cancelar {
   background-color: #f44336;
   margin-left: 12px;
@@ -87,7 +82,6 @@ button[type="submit"]:hover:not(:disabled) {
   background-color: #d32f2f;
 }
 
-/* Mensaje de éxito */
 div[style*="color: green"] {
   max-width: 480px;
   margin: 15px auto;

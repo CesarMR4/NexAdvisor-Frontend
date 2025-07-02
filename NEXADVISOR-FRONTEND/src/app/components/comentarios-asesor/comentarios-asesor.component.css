@@ -1,4 +1,4 @@
-/* Estilo general */
+
 :host {
   display: block;
   padding: 2rem;
@@ -7,14 +7,12 @@
   color: #333;
 }
 
-/* Título */
 h2 {
   text-align: center;
   color: #2c3e50;
   margin-bottom: 1.5rem;
 }
 
-/* Tabla */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -24,7 +22,6 @@ table {
   overflow: hidden;
 }
 
-/* Encabezado */
 thead {
   background-color: #3498db;
   color: white;
@@ -37,7 +34,6 @@ thead th {
   letter-spacing: 0.5px;
 }
 
-/* Filas */
 tbody tr {
   border-bottom: 1px solid #e0e0e0;
 }
@@ -48,12 +44,11 @@ tbody td {
   vertical-align: top;
 }
 
-/* Alternar color de fila */
 tbody tr:nth-child(even) {
   background-color: #f5faff;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   table,
   thead,
@@ -87,4 +82,8 @@ tbody tr:nth-child(even) {
     font-weight: bold;
     color: #555;
   }
+}
+.centrado {
+  text-align: center;
+  vertical-align: middle;
 }

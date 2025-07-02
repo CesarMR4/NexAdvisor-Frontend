@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-registrar-puntuacion',
   standalone: true,
-  imports: [CommonModule, FormsModule], // Asegúrate de esto
+  imports: [CommonModule, FormsModule], 
   templateUrl: './registrar-puntuacion.component.html',
   styleUrls: ['./registrar-puntuacion.component.css']
 })

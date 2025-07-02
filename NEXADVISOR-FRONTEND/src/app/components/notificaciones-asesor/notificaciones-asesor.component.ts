@@ -32,7 +32,7 @@ export class NotificacionesAsesorComponent implements OnInit {
     }
   }
   irADetalles(): void {
-  // Aquí podrías agregar lógica extra si quieres
+
   this.router.navigate(['/reserva-asesor']);
 }
 volverDashboard() {

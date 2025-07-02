@@ -45,3 +45,8 @@ a {
   font-weight: bold;
   text-decoration: none;
 }
+.centrado {
+  text-align: center;
+  vertical-align: middle;
+}
+

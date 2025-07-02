@@ -3,16 +3,16 @@
 <table>
   <thead>
     <tr>
-      <th>Estudiante</th>
-      <th>Comentario</th>
-      <th>Fecha</th>
+      <th class="centrado">Estudiante</th>
+      <th class="centrado">Comentario</th>
+      <th class="centrado">Fecha</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let comentario of comentarios">
       <td>{{ comentario.estudiante.nombre }}</td>
       <td>{{ comentario.contenido }}</td>
-      <td>{{ comentario.fechacreacion | date: 'short' }}</td>
+      <td>{{ comentario.fechacreacion | date: 'dd/MM/yyyy' }}</td>
     </tr>
   </tbody>
 </table>

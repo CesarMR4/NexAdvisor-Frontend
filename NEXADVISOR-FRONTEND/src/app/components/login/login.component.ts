@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         });
 
           if (this.tipoUsuario === 'estudiante') {
-    localStorage.setItem('usuario', JSON.stringify(usuario)); // para getCurrentEstudiante()
+    localStorage.setItem('usuario', JSON.stringify(usuario)); 
     this.router.navigate(['/dashboard-estudiante']);
   } else {
     this.router.navigate(['/dashboard-asesor']);

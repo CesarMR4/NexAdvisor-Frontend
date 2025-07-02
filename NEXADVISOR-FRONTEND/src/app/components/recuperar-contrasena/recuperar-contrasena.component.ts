@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-recuperar-contrasena',
@@ -56,7 +57,9 @@ export class RecuperarContrasenaComponent implements OnInit {
 
     const url = this.tipoUsuario === 'estudiante'
       ? 'http://localhost:8080/estudiante/reset-password'
-      : 'http://localhost:8080/asesores/reset-password'; // <- corregido
+      : 'http://localhost:8080/asesores/reset-password'; 
+      // ? `${environment.apiUrl}/estudiante/reset-password`
+      //: `${environment.apiUrl}/asesores/reset-password`;
 
     this.http.put(url, this.datos, { responseType: 'text' }).subscribe({
       next: (respuesta) => {

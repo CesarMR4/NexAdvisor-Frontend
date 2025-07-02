@@ -4,7 +4,7 @@
       <h2>Recuperar Contraseña - {{ tipoUsuario | titlecase }}</h2>
     </div>
     <div class="card-body">
-      <!-- Paso 1 -->
+    
       <form *ngIf="paso === 1" (ngSubmit)="continuarPaso2()" autocomplete="off">
         <div class="input-group form-group">
           <div class="input-group-prepend">
@@ -37,7 +37,7 @@
         <button type="submit" class="btn btn-nex w-100">Aceptar</button>
       </form>
 
-      <!-- Paso 2 -->
+   
       <form *ngIf="paso === 2" (ngSubmit)="confirmarCambio()" autocomplete="off">
         <p class="mb-3">Para confirmar tu identidad, responde la siguiente pregunta:</p>
         <div class="input-group form-group">

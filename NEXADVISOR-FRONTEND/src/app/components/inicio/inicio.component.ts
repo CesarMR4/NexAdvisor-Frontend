@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router'; // Asegura importar ambos
+import { Router, RouterModule } from '@angular/router'; 
 
 @Component({
   selector: 'app-inicio',
-  standalone: true, // ← Esta línea es clave
-  imports: [RouterModule], // ← Necesario para usar directivas de router
+  standalone: true, 
+  imports: [RouterModule],
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
