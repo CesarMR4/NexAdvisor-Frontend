@@ -63,6 +63,7 @@
   color: #888;
   margin-top: 10px;
 }
+
 .btn-solicitar {
   margin-left: auto;
   padding: 8px 12px;
@@ -77,4 +78,26 @@
 
 .btn-solicitar:hover {
   background-color: #45a049;
+}
+
+.volver-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-volver {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #4caf50, #81c784);
+  border: none;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+  transition: background 0.3s ease;
+}
+
+.btn-volver:hover {
+  background: linear-gradient(45deg, #388e3c, #66bb6a);
 }

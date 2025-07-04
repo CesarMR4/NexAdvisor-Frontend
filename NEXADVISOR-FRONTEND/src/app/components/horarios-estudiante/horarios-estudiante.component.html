@@ -11,11 +11,11 @@
           <span class="hora-texto">{{ horario.horaInicio }} - {{ horario.horaFin }}</span>
         </div>
         <button
-  class="btn-solicitar"
-  (click)="solicitarHorario(horario)"
-  [disabled]="yaReservado(horario)">
-  {{ yaReservado(horario) ? 'Solicitado' : 'Solicitar' }}
-</button>
+          class="btn-solicitar"
+          (click)="solicitarHorario(horario)"
+          [disabled]="yaReservado(horario)">
+          {{ yaReservado(horario) ? 'Solicitado' : 'Solicitar' }}
+        </button>
       </div>
     </div>
 
@@ -23,4 +23,8 @@
       <p class="mensaje-vacio">Sin horarios disponibles para este día.</p>
     </ng-template>
   </div>
+</div>
+
+<div class="volver-container">
+  <button (click)="volverListaAsesores()" class="btn-volver">⬅️ Volver a Lista de Asesores</button>
 </div>

@@ -128,7 +128,7 @@ export class HorariosEstudianteComponent implements OnInit {
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Horario } from '../../models/Horario';
 import { Reserva } from '../../models/Reserva';
@@ -165,7 +165,8 @@ export class HorariosEstudianteComponent implements OnInit {
     private horarioService: HorarioService,
     private reservaService: ReservaService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -259,4 +260,7 @@ export class HorariosEstudianteComponent implements OnInit {
       r.horaReserva === horario.horaInicio.toString().substring(0, 5)
     );
   }
+  volverListaAsesores() {
+  this.router.navigate(['/contactar']);
+}
 }
