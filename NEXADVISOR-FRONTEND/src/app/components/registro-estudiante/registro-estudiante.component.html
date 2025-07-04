@@ -2,7 +2,6 @@
   <h2>Registro del Estudiante</h2>
 
   <form #form="ngForm" (ngSubmit)="registrar()" enctype="multipart/form-data" novalidate autocomplete="off">
-
     <div>
       <label>Nombre:</label>
       <input type="text" name="nombre" [(ngModel)]="estudiante.nombre" required #nombreRef="ngModel">
@@ -42,7 +41,7 @@
       <input type="text" name="telefono" [(ngModel)]="estudiante.telefono" required pattern="^[0-9]{6,15}$" #telRef="ngModel">
       <div *ngIf="telRef.invalid && telRef.touched" class="error">
         <span *ngIf="telRef.errors?.['required']">El teléfono es obligatorio.</span>
-        <span *ngIf="telRef.errors?.['pattern']">Debe contener solo números </span>
+        <span *ngIf="telRef.errors?.['pattern']">Debe contener solo números.</span>
       </div>
     </div>
 
@@ -54,6 +53,9 @@
       </div>
     </div>
 
-    <button type="submit" [disabled]="form.invalid">Registrarse</button>
+    <div class="botones-acciones">
+      <button type="submit" [disabled]="form.invalid">Registrarse</button>
+      <button type="button" class="btn-atras" (click)="volverLoginEstudiante()">Volver al login</button>
+    </div>
   </form>
 </div>

@@ -64,4 +64,7 @@ export class EditarPerfilEstudianteComponent implements OnInit {
       }
     }
   }
+  volverPerfil() {
+  this.router.navigate(['/perfil-estudiante']); // Cambia la ruta si la tuya es diferente
+}
 }

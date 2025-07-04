@@ -4,6 +4,7 @@ import { AsesorService } from '../../services/asesor.service';
 import { Asesor } from '../../models/Asesor';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-asesor',
@@ -18,7 +19,9 @@ export class PerfilAsesorComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private asesorService: AsesorService
+    private asesorService: AsesorService,
+    private router: Router
+    
   ) {}
 
   ngOnInit(): void {
@@ -32,4 +35,7 @@ export class PerfilAsesorComponent implements OnInit {
 });
     }
   }
+  volverListaAsesores() {
+  this.router.navigate(['/contactar']);
+}
 }

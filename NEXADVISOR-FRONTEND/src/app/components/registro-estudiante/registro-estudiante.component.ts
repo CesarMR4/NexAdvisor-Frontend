@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Estudiante } from '../../models/Estudiante';
 import Swal from 'sweetalert2';
 import { EstudianteService } from '../../services/estudiante.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro-estudiante',
@@ -16,7 +17,7 @@ export class RegistroEstudianteComponent {
 
   estudiante: Estudiante = new Estudiante();
 
-  constructor(private estudianteService: EstudianteService) {}
+  constructor(private estudianteService: EstudianteService, private router: Router) {}
   /*
 registrar() {
   this.estudiante.fechaRegistro = new Date();
@@ -61,6 +62,9 @@ registrar() {
       });
     }
   });
+}
+volverLoginEstudiante() {
+  this.router.navigate(['/login'], { queryParams: { tipo: 'estudiante' } });
 }
 
 }
