@@ -10,8 +10,8 @@ import { environment } from '../../environments/environment';
 })
 export class RespuestaService {
 
-  private apiUrl = 'http://localhost:8080'; 
-  //private apiUrl = `${environment.apiUrl}/respuestas`;
+  //private apiUrl = 'http://localhost:8080'; 
+  private apiUrl = `${environment.apiUrl}/respuestas`;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

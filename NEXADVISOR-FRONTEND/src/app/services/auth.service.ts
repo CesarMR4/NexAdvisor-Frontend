@@ -20,8 +20,8 @@ export class AuthService {
   private userSource = new BehaviorSubject<Usuario | null>(null);
   currentUser = this.userSource.asObservable();
 
-  private apiUrl = 'http://localhost:8080'; // Cambia al URL real si usas entorno productivo
-  //private apiUrl = environment.apiUrl;
+  //private apiUrl = 'http://localhost:8080'; // Cambia al URL real si usas entorno productivo
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
     this.cargarUsuarioDesdeStorage();
