@@ -9,8 +9,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ComentarioService {
- // private apiUrl = 'http://localhost:8080/comentarios'; 
- private apiUrl = `${environment.apiUrl}/comentarios`;
+private apiUrl = 'http://localhost:8080/comentarios'; 
+ //  private apiUrl = `${environment.apiUrl}/comentarios`;
   constructor(
     private http: HttpClient,
     private authService: AuthService

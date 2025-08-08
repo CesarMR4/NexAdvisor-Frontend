@@ -6,8 +6,8 @@ import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class RespuestaForoService {
-  //private url = 'http://localhost:8080/respuesta-foro';
-  private url = `${environment.apiUrl}/respuesta-foro`;
+  private url = 'http://localhost:8080/respuesta-foro';
+ // private url = `${environment.apiUrl}/respuesta-foro`;
 
   constructor(private http: HttpClient) {}
 

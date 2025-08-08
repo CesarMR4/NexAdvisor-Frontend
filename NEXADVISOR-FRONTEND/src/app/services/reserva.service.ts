@@ -9,8 +9,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ReservaService {
-  //private baseUrl: string = 'http://localhost:8080/reserva';
-  private baseUrl: string = `${environment.apiUrl}/reserva`;
+  private baseUrl: string = 'http://localhost:8080/reserva';
+  //private baseUrl: string = `${environment.apiUrl}/reserva`;
   
   constructor(private http: HttpClient) {}
 

@@ -6,8 +6,8 @@ import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class PublicacionForoService {
-  //private url = 'http://localhost:8080/publicacion';
-   private url = `${environment.apiUrl}/publicacion`;
+  private url = 'http://localhost:8080/publicacion';
+  // private url = `${environment.apiUrl}/publicacion`;
   constructor(private http: HttpClient) {}
 
   listar(): Observable<PublicacionForo[]> {

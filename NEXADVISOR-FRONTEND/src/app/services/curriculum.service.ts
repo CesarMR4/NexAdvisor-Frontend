@@ -15,8 +15,8 @@ export interface Curriculum {
 })
 export class CurriculumService {
 
-  //private baseUrl = 'http://localhost:8080/curriculum';
-  private baseUrl = `${environment.apiUrl}/curriculum`;
+  private baseUrl = 'http://localhost:8080/curriculum';
+  //private baseUrl = `${environment.apiUrl}/curriculum`;
 
   constructor(private http: HttpClient) {}
 

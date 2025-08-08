@@ -9,8 +9,8 @@ import { environment } from '../../environments/environment';
 })
 export class PuntuacionService {
 
-  //private baseUrl = 'http://localhost:8080/puntuaciones';
-  private baseUrl = `${environment.apiUrl}/puntuaciones`;
+  private baseUrl = 'http://localhost:8080/puntuaciones';
+  //private baseUrl = `${environment.apiUrl}/puntuaciones`;
   constructor(private http: HttpClient) {}
 
   registrarPuntuacion(puntuacion: Puntuacion, idReserva: number): Observable<void> {

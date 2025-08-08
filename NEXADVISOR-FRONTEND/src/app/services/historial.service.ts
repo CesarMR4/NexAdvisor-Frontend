@@ -9,8 +9,8 @@ import { environment } from '../../environments/environment';
 })
 export class HistorialService {
 
- //private baseUrl = 'http://localhost:8080/historial';
- private baseUrl = `${environment.apiUrl}/historial`;
+ private baseUrl = 'http://localhost:8080/historial';
+ //private baseUrl = `${environment.apiUrl}/historial`;
 
   constructor(private http: HttpClient) {}
 

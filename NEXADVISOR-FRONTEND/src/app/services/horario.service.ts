@@ -8,8 +8,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class HorarioService {
-  //private baseUrl: string = 'http://localhost:8080/horario'; 
-  private baseUrl: string = `${environment.apiUrl}/horario`;
+  private baseUrl: string = 'http://localhost:8080/horario'; 
+  //private baseUrl: string = `${environment.apiUrl}/horario`;
 
   constructor(private http: HttpClient) {}
 

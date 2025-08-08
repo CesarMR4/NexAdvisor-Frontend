@@ -52,3 +52,36 @@
   height: 300px;
   object-fit: cover;
 }
+
+.layout-con-anuncios {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 2rem;
+  background: linear-gradient(to right, #e8f5e9, #c8e6c9);
+  min-height: calc(100vh - 70px);
+  gap: 1rem;
+}
+
+.anuncio-lateral {
+  width: 160px;
+  min-height: 400px;
+  height: calc(80vh - 70px);
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: none; 
+}
+
+.anuncio-lateral .contenido-anuncio {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+@media (min-width: 1200px) {
+  .anuncio-lateral {
+    display: block;
+  }
+}

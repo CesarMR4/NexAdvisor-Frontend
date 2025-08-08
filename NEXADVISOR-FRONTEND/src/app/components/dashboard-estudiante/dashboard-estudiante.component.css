@@ -53,3 +53,41 @@
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
+
+.anuncio-lateral {
+  width: 160px;
+  min-height: 400px;
+  height: calc(80vh - 70px);
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: none;
+}
+
+.anuncio-lateral .contenido-anuncio {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+@media (min-width: 1200px) {
+  .anuncio-lateral {
+    display: block;
+  }
+
+  .inicio-estudiante-container {
+    justify-content: space-between;
+    gap: 1rem;
+  }
+}
+
+.layout-con-anuncios {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  background: linear-gradient(to bottom right, #e0f7e9, #d0f0ff);
+  min-height: calc(100vh - 70px);
+  gap: 1rem;
+}
