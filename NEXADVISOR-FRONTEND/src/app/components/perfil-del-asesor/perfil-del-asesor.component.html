@@ -1,0 +1,65 @@
+<section class="perfil-wrapper">
+  <div class="container-perfil">
+    <div class="card-perfil">
+      <div class="card-body-perfil">
+        <h2 class="perfil-title">Perfil del Asesor</h2>
+        <hr>
+
+        <div *ngIf="cargando">Cargando datos...</div>
+        <div *ngIf="error">{{ error }}</div>
+
+        <div *ngIf="!cargando && !error">
+          <div class="info-row">
+            <div class="info-label">Nombre:</div>
+            <div class="info-data">{{ asesor.nombre }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Email:</div>
+            <div class="info-data">{{ asesor.email }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Teléfono:</div>
+            <div class="info-data">{{ asesor.telefono }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Dirección:</div>
+            <div class="info-data">{{ asesor.direccion }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Carrera:</div>
+            <div class="info-data">{{ asesor.carrera }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Sector:</div>
+            <div class="info-data">{{ asesor.sector }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Currículum:</div>
+            <div class="info-data">
+              <ng-container *ngIf="asesor.curriculum; else noCurriculum">
+                <a [href]="asesor.curriculum" target="_blank">Ver Currículum</a>
+              </ng-container>
+              <ng-template #noCurriculum>No disponible</ng-template>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Fecha de Registro:</div>
+            <div class="info-data">{{ asesor.fechaRegistro | date }}</div>
+          </div>
+
+          <div class="btn-container">
+            <button (click)="editarPerfil()" class="btn-editar">Editar</button>
+            <button (click)="volverDashboard()" class="btn-volver">Volver al Panel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

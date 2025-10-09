@@ -57,16 +57,13 @@ export const routes: Routes = [
     loadComponent: () => import('./components/historial-estudiante/historial-estudiante.component').then(m => m.HistorialEstudianteComponent)
   },
   {
-  path: 'perfil-asesor/editar',
-  loadComponent: () => import('./components/editar-perfil-asesor/editar-perfil-asesor.component').then(m => m.EditarPerfilAsesorComponent)
+    path: 'perfil-asesor/editar',
+    loadComponent: () => import('./components/editar-perfil-asesor/editar-perfil-asesor.component').then(m => m.EditarPerfilAsesorComponent)
   },
   {
-  path: 'ver-notificaciones',
-  loadComponent: () => import('./components/notificaciones-asesor/notificaciones-asesor.component').then(m => m.NotificacionesAsesorComponent)
-},
- 
-
-  
+    path: 'ver-notificaciones',
+    loadComponent: () => import('./components/notificaciones-asesor/notificaciones-asesor.component').then(m => m.NotificacionesAsesorComponent)
+  },
   {
     path: 'ver-puntuacion',
     loadComponent: () => import('./components/asesor-con-puntuacion/asesor-con-puntuacion.component').then(m => m.AsesorConPuntuacionComponent)
@@ -86,6 +83,13 @@ export const routes: Routes = [
   // 🔍 Búsqueda y perfiles
   { path: 'buscar-asesores', component: BuscarAsesoresComponent },
   { path: 'ver-perfil-asesor/:id', component: PerfilAsesorComponent },
+
+  // ⚙️ Nuevo perfil del asesor (independiente del anterior)
+  {
+    path: 'perfil-del-asesor',
+    loadComponent: () => import('./components/perfil-del-asesor/perfil-del-asesor.component')
+      .then(m => m.PerfilDelAsesorComponent)
+  },
 
   // 📞 Contactar y horarios
   {
