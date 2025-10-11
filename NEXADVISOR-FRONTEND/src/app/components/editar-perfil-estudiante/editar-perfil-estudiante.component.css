@@ -1,108 +1,134 @@
 form {
-  max-width: 500px;
-  margin: 20px auto;
-  padding: 30px;
+  max-width: 520px;
+  margin: 30px auto;
+  padding: 35px 40px;
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+  transition: all 0.3s ease;
+}
+
+form:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.titulo-editar {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #43a047;
+  margin-bottom: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 0.6px;
+  position: relative;
+}
+
+.titulo-editar::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #66bb6a;
+  margin: 10px auto 0;
+  border-radius: 4px;
 }
 
 div {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 label {
   display: block;
   font-weight: 600;
   margin-bottom: 6px;
-  color: #333;
+  color: #2a5d77;
+  font-size: 0.95rem;
 }
 
 input {
   width: 100%;
   padding: 10px 14px;
-  border: 1.5px solid #ccc;
-  border-radius: 6px;
+  border: 1.5px solid #cfd8dc;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
 }
 
 input:focus {
   outline: none;
   border-color: #4caf50;
-  box-shadow: 0 0 6px #81c784aa;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.25);
+  background-color: #ffffff;
+}
+
+input:hover {
+  border-color: #81c784;
 }
 
 .error-text {
   font-size: 0.85rem;
   margin-top: 4px;
   color: #e53935;
-}
-
-button[type="submit"] {
-  background: linear-gradient(45deg, #4caf50, #81c784);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 1rem;
-  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.5);
-  transition: transform 0.2s, background 0.3s;
-}
-
-button[type="submit"]:disabled {
-  background: #a5d6a7;
-  cursor: not-allowed;
-}
-
-button[type="submit"]:hover:not(:disabled) {
-  transform: scale(1.05);
-  background: linear-gradient(45deg, #388e3c, #66bb6a);
-}
-
-.btn-cancelar {
-  background: linear-gradient(45deg, #f44336, #ef5350);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 1rem;
-  box-shadow: 0 4px 8px rgba(244, 67, 54, 0.5);
-  transition: transform 0.2s, background 0.3s;
-}
-
-.btn-cancelar:hover {
-  transform: scale(1.05);
-  background: linear-gradient(45deg, #d32f2f, #e53935);
+  font-weight: 500;
 }
 
 .btn-form-container {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+button[type="submit"],
+.btn-cancelar {
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+/* Botón Guardar Cambios */
+button[type="submit"] {
+  background: linear-gradient(135deg, #4caf50, #81c784);
+  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+}
+button[type="submit"]:hover:not(:disabled) {
+  background: linear-gradient(135deg, #43a047, #66bb6a);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(76, 175, 80, 0.4);
+}
+button[type="submit"]:disabled {
+  background: #a5d6a7;
+  cursor: not-allowed;
+}
+
+/* Botón Atrás */
+.btn-cancelar {
+  background: linear-gradient(135deg, #ef5350, #f48fb1);
+  box-shadow: 0 6px 12px rgba(239, 83, 80, 0.3);
+}
+.btn-cancelar:hover {
+  background: linear-gradient(135deg, #e53935, #f06292);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(239, 83, 80, 0.4);
 }
 
 .success-message {
-  max-width: 500px;
-  margin: 15px auto;
+  max-width: 520px;
+  margin: 18px auto;
+  padding: 12px;
+  border-radius: 8px;
+  background: #e8f5e9;
   font-weight: 600;
   font-size: 1rem;
   color: #2e7d32;
   text-align: center;
-}
-
-.titulo-editar {
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-align: center;
-  color: #4caf50;
-  margin-bottom: 25px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.15);
 }
