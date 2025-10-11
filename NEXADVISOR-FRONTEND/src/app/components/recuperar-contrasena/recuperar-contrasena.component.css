@@ -1,65 +1,109 @@
-.recuperar-container {
-  max-width: 400px;
-  margin: 80px auto;
+/* Fondo general con el mismo degradado */
+body {
+  background: linear-gradient(135deg, #d8f0ff 0%, #f4f9ff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
   font-family: 'Segoe UI', sans-serif;
 }
 
-.card-recuperar {
-  border-radius: 10px;
-  background: #f7f7f7;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Contenedor principal */
+.recuperar-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
 }
 
+/* Tarjeta */
+.card-recuperar {
+  border-radius: 15px;
+  background: #ffffffb3; /* efecto glass */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.card-recuperar:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Encabezado */
 .card-header {
-  padding: 20px 0;
-  background-color: #9ed0f3;
-  border-bottom: none;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  padding: 25px 0;
+  background: linear-gradient(135deg, #9ed0f3, #74b9ff);
+  color: white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+/* Input groups */
+.input-group {
+  margin-top: 20px;
 }
 
 .input-group-prepend span {
-  width: 50px;
+  width: 45px;
   background-color: #a3d8a1;
   color: #000;
   border: 0;
+  border-radius: 8px 0 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-control {
   border: 1px solid #a3d8a1;
-  background-color: transparent;
-  color: #000;
-  border-radius: 8px;
-  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  border-radius: 0 8px 8px 0;
+  font-size: 15px;
+  transition: 0.2s ease;
 }
 
-input:focus {
-  outline: none !important;
-  box-shadow: none !important;
+.form-control:focus {
+  border-color: #74b9ff;
+  box-shadow: 0 0 6px rgba(116, 185, 255, 0.6);
 }
 
+/* Botón */
 .btn-nex {
-  background-color: #444;
+  background: linear-gradient(135deg, #444, #222);
   color: white;
-  padding: 10px;
+  padding: 10px 25px;
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  border-radius: 10px;
   cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 20px;
+  transition: all 0.3s ease;
 }
 
 .btn-nex:hover {
-  background-color: #222;
+  background: linear-gradient(135deg, #222, #000);
+  transform: scale(1.02);
 }
 
+/* Mensajes */
 .mensaje {
-  color: green;
+  color: #2ecc71;
   margin-top: 15px;
   font-weight: bold;
+  text-align: center;
 }
 
 .error {
-  color: red;
+  color: #e74c3c;
   margin-top: 15px;
   font-weight: bold;
+  text-align: center;
 }

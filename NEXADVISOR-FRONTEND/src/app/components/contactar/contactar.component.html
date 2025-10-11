@@ -18,14 +18,22 @@
     – {{ asesor.carrera }} | {{ asesor.sector }}
     <br />
 
-    <!-- Agrupamos los botones en una fila -->
+<div class="botones-container">
+  <button class="btn-ver" (click)="verPerfil(asesor.id)">Ver Perfil</button>
+  <button class="btn-ver" [routerLink]="['/horarios-estudiante', asesor.id]">Ver Horarios</button>
+  <a class="btn-ver" [routerLink]="['/comentarios-asesor', asesor.id]">Comentarios</a>
+</div>
+
+
+
+    <!-- Agrupamos los botones en una fila 
     <div class="botones-container">
   <button class="btn-ver" (click)="verPerfil(asesor.id)">Ver Perfil</button>
   <button class="btn-ver" [routerLink]="['/horarios-estudiante', asesor.id]">Ver Horarios</button>
 </div>
     <div class="comentarios-btn-container">
   <a class="btn-ver" [routerLink]="['/comentarios-asesor', asesor.id]">Comentarios</a>
-</div>
+</div>-->
   </li>
 </ul>
 <div style="text-align: center; margin-top: 25px;">

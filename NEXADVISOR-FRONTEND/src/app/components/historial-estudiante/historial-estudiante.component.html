@@ -59,8 +59,8 @@
               rows="4"
               cols="50"
             ></textarea><br /><br />
-            <button (click)="guardarComentario()">Enviar comentario</button>
-            <button (click)="cancelarFormularioComentario()" style="margin-left: 10px;">Cancelar</button>
+            <button class="btn-suave enviar" (click)="guardarComentario()">Enviar comentario</button>
+            <button class="btn-suave cancelar" (click)="cancelarFormularioComentario()">Cancelar</button>
           </td>
         </tr>
       </ng-container>
@@ -81,14 +81,15 @@
       required
     /><br /><br />
 
-    <button (click)="registrarPuntuacion()">Enviar</button>
-    <button (click)="cancelarPuntuacion()" style="margin-left: 10px;">Cancelar</button>
+    <button class="btn-suave enviar" (click)="registrarPuntuacion()">Enviar</button>
+    <button class="btn-suave cancelar" (click)="cancelarPuntuacion()">Cancelar</button>
 
     <p style="color: green;" *ngIf="mensaje">{{ mensaje }}</p>
   </div>
 
   <p *ngIf="reservas.length === 0">No tienes reservas registradas aún.</p>
+
   <div style="text-align: center; margin-top: 25px;">
-  <button (click)="volverDashboard()" class="btn-volver">⬅️ Volver al Panel</button>
-</div>
+    <button (click)="volverDashboard()" class="btn-volver">⬅️ Volver al Panel</button>
+  </div>
 </div>
