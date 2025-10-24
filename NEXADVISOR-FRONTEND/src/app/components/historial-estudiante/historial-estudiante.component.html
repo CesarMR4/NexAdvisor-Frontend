@@ -15,10 +15,10 @@
     <tbody>
       <ng-container *ngFor="let reserva of reservas">
         <tr>
-            <td class="centrado">{{ reserva.asesor.nombre }}</td>
-            <td class="centrado">{{ reserva.fechaReserva | date: 'dd/MM/yyyy' }}</td>
-            <td class="centrado">{{ reserva.horaReserva }}</td>
-            <td class="centrado">{{ reserva.estado }}</td>
+            <td class="centrado">{{ reserva.asesor?.nombre || 'Desconocido' }}</td>
+            <td class="centrado">{{ reserva.fechaReserva ? (reserva.fechaReserva | date: 'dd/MM/yyyy') : 'Desconocido' }}</td>
+            <td class="centrado">{{ reserva.horaReserva || 'Desconocido' }}</td>
+            <td class="centrado">{{ reserva.estado || 'Desconocido' }}</td>
             <td class="centrado">{{ reserva.comentarioAsesor || 'Sin comentario' }}</td>
 
           <td>
@@ -52,7 +52,7 @@
         <!-- Formulario para comentar: SOLO si coincide el ID -->
         <tr *ngIf="comentarioReservaActiva?.id === reserva.id">
           <td colspan="6">
-            <h4>Dejar comentario para {{ reserva.asesor.nombre }}</h4>
+            <h4>Dejar comentario para {{ reserva.asesor?.nombre || 'Desconocido' }}</h4>
             <textarea
               [(ngModel)]="comentarioNuevo.contenido"
               placeholder="Escribe tu comentario aquí"

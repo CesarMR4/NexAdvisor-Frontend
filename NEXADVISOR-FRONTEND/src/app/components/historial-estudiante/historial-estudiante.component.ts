@@ -229,14 +229,18 @@ export class HistorialEstudianteComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    const idEstudiante = this.authService.getUserId();
-    if (idEstudiante) {
-      this.reservaService.getByEstudiante(idEstudiante).subscribe(res => {
+ngOnInit(): void {
+  const idEstudiante = this.authService.getUserId();
+  if (idEstudiante) {
+    this.reservaService.getByEstudiante(idEstudiante).subscribe({
+      next: (res) => {
+        console.log('🔹 Reservas recibidas en Angular:', res); // <— mira aquí
         this.reservas = res;
-      });
-    }
+      },
+      error: (err) => console.error('Error al obtener reservas:', err)
+    });
   }
+}
 
   seleccionarReserva(reservaId: number) {
     this.reservaIdPuntuacion = reservaId;
