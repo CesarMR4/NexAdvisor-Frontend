@@ -1,9 +1,10 @@
+<section class="perfil-wrapper">
 <div class="notificaciones-container">
-  <h2>🔔 Notificaciones</h2>
+  <h2> 🔔 Notificaciones 🔔</h2>
 
   <ul *ngIf="reservas.length > 0; else noNotificaciones">
     <li *ngFor="let reserva of reservas">
-      ✅ El estudiante <strong>{{ reserva.estudianteNombre }}</strong> ha realizado una reserva.
+      ✅El estudiante <strong>{{ reserva.estudianteNombre }}</strong> ha realizado una reserva.
       <button (click)="irADetalles()">Ver detalles</button>
     </li>
   </ul>
@@ -16,3 +17,4 @@
     <button (click)="volverDashboard()" class="btn-volver">⬅️ Volver al Panel</button>
   </div>
 </div>
+</section>

@@ -41,6 +41,11 @@ export class EditarPerfilAsesorComponent implements OnInit {
       });
     }
   }
+  
+    
+     volverPerfilAsesor() {
+  this.router.navigate(['/perfil-del-asesor']);
+}
 
   onSubmit(): void {
     if (this.form.valid) {
@@ -53,7 +58,7 @@ export class EditarPerfilAsesorComponent implements OnInit {
             this.successMessage = 'Perfil actualizado correctamente';
             this.isLoading = false;
             setTimeout(() => {
-              this.router.navigate(['/perfil-asesor']);
+              this.router.navigate(['/perfil-del-asesor']);
             }, 2000);
           },
           error: () => {
@@ -63,8 +68,5 @@ export class EditarPerfilAsesorComponent implements OnInit {
         });
       }
     }
-  }
-   volverDashboard() {
-    this.router.navigate(['/dashboard-asesor']);
   }
 }

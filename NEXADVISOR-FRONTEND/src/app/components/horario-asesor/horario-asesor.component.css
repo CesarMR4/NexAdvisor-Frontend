@@ -1,6 +1,15 @@
+.perfil-wrapper {
+  background: linear-gradient(135deg, #f4f5f7, #e3f2fd);
+  min-height: 100vh;
+  padding: 70px 25px;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+
+}
+
+
 /* Contenedor principal */
 .horario-container {
-  max-width: 960px;
+  max-width: 1260px;
   margin: 50px auto;
   padding: 40px 35px;
   background: linear-gradient(135deg, #f0f4f8, #e6f0ff);

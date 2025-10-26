@@ -1,100 +1,174 @@
+/* === ENVOLTORIO PRINCIPAL === */
 .perfil-wrapper {
   background: linear-gradient(135deg, #f4f5f7, #e3f2fd);
   min-height: 100vh;
-  padding: 40px 0;
-  font-family: 'Segoe UI', sans-serif;
+  padding: 70px 25px;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* === CONTENEDOR CENTRAL === */
 .container-perfil {
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 720px;
+  width: 100%;
+  padding: 10px;
 }
 
+/* === TARJETA === */
 .card-perfil {
   background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+  padding: 50px 40px;
+  transition: all 0.35s ease;
   position: relative;
   overflow: hidden;
 }
 
+/* Sutil reflejo animado */
+.card-perfil::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.25), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.card-perfil:hover::before {
+  opacity: 1;
+}
+
+.card-perfil:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.12);
+}
+
+/* === TÍTULO === */
 .perfil-title {
   text-align: center;
   color: #2a5d77;
-  margin-bottom: 30px;
-  font-size: 28px;
+  margin-bottom: 12px;
+  font-size: 2rem;
   font-weight: 700;
+  letter-spacing: 0.6px;
+  font-family: 'Segoe UI', sans-serif; /* mantiene tu fuente original */
 }
 
 hr {
   border: none;
-  height: 1px;
-  background: #ddd;
-  margin: 20px 0 30px;
+  height: 3px;
+  width: 70px;
+  background: linear-gradient(90deg, #2a5d77, #64b5f6);
+  margin: 0 auto 35px;
+  border-radius: 4px;
 }
 
+/* === FILAS DE INFORMACIÓN === */
 .info-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #f5f5f5;
-  border-radius: 8px;
-  padding: 12px 20px;
-  margin-bottom: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 15px 22px;
+  margin-bottom: 16px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.info-row:hover {
+  background: #eef4fc;
+  border-color: #cfe2ff;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }
 
 .info-label {
   font-weight: 600;
   color: #1976d2;
-  width: 35%;
+  width: 38%;
+  font-size: 15px;
+  letter-spacing: 0.3px;
 }
 
 .info-data {
-  width: 65%;
+  width: 62%;
   color: #333;
   text-align: right;
+  font-size: 15px;
+  font-weight: 500;
+  word-break: break-word;
 }
 
+/* === BOTONES === */
 .btn-container {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 35px;
+  gap: 20px;
+  margin-top: 45px;
 }
 
-.btn-editar {
-  background: linear-gradient(135deg, #4caf50, #81c784);
-  color: white;
+.btn-editar,
+.btn-volver {
   border: none;
-  padding: 12px 28px;
+  padding: 13px 35px;
   border-radius: 30px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 16px;
-  box-shadow: 0 6px 10px rgba(76, 175, 80, 0.3);
-  transition: transform 0.2s, background 0.3s;
+  color: #fff;
+  transition: all 0.35s ease;
+  letter-spacing: 0.4px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animación de brillo sutil */
+.btn-editar::after,
+.btn-volver::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 80%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.btn-editar:hover::after,
+.btn-volver:hover::after {
+  left: 120%;
+}
+
+/* === BOTÓN EDITAR === */
+.btn-editar {
+  background: linear-gradient(135deg, #4caf50, #81c784);
+  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
 }
 
 .btn-editar:hover {
-  transform: scale(1.05);
   background: linear-gradient(135deg, #388e3c, #66bb6a);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(76, 175, 80, 0.4);
 }
 
+/* === BOTÓN VOLVER === */
 .btn-volver {
   background: linear-gradient(135deg, #1976d2, #64b5f6);
-  color: white;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-  box-shadow: 0 6px 10px rgba(25, 118, 210, 0.3);
-  transition: transform 0.2s, background 0.3s;
+  box-shadow: 0 6px 12px rgba(25, 118, 210, 0.3);
 }
 
 .btn-volver:hover {
-  transform: scale(1.05);
   background: linear-gradient(135deg, #1565c0, #42a5f5);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(25, 118, 210, 0.4);
 }
