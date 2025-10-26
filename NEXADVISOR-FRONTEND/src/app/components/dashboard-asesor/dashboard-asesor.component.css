@@ -1,19 +1,82 @@
+/* Layout original mejorado */
+.layout-con-anuncios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: calc(100vh - 70px);
+  gap: 1rem;
+  background: linear-gradient(135deg, #f4f5f7, #e3f2fd);
+  background-size: 200% 200%;
+  animation: gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Anuncios laterales */
+.anuncio-lateral {
+  width: 200px;
+  min-height: 120px;
+  height: calc(45vh - 70px);
+  background-color: #eed5b0;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 8px; /* espacio para el “marco” */
+}
+
+.anuncio-lateral:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen para lateral derecho o izquierdo */
+.img-anuncio-lateral {
+  width: 120%;          /* imagen más pequeña que el contenedor */
+  height: auto;        /* mantiene proporción */
+  max-height: 90%;     /* no ocupa todo el contenedor */
+  object-fit: contain; /* se adapta sin recortarse */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* efecto de marco */
+  transition: transform 0.3s ease;
+}
+
+.anuncio-lateral:hover .img-anuncio-lateral {
+  transform: scale(1.03);
+}
+
+/* Dashboard principal */
 .dashboard-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 70px);
-  background: linear-gradient(to right, #e8f5e9, #c8e6c9);
-  padding: 40px 20px;
+  flex: 1;
 }
 
 .dashboard-card {
   background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   max-width: 1000px;
   width: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .dashboard-content {
@@ -21,6 +84,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 1.2rem;
 }
 
 .dashboard-text {
@@ -29,17 +93,19 @@
 }
 
 .dashboard-text h2 {
-  font-size: 28px;
+  font-size: 30px;
   margin-bottom: 15px;
   color: #2e7d32;
+  font-weight: 700;
 }
 
 .dashboard-text p {
-  font-size: 16px;
-  color: #555;
+  font-size: 17px;
+  color: #444;
   line-height: 1.6;
 }
 
+/* Imagen asesor */
 .foto-asesor-wrapper {
   flex: 1 1 35%;
   display: flex;
@@ -51,37 +117,44 @@
   width: 300px;
   height: 300px;
   object-fit: cover;
-}
-
-.layout-con-anuncios {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  padding: 2rem;
-  background: linear-gradient(to right, #e8f5e9, #c8e6c9);
-  min-height: calc(100vh - 70px);
-  gap: 1rem;
-}
-
-.anuncio-lateral {
-  width: 160px;
-  min-height: 400px;
-  height: calc(80vh - 70px);
-  background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  display: none; 
+  transition: transform 0.4s ease;
 }
 
-.anuncio-lateral .contenido-anuncio {
+.foto-asesor:hover {
+  transform: scale(1.03);
+}
+
+/* Placeholder anuncios modernizado (para lateral izquierdo si no quieres imagen aún) */
+.placeholder-anuncio {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #f9f9f9, #e0e0e0);
+  border: 2px dashed #a5d6a7;
+  border-radius: 12px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  font-size: 0.9rem;
-  color: #555;
+  font-weight: bold;
+  color: #2e7d32;
+  position: relative;
+  transition: transform 0.3s ease;
 }
 
-@media (min-width: 1200px) {
-  .anuncio-lateral {
-    display: block;
-  }
+.placeholder-anuncio:hover {
+  transform: scale(1.05);
+}
+
+.placeholder-anuncio .ad-label {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 0.7rem;
+  background-color: #a5d6a7;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
 }

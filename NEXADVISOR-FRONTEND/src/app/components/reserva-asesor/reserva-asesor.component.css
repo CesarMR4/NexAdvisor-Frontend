@@ -1,112 +1,248 @@
+/* ---------- FONDO DE LA PÁGINA ---------- */
+body {
+  background: linear-gradient(135deg, #f4f5f7, #e3f2fd);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* ---------- CONTENEDOR PRINCIPAL ---------- */
 .reservas-container {
-  max-width: 1000px;
+  max-width: 85%; 
   margin: 40px auto;
-  padding: 20px;
+  padding: 40px 30px;
   background-color: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* ---------- TÍTULO ---------- */
 h2 {
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 20px;
+  color: #1976d2;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 2rem;
+  position: relative;
 }
 
+h2::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, #1976d2, #64b5f6);
+  margin: 0.6rem auto 0;
+  border-radius: 2px;
+}
+
+/* ---------- TABLA ---------- */
 .reservas-table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.reservas-table th,
-.reservas-table td {
-  padding: 12px 16px;
-  text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+.reservas-table:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
+/* ---------- ENCABEZADO ---------- */
 .reservas-table thead {
-  background-color: #f5f7fa;
+  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  color: white;
+}
+
+.reservas-table thead th {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 0.6px;
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.reservas-table thead th:last-child {
+  border-right: none;
+}
+
+/* ---------- CUERPO ---------- */
+.reservas-table tbody td {
+  padding: 1rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #e8f1fa;
+  transition: background 0.3s ease;
+}
+
+.reservas-table tbody tr:nth-child(even) {
+  background-color: #f7faff;
 }
 
 .reservas-table tbody tr:hover {
-  background-color: #f0f8ff;
+  background-color: #edf6ff;
 }
 
-.comentario-input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
+/* Separación visual con líneas sutiles */
+.reservas-table tbody tr td + td {
+  border-left: 2px solid #f0f4f8;
 }
 
-.btn {
-  margin: 4px 2px;
-  padding: 6px 12px;
+/* ---------- COLUMNA DE ACCIONES ---------- */
+.reservas-table td.acciones {
+  width: 120px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* ---------- COLUMNA DE COMENTARIOS ---------- */
+.reservas-table td.comentario {
+  width: 700px; /* más ancha para comentarios */
+}
+
+/* ---------- BOTONES EN LA COLUMNA ACCIONES ---------- */
+.reservas-table td.acciones .btn {
+  width: 70%;
+  margin: 4px 0;
+  font-size: 0.85rem;
+}
+
+/* ---------- BOTONES ---------- */
+button {
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 8px;
-  font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* Colores para botones */
-.btn-responder {
-  background-color: #3498db;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: white;
-}
-.btn-responder:hover {
-  background-color: #2980b9;
+  transition: all 0.3s ease;
 }
 
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:not(:disabled):active {
+  transform: scale(0.97);
+}
+
+/* Estilos diferenciados por función */
 .btn-aceptar {
-  background-color: #2ecc71;
-  color: white;
+  background: linear-gradient(45deg, #26a69a, #009688);
 }
+
 .btn-aceptar:hover {
-  background-color: #27ae60;
+  background: linear-gradient(45deg, #009688, #00796b);
 }
 
 .btn-rechazar {
-  background-color: #e67e22;
-  color: white;
+  background: linear-gradient(45deg, #e67e22, #d35400);
 }
+
 .btn-rechazar:hover {
-  background-color: #d35400;
+  background: linear-gradient(45deg, #d35400, #c0392b);
 }
 
 .btn-eliminar {
-  background-color: #e74c3c;
-  color: white;
+  background: linear-gradient(45deg, #e53935, #c62828);
 }
+
 .btn-eliminar:hover {
-  background-color: #c0392b;
+  background: linear-gradient(45deg, #c62828, #b71c1c);
 }
+
+.btn-responder {
+  background: linear-gradient(45deg, #c26a6a, #a44f4f);
+  color: #fff;
+}
+
+.btn-responder:hover {
+  background: linear-gradient(45deg, #a44f4f, #8b3f3f);
+}
+
+/* Botón descargar CV morado pálido */
 .btn-descargar {
-  background-color: #9b59b6; /* púrpura suave */
+  background: linear-gradient(45deg, #b47ddb, #9b59b6);
   color: white;
 }
+
 .btn-descargar:hover {
-  background-color: #8e44ad;
+  background: linear-gradient(45deg, #9b59b6, #8e44ad);
 }
+
+/* ---------- BOTÓN VOLVER (sin tocar) ---------- */
 .btn-volver {
   background: linear-gradient(45deg, #1976d2, #64b5f6);
   color: white;
-  padding: 10px 22px;
+  padding: 0.65rem 1.8rem;
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   cursor: pointer;
   font-weight: 600;
   font-size: 1rem;
   box-shadow: 0 4px 8px rgba(25, 118, 210, 0.4);
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-volver:hover {
   background: linear-gradient(45deg, #1565c0, #42a5f5);
+  transform: translateY(-2px);
 }
+
+.btn-volver:active {
+  transform: scale(0.97);
+}
+
+/* ---------- FORMULARIOS Y TEXTAREA ---------- */
+textarea {
+  width: 100%;
+  border: 1.5px solid #cfe3ff;
+  border-radius: 8px;
+  padding: 0.9rem;
+  font-size: 1rem;
+  resize: vertical;
+  font-family: inherit;
+  background-color: #f9fcff;
+  transition: all 0.3s ease;
+}
+
+textarea:focus {
+  border-color: #42a5f5;
+  box-shadow: 0 0 6px rgba(66, 165, 245, 0.4);
+  outline: none;
+}
+
+/* ---------- INPUTS ---------- */
+input[type="number"], input[type="text"] {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1.5px solid #cfe3ff;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+  background-color: #f9fcff;
+  transition: all 0.3s ease;
+}
+
+input[type="number"]:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 6px rgba(25, 118, 210, 0.4);
+  outline: none;
+}
+
+/* ---------- CENTRADO ---------- */
 .centrado {
   text-align: center;
   vertical-align: middle;

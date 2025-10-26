@@ -1,118 +1,175 @@
+/* === ENVOLTORIO PRINCIPAL === */
 .perfil-wrapper {
-  background: linear-gradient(135deg, #f4f7f9, #e3f2fd);
+  background: linear-gradient(to bottom right, #e0f7e9, #d0f0ff);
   min-height: 100vh;
-  padding: 60px 20px;
-  font-family: 'Segoe UI', sans-serif;
+  padding: 70px 25px;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* === CONTENEDOR CENTRAL === */
 .container-perfil {
-  max-width: 700px;
+  max-width: 720px;
   width: 100%;
+  padding: 10px;
 }
 
+/* === TARJETA === */
 .card-perfil {
   background: #ffffff;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  padding: 45px 35px;
-  transition: all 0.3s ease;
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+  padding: 50px 40px;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sutil reflejo al pasar el mouse */
+.card-perfil::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.25), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.card-perfil:hover::before {
+  opacity: 1;
 }
 
 .card-perfil:hover {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.12);
 }
 
+/* === TÍTULO === */
 .perfil-title {
   text-align: center;
   color: #2a5d77;
-  margin-bottom: 10px;
-  font-size: 30px;
+  margin-bottom: 12px;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
+  font-family: 'Segoe UI', sans-serif; /* Mantiene tu fuente actual */
 }
 
 hr {
   border: none;
-  height: 2px;
-  width: 60px;
-  background: #2a5d77;
-  margin: 0 auto 30px;
+  height: 3px;
+  width: 70px;
+  background: linear-gradient(90deg, #2a5d77, #4a90e2);
+  margin: 0 auto 35px;
   border-radius: 4px;
 }
 
+/* === FILAS DE INFORMACIÓN === */
 .info-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f8f9fa;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  padding: 14px 20px;
-  margin-bottom: 14px;
-  transition: all 0.2s ease;
+  background: #f8fafc;
+  border: 1px solid #e0e6ef;
+  border-radius: 12px;
+  padding: 15px 22px;
+  margin-bottom: 16px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 }
 
 .info-row:hover {
-  background: #eef5fb;
+  background: #eef4fc;
   border-color: #cfe2ff;
   transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }
 
 .info-label {
   font-weight: 600;
   color: #1976d2;
-  width: 35%;
+  width: 38%;
   font-size: 15px;
+  letter-spacing: 0.3px;
 }
 
 .info-data {
-  width: 65%;
+  width: 62%;
   color: #333;
   text-align: right;
   font-size: 15px;
+  font-weight: 500;
+  word-break: break-word;
 }
 
+/* === BOTONES === */
 .btn-container {
   display: flex;
   justify-content: center;
-  gap: 18px;
-  margin-top: 40px;
+  gap: 20px;
+  margin-top: 45px;
 }
 
 .btn-editar,
 .btn-volver {
   border: none;
-  padding: 13px 32px;
+  padding: 13px 35px;
   border-radius: 30px;
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
   color: #fff;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
+  letter-spacing: 0.4px;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Botón editar */
+/* Animación de brillo sutil al hover */
+.btn-editar::after,
+.btn-volver::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 80%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.btn-editar:hover::after,
+.btn-volver:hover::after {
+  left: 120%;
+}
+
+/* === BOTÓN EDITAR === */
 .btn-editar {
-  background: linear-gradient(135deg, #4caf50, #81c784);
-  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
-}
-.btn-editar:hover {
-  background: linear-gradient(135deg, #43a047, #66bb6a);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(76, 175, 80, 0.4);
+  background: linear-gradient(135deg, #43a047, #81c784);
+  box-shadow: 0 6px 12px rgba(67, 160, 71, 0.3);
 }
 
-/* Botón volver */
+.btn-editar:hover {
+  background: linear-gradient(135deg, #388e3c, #66bb6a);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(67, 160, 71, 0.4);
+}
+
+/* === BOTÓN VOLVER === */
 .btn-volver {
   background: linear-gradient(135deg, #1976d2, #64b5f6);
   box-shadow: 0 6px 12px rgba(25, 118, 210, 0.3);
 }
+
 .btn-volver:hover {
   background: linear-gradient(135deg, #1565c0, #42a5f5);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(25, 118, 210, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(25, 118, 210, 0.4);
 }
+
