@@ -1,27 +1,46 @@
 /* Fondo general */
+.perfil-wrapper {
+  background: linear-gradient(135deg, #d8f3dc, #caf0f8);
+  min-height: 100vh;
+  padding: 80px 25px;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Fallback del body */
 body {
   background: linear-gradient(135deg, #dbeafe, #e3f2fd, #ffffff);
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
+  color: #2c3e50;
 }
 
-/* Contenedor principal */
+/* Contenedor principal con efecto vidrio */
 .contactar-container {
   max-width: 950px;
+  width: 100%;
   margin: 60px auto;
-  padding: 45px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* ✅ Safari fix */
-  border-radius: 25px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 50px 45px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 28px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   position: relative;
   overflow: hidden;
+  animation: fadeIn 0.6s ease;
 }
 
-/* Efecto decorativo suave de fondo dentro del contenedor */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Luces de fondo suaves */
 .contactar-container::before {
   content: "";
   position: absolute;
@@ -29,8 +48,9 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at top left, rgba(66,165,245,0.15), transparent 70%),
-              radial-gradient(circle at bottom right, rgba(25,118,210,0.15), transparent 70%);
+  background:
+    radial-gradient(circle at top left, rgba(66,165,245,0.15), transparent 70%),
+    radial-gradient(circle at bottom right, rgba(25,118,210,0.15), transparent 70%);
   z-index: 0;
 }
 
@@ -45,117 +65,35 @@ body {
   color: #1565c0;
   margin-bottom: 35px;
   font-weight: 800;
-  font-size: 2rem;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 2.2rem;
   letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   background: linear-gradient(90deg, #1976d2, #42a5f5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Tarjetas de asesores */
+/* Tarjeta de asesor */
 .asesor-card {
-  background: #fdfdfd;
+  background: #ffffff;
   border-left: 6px solid #42a5f5;
-  border-radius: 18px;
+  border-radius: 20px;
   margin-bottom: 25px;
-  padding: 25px 25px 30px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+  padding: 25px 28px 32px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
   position: relative;
+  overflow: hidden;
 }
 
 .asesor-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(66, 165, 245, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(66, 165, 245, 0.15);
   border-left-color: #1e88e5;
-  background: #f9fbff;
+  background: #f8fbff;
 }
 
-/* Nombre y detalles */
-.asesor-card strong {
-  font-size: 1.15rem;
-  color: #2c3e50;
-}
-
-.asesor-card .detalle {
-  font-size: 0.95rem;
-  color: #555;
-  margin-top: 5px;
-}
-
-/* Estrella y puntaje */
-.asesor-card .rating {
-  color: #f1c40f;
-  font-weight: bold;
-  font-size: 1rem;
-  margin-right: 5px;
-}
-
-/* Contenedor de botones — 3 botones en una fila */
-.botones-container {
-  display: flex;
-  justify-content: space-between; /* ✅ Distribuye los 3 botones en una línea */
-  align-items: center;
-  gap: 15px;
-  margin-top: 18px;
-  flex-wrap: wrap;
-}
-
-/* Botones principales */
-.btn-ver {
-  background: linear-gradient(135deg, #2e7d32, #43a047);
-  color: white;
-  border: none;
-  border-radius: 30px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 0.9rem;
-  min-width: 110px;
-  box-shadow: 0 4px 8px rgba(56, 142, 60, 0.3);
-}
-
-.btn-ver:hover {
-  background: linear-gradient(135deg, #1b5e20, #2e7d32);
-  transform: scale(1.07);
-}
-
-/* Íconos dentro de botones */
-.btn-ver i {
-  font-size: 0.9rem;
-}
-
-/* Botón de volver */
-.btn-volver {
-  background: linear-gradient(45deg, #1e88e5, #64b5f6);
-  color: white;
-  padding: 12px 28px;
-  border: none;
-  border-radius: 40px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 30px auto 0;
-  box-shadow: 0 6px 18px rgba(30, 136, 229, 0.3);
-  transition: all 0.3s ease;
-}
-
-.btn-volver:hover {
-  background: linear-gradient(45deg, #1565c0, #42a5f5);
-  transform: translateY(-2px);
-}
-
-/* Línea decorativa animada */
+/* Detalle visual superior */
 .asesor-card::after {
   content: "";
   position: absolute;
@@ -167,78 +105,104 @@ body {
   border-radius: 0 4px 4px 0;
   transition: width 0.3s ease;
 }
-
 .asesor-card:hover::after {
   width: 100%;
 }
 
-/* Responsivo */
+/* Textos dentro de las tarjetas */
+.asesor-card strong {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.asesor-card .detalle {
+  font-size: 0.98rem;
+  color: #555;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+.asesor-card .rating {
+  color: #f1c40f;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-right: 5px;
+}
+
+/* Contenedor de botones */
+.botones-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* Botón principal */
+.btn-ver {
+  background: linear-gradient(135deg, #2e7d32, #43a047);
+  color: white;
+  border: none;
+  border-radius: 35px;
+  padding: 10px 22px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  font-size: 0.95rem;
+  min-width: 130px;
+  box-shadow: 0 5px 12px rgba(56, 142, 60, 0.25);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-ver:hover {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  transform: scale(1.07);
+  box-shadow: 0 8px 16px rgba(56, 142, 60, 0.35);
+}
+
+/* Botón volver */
+.btn-volver {
+  background: linear-gradient(45deg, #1e88e5, #64b5f6);
+  color: white;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 35px auto 0;
+  box-shadow: 0 8px 22px rgba(30, 136, 229, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+  background: linear-gradient(45deg, #1565c0, #42a5f5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(30, 136, 229, 0.35);
+}
+
+/* Adaptabilidad */
 @media (max-width: 700px) {
   .botones-container {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .btn-ver {
+  .btn-ver,
+  .btn-volver {
     width: 100%;
   }
 
   .contactar-container {
     padding: 30px;
   }
-
-  .btn-volver {
-    width: 100%;
-  }
-}
-
-/* Contenedor de los botones dentro de cada card */
-.botones-container {
-  display: flex;
-  justify-content: space-between; /* Espaciado entre botones */
-  align-items: center;
-  flex-wrap: wrap; /* Evita desbordamiento en pantallas pequeñas */
-  margin-top: 15px;
-  gap: 10px; /* Espacio entre botones */
-}
-
-/* Ajuste general de los botones */
-.btn-ver,
-.btn-comentarios,
-.btn-horarios {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-ver:hover,
-.btn-comentarios:hover,
-.btn-horarios:hover {
-  background-color: #1e7e34;
-  transform: scale(1.05);
-}
-
-/* Opcional: si quieres centrar todos los botones */
-.card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.card-body .botones-container {
-  justify-content: center;
-}
-
-.botones-container {
-  justify-content: center;
-  gap: 20px;
-}
-
-.btn-ver {
-  min-width: 120px;
 }

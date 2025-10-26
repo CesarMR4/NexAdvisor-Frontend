@@ -1,93 +1,115 @@
+/* Layout general con fondo animado */
+.layout-con-anuncios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: calc(100vh - 70px);
+  gap: 1rem;
+  background: linear-gradient(to bottom right, #e0f7e9, #d0f0ff);
+}
+
+/* Anuncios laterales (idénticos al asesor) */
+.anuncio-lateral {
+  width: 200px;
+  min-height: 120px;
+  height: calc(45vh - 70px);
+  background-color: #d9dec0;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 8px;
+}
+
+.anuncio-lateral:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen lateral */
+.img-anuncio-lateral {
+  width: 120%;
+  height: auto;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.anuncio-lateral:hover .img-anuncio-lateral {
+  transform: scale(1.03);
+}
+
+/* Contenedor central */
 .inicio-estudiante-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 70px);
-  background: linear-gradient(to bottom right, #e0f7e9, #d0f0ff);
-  padding: 2rem;
+  flex: 1;
 }
 
+/* Tarjeta principal (idéntica en estructura al asesor) */
 .card-bienvenida.mejorada {
-  background-color: white;
-  padding: 3rem;
+  background-color: #ffffff;
+  padding: 40px;
   border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  max-width: 1000px;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1.2rem;
   align-items: center;
-  max-width: 1100px;
-  width: 100%;
-  transition: all 0.3s ease-in-out;
+  justify-content: space-between;
 }
 
-.card-bienvenida.mejorada:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .contenido-texto {
-  flex: 1 1 400px;
+  flex: 1 1 55%;
+  min-width: 280px;
 }
 
 .titulo {
-  font-size: 2.5rem;
+  font-size: 30px;
+  margin-bottom: 15px;
   color: #2e7d32;
-  margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .subtitulo {
-  font-size: 1.2rem;
+  font-size: 17px;
   color: #444;
   line-height: 1.6;
 }
 
 .contenido-imagen {
-  flex: 1 1 300px;
-  text-align: center;
+  flex: 1 1 35%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .ilustracion {
-  max-width: 320px;
-  width: 100%;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease;
 }
 
-.anuncio-lateral {
-  width: 160px;
-  min-height: 400px;
-  height: calc(80vh - 70px);
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  display: none;
-}
-
-.anuncio-lateral .contenido-anuncio {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-@media (min-width: 1200px) {
-  .anuncio-lateral {
-    display: block;
-  }
-
-  .inicio-estudiante-container {
-    justify-content: space-between;
-    gap: 1rem;
-  }
-}
-
-.layout-con-anuncios {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem;
-  background: linear-gradient(to bottom right, #e0f7e9, #d0f0ff);
-  min-height: calc(100vh - 70px);
-  gap: 1rem;
+.ilustracion:hover {
+  transform: scale(1.03);
 }

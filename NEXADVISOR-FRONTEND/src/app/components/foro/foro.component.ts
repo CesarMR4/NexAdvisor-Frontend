@@ -31,30 +31,27 @@ export class ForoComponent implements OnInit {
     private router: Router
   ) {}
 
-ngOnInit(): void {
-  const usuario = this.authService.getUser();
+  ngOnInit(): void {
+    const usuario = this.authService.getUser();
 
-  if (usuario && usuario.tipoUsuario === 'estudiante') {
-    // Creamos manualmente el objeto Estudiante con los campos obligatorios
-    this.user = {
-      id: usuario.id,
-      nombre: usuario.nombre,
-      email: usuario.email || '',
-      password: '',
-      direccion: '',
-      telefono: '',
-      curriculum: '',
-      carrera: '',
-      fechaRegistro: new Date(), // o una fecha vacía si tu backend lo llena
-      rol: 'estudiante'
-    };
-    this.listarPublicaciones();
-  } else {
-    console.error('Usuario no autenticado o no es estudiante');
-    // Si quieres, puedes redirigir al login:
-    // this.router.navigate(['/login']);
+    if (usuario && usuario.tipoUsuario === 'estudiante') {
+      this.user = {
+        id: usuario.id,
+        nombre: usuario.nombre,
+        email: usuario.email || '',
+        password: '',
+        direccion: '',
+        telefono: '',
+        curriculum: '',
+        carrera: '',
+        fechaRegistro: new Date(),
+        rol: 'estudiante'
+      };
+      this.listarPublicaciones();
+    } else {
+      console.error('Usuario no autenticado o no es estudiante');
+    }
   }
-}
 
   listarPublicaciones(): void {
     this.publicacionService.listar().subscribe({
@@ -80,66 +77,58 @@ ngOnInit(): void {
     this.router.navigate(['/foro', id]);
   }
 
-  eliminar(id: number): void {
-    if (confirm('¿Estás seguro de eliminar esta publicación?')) {
-      this.publicacionService.eliminar(id).subscribe(() => this.listarPublicaciones());
-    }
+eliminar(id: number): void {
+  const publicacion = this.publicaciones.find(p => p.id === id);
+
+  if (!publicacion || publicacion.estudiante?.id !== this.user.id) {
+    alert("No se puede eliminar esta conversación");
+    return;
   }
 
-// Propiedades nuevas
-editandoId: number | null = null;
-editandoPublicacion: PublicacionForo = {
-  id: 0,
-  titulo: '',
-  contenido: '',
-  fechaPublicacion: new Date(),
-  estudiante: {} as Estudiante
-};
-
-// Método para iniciar edición
-editar(pub: PublicacionForo): void {
-  this.editandoId = pub.id!;
-  this.editandoPublicacion = {
-    id: pub.id!,
-    titulo: pub.titulo,
-    contenido: pub.contenido,
-    fechaPublicacion: pub.fechaPublicacion,
-    estudiante: pub.estudiante
-  };
+  if (confirm('¿Estás seguro de eliminar esta publicación?')) {
+    this.publicacionService.eliminar(id).subscribe(() => this.listarPublicaciones());
+  }
 }
 
-// Cancelar edición
-cancelarEdicion(): void {
-  this.editandoId = null;
-  this.editandoPublicacion = {
+  editandoId: number | null = null;
+  editandoPublicacion: PublicacionForo = {
     id: 0,
     titulo: '',
     contenido: '',
     fechaPublicacion: new Date(),
     estudiante: {} as Estudiante
   };
+
+  editar(pub: PublicacionForo): void {
+    this.editandoId = pub.id!;
+    this.editandoPublicacion = {
+      id: pub.id!,
+      titulo: pub.titulo,
+      contenido: pub.contenido,
+      fechaPublicacion: pub.fechaPublicacion,
+      estudiante: pub.estudiante
+    };
+  }
+
+  cancelarEdicion(): void {
+    this.editandoId = null;
+    this.editandoPublicacion = {
+      id: 0,
+      titulo: '',
+      contenido: '',
+      fechaPublicacion: new Date(),
+      estudiante: {} as Estudiante
+    };
+  }
+
+  guardarEdicion(): void {
+    if (!this.editandoPublicacion.titulo.trim() || !this.editandoPublicacion.contenido.trim()) return;
+
+    this.publicacionService.editar(this.editandoPublicacion).subscribe({
+      error: (e) => console.error('Error al guardar edición', e)
+    });
+
+    setTimeout(() => window.location.reload(), 500);
+  }
+
 }
-
-
-
-
-// Guardar cambios
-guardarEdicion(): void {
-  if (!this.editandoPublicacion.titulo.trim() || !this.editandoPublicacion.contenido.trim()) return;
-
-  this.publicacionService.editar(this.editandoPublicacion).subscribe({
-    error: (e) => console.error('Error al guardar edición', e)
-  });
-
-  // Forzar recarga incluso si aún no terminó el backend
-  setTimeout(() => window.location.reload(), 500);
-}
-
-
-
-}
-
-
-
-
-

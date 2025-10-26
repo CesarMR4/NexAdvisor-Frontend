@@ -1,4 +1,4 @@
-/* ---------- FONDO DE LA PÁGINA ---------- */
+
 body {
   background: linear-gradient(135deg, #f4f5f7, #e3f2fd);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -7,7 +7,7 @@ body {
   min-height: 100vh;
 }
 
-/* ---------- CONTENEDOR PRINCIPAL ---------- */
+
 .reservas-container {
   max-width: 85%; 
   margin: 40px auto;
@@ -20,7 +20,7 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ---------- TÍTULO ---------- */
+
 h2 {
   text-align: center;
   color: #1976d2;
@@ -41,7 +41,7 @@ h2::after {
   border-radius: 2px;
 }
 
-/* ---------- TABLA ---------- */
+
 .reservas-table {
   width: 100%;
   border-collapse: collapse;
@@ -57,7 +57,7 @@ h2::after {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
-/* ---------- ENCABEZADO ---------- */
+
 .reservas-table thead {
   background: linear-gradient(90deg, #1976d2, #42a5f5);
   color: white;
@@ -75,7 +75,7 @@ h2::after {
   border-right: none;
 }
 
-/* ---------- CUERPO ---------- */
+
 .reservas-table tbody td {
   padding: 1rem;
   text-align: center;
@@ -93,31 +93,31 @@ h2::after {
   background-color: #edf6ff;
 }
 
-/* Separación visual con líneas sutiles */
+
 .reservas-table tbody tr td + td {
   border-left: 2px solid #f0f4f8;
 }
 
-/* ---------- COLUMNA DE ACCIONES ---------- */
+
 .reservas-table td.acciones {
   width: 120px;
   text-align: center;
   vertical-align: middle;
 }
 
-/* ---------- COLUMNA DE COMENTARIOS ---------- */
+
 .reservas-table td.comentario {
-  width: 700px; /* más ancha para comentarios */
+  width: 700px;
 }
 
-/* ---------- BOTONES EN LA COLUMNA ACCIONES ---------- */
+
 .reservas-table td.acciones .btn {
   width: 70%;
   margin: 4px 0;
   font-size: 0.85rem;
 }
 
-/* ---------- BOTONES ---------- */
+
 button {
   padding: 0.5rem 1rem;
   border: none;
@@ -137,7 +137,6 @@ button:not(:disabled):active {
   transform: scale(0.97);
 }
 
-/* Estilos diferenciados por función */
 .btn-aceptar {
   background: linear-gradient(45deg, #26a69a, #009688);
 }
@@ -163,7 +162,7 @@ button:not(:disabled):active {
 }
 
 .btn-responder {
-  background: linear-gradient(45deg, #c26a6a, #a44f4f);
+  background: linear-gradient(45deg, #83b4bd, #83b4bd);
   color: #fff;
 }
 
@@ -171,7 +170,6 @@ button:not(:disabled):active {
   background: linear-gradient(45deg, #a44f4f, #8b3f3f);
 }
 
-/* Botón descargar CV morado pálido */
 .btn-descargar {
   background: linear-gradient(45deg, #b47ddb, #9b59b6);
   color: white;
@@ -181,7 +179,6 @@ button:not(:disabled):active {
   background: linear-gradient(45deg, #9b59b6, #8e44ad);
 }
 
-/* ---------- BOTÓN VOLVER (sin tocar) ---------- */
 .btn-volver {
   background: linear-gradient(45deg, #1976d2, #64b5f6);
   color: white;
@@ -204,7 +201,7 @@ button:not(:disabled):active {
   transform: scale(0.97);
 }
 
-/* ---------- FORMULARIOS Y TEXTAREA ---------- */
+
 textarea {
   width: 100%;
   border: 1.5px solid #cfe3ff;
@@ -223,7 +220,7 @@ textarea:focus {
   outline: none;
 }
 
-/* ---------- INPUTS ---------- */
+
 input[type="number"], input[type="text"] {
   width: 100%;
   padding: 0.7rem;
@@ -242,7 +239,7 @@ input[type="number"]:focus {
   outline: none;
 }
 
-/* ---------- CENTRADO ---------- */
+
 .centrado {
   text-align: center;
   vertical-align: middle;

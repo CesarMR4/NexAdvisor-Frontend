@@ -41,10 +41,10 @@
 
     <div>
       <label>Teléfono:</label>
-      <input type="text" name="telefono" [(ngModel)]="asesor.telefono" required pattern="^[0-9]{6,15}$" #telRef="ngModel">
+      <input type="text" name="telefono" [(ngModel)]="asesor.telefono" required pattern="^[0-9]{7,12}$" #telRef="ngModel">
       <div *ngIf="telRef.invalid && telRef.touched" class="error">
         <span *ngIf="telRef.errors?.['required']">El teléfono es obligatorio.</span>
-        <span *ngIf="telRef.errors?.['pattern']">Solo números (6–15 dígitos).</span>
+        <span *ngIf="telRef.errors?.['pattern']">Debe contener solo números y tener entre 7 y 12 dígitos válidos.</span>
       </div>
     </div>
 

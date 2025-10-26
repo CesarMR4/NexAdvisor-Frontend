@@ -1,3 +1,4 @@
+<section class="perfil-wrapper">
 <div>
   <h2>Historial de Reservas</h2>
 
@@ -15,11 +16,11 @@
     <tbody>
       <ng-container *ngFor="let reserva of reservas">
         <tr>
-            <td class="centrado">{{ reserva.asesor?.nombre || 'Desconocido' }}</td>
-            <td class="centrado">{{ reserva.fechaReserva ? (reserva.fechaReserva | date: 'dd/MM/yyyy') : 'Desconocido' }}</td>
-            <td class="centrado">{{ reserva.horaReserva || 'Desconocido' }}</td>
-            <td class="centrado">{{ reserva.estado || 'Desconocido' }}</td>
-            <td class="centrado">{{ reserva.comentarioAsesor || 'Sin comentario' }}</td>
+          <td class="centrado">{{ reserva.asesor?.nombre || 'Desconocido' }}</td>
+          <td class="centrado">{{ reserva.fechaReserva ? (reserva.fechaReserva | date: 'dd/MM/yyyy') : 'Desconocido' }}</td>
+          <td class="centrado">{{ reserva.horaReserva || 'Desconocido' }}</td>
+          <td class="centrado">{{ reserva.estado || 'Desconocido' }}</td>
+          <td class="centrado">{{ reserva.comentarioAsesor || 'Sin comentario' }}</td>
 
           <td>
             <div style="display: flex; align-items: center; justify-content: space-between;">
@@ -49,29 +50,33 @@
           </td>
         </tr>
 
-        <!-- Formulario para comentar: SOLO si coincide el ID -->
+      
         <tr *ngIf="comentarioReservaActiva?.id === reserva.id">
           <td colspan="6">
-            <h4>Dejar comentario para {{ reserva.asesor?.nombre || 'Desconocido' }}</h4>
-            <textarea
-              [(ngModel)]="comentarioNuevo.contenido"
-              placeholder="Escribe tu comentario aquí"
-              rows="4"
-              cols="50"
-            ></textarea><br /><br />
-            <button class="btn-suave enviar" (click)="guardarComentario()">Enviar comentario</button>
-            <button class="btn-suave cancelar" (click)="cancelarFormularioComentario()">Cancelar</button>
+            <div class="formulario-comentario">
+              <h4>Dejar comentario para {{ reserva.asesor?.nombre || 'Desconocido' }}</h4>
+              <textarea
+                [(ngModel)]="comentarioNuevo.contenido"
+                placeholder="Escribe tu comentario aquí"
+                rows="4"
+                cols="50"
+              ></textarea>
+              <div class="botones-centrados">
+                <button class="btn-suave enviar" (click)="guardarComentario()">Enviar comentario</button>
+                <button class="btn-suave cancelar" (click)="cancelarFormularioComentario()">Cancelar</button>
+              </div>
+            </div>
           </td>
         </tr>
       </ng-container>
     </tbody>
   </table>
 
-  <!-- Formulario para puntuar asesor -->
-  <div *ngIf="reservaIdPuntuacion !== 0" style="margin-top: 20px;">
+
+  <div *ngIf="reservaIdPuntuacion !== 0" class="formulario-puntuacion">
     <h3>Puntuar asesor</h3>
 
-    <label for="puntaje">Puntaje (1-5):</label><br />
+    <label for="puntaje">Puntaje (1-5):</label>
     <input
       id="puntaje"
       type="number"
@@ -79,10 +84,12 @@
       min="1"
       max="5"
       required
-    /><br /><br />
+    />
 
-    <button class="btn-suave enviar" (click)="registrarPuntuacion()">Enviar</button>
-    <button class="btn-suave cancelar" (click)="cancelarPuntuacion()">Cancelar</button>
+    <div class="botones-centrados">
+      <button class="btn-suave enviar" (click)="registrarPuntuacion()">Enviar</button>
+      <button class="btn-suave cancelar" (click)="cancelarPuntuacion()">Cancelar</button>
+    </div>
 
     <p style="color: green;" *ngIf="mensaje">{{ mensaje }}</p>
   </div>
@@ -93,3 +100,4 @@
     <button (click)="volverDashboard()" class="btn-volver">⬅️ Volver al Panel</button>
   </div>
 </div>
+</section>

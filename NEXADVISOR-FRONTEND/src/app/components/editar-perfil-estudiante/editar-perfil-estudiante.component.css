@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* Fondo general */
-body {
+
+.perfil-wrapper {
   background: linear-gradient(to bottom right, #e0f7e9, #d0f0ff);
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
+  padding: 70px 25px;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   display: flex;
+  flex-direction: column; 
   align-items: center;
   justify-content: center;
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
 }
 
-/* Formulario principal */
+
 form {
   max-width: 520px;
   width: 90%;

@@ -1,3 +1,4 @@
+<section class="perfil-wrapper">
 <div class="contactar-container">
   <h2>Lista de Asesores Disponibles</h2>
 
@@ -24,19 +25,10 @@
   <a class="btn-ver" [routerLink]="['/comentarios-asesor', asesor.id]">Comentarios</a>
 </div>
 
-
-
-    <!-- Agrupamos los botones en una fila 
-    <div class="botones-container">
-  <button class="btn-ver" (click)="verPerfil(asesor.id)">Ver Perfil</button>
-  <button class="btn-ver" [routerLink]="['/horarios-estudiante', asesor.id]">Ver Horarios</button>
-</div>
-    <div class="comentarios-btn-container">
-  <a class="btn-ver" [routerLink]="['/comentarios-asesor', asesor.id]">Comentarios</a>
-</div>-->
   </li>
 </ul>
 <div style="text-align: center; margin-top: 25px;">
   <button (click)="volverDashboard()" class="btn-volver">⬅️ Volver al Panel</button>
 </div>
 </div>
+</section>

@@ -1,4 +1,4 @@
-/* === ENVOLTORIO PRINCIPAL === */
+
 .perfil-wrapper {
   background: linear-gradient(to bottom right, #e0f7e9, #d0f0ff);
   min-height: 100vh;
@@ -9,14 +9,12 @@
   justify-content: center;
 }
 
-/* === CONTENEDOR CENTRAL === */
 .container-perfil {
   max-width: 720px;
   width: 100%;
   padding: 10px;
 }
 
-/* === TARJETA === */
 .card-perfil {
   background: #ffffff;
   border-radius: 20px;
@@ -27,7 +25,6 @@
   overflow: hidden;
 }
 
-/* Sutil reflejo al pasar el mouse */
 .card-perfil::before {
   content: "";
   position: absolute;
@@ -49,7 +46,6 @@
   box-shadow: 0 14px 38px rgba(0, 0, 0, 0.12);
 }
 
-/* === TÍTULO === */
 .perfil-title {
   text-align: center;
   color: #2a5d77;
@@ -57,7 +53,7 @@
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.6px;
-  font-family: 'Segoe UI', sans-serif; /* Mantiene tu fuente actual */
+  font-family: 'Segoe UI', sans-serif;
 }
 
 hr {
@@ -69,7 +65,7 @@ hr {
   border-radius: 4px;
 }
 
-/* === FILAS DE INFORMACIÓN === */
+
 .info-row {
   display: flex;
   justify-content: space-between;
@@ -107,7 +103,7 @@ hr {
   word-break: break-word;
 }
 
-/* === BOTONES === */
+
 .btn-container {
   display: flex;
   justify-content: center;
@@ -130,7 +126,6 @@ hr {
   overflow: hidden;
 }
 
-/* Animación de brillo sutil al hover */
 .btn-editar::after,
 .btn-volver::after {
   content: "";
@@ -149,7 +144,6 @@ hr {
   left: 120%;
 }
 
-/* === BOTÓN EDITAR === */
 .btn-editar {
   background: linear-gradient(135deg, #43a047, #81c784);
   box-shadow: 0 6px 12px rgba(67, 160, 71, 0.3);
@@ -161,7 +155,6 @@ hr {
   box-shadow: 0 8px 18px rgba(67, 160, 71, 0.4);
 }
 
-/* === BOTÓN VOLVER === */
 .btn-volver {
   background: linear-gradient(135deg, #1976d2, #64b5f6);
   box-shadow: 0 6px 12px rgba(25, 118, 210, 0.3);

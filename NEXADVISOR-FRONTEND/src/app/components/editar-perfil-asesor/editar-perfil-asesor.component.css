@@ -4,17 +4,17 @@
   padding: 70px 25px;
   font-family: 'Poppins', 'Segoe UI', sans-serif;
   display: flex;
-  flex-direction: column; /* ✅ Para que los elementos se apilen verticalmente */
+  flex-direction: column; 
   align-items: center;
   justify-content: center;
 }
 
-/* Contenedor general del formulario */
+
 form {
-  max-width: 520px; /* ✅ Más ancho */
-  width: 30%; /* Para que se adapte al espacio disponible */
+  max-width: 520px; 
+  width: 30%; 
   margin: 20px auto;
-  padding: 35px; /* un poco más de espacio interno */
+  padding: 35px; 
   background: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.1);
@@ -22,13 +22,13 @@ form {
   text-align: center; 
 }
 
-/* Cada grupo de campo con algo de espacio */
+
 div {
   margin-bottom: 18px;
   text-align: left;
 }
 
-/* Etiquetas */
+
 label {
   display: block;
   font-weight: 600;
@@ -36,7 +36,7 @@ label {
   color: #333;
 }
 
-/* Inputs */
+
 input {
   width: 100%;
   padding: 12px 14px;
@@ -52,14 +52,13 @@ input:focus {
   box-shadow: 0 0 6px #81c784aa;
 }
 
-/* Mensajes de error */
+
 div[style*="color:red"] {
   font-size: 0.85rem;
   margin-top: 4px;
   color: #e53935;
 }
 
-/* Botones */
 button[type="submit"] {
   background: linear-gradient(45deg, #4caf50, #81c784);
   color: white;
@@ -84,7 +83,6 @@ button[type="submit"]:hover:not(:disabled) {
   background: linear-gradient(45deg, #388e3c, #66bb6a);
 }
 
-/* Botón cancelar */
 .btn-cancelar {
   background-color: #f44336;
   margin-left: 12px;
@@ -105,7 +103,6 @@ button[type="submit"]:hover:not(:disabled) {
   background-color: #d32f2f;
 }
 
-/* ✅ Mensaje de éxito centrado debajo del formulario */
 .mensaje-exito {
   max-width: 520px;
   width: 30%;
@@ -121,7 +118,6 @@ button[type="submit"]:hover:not(:disabled) {
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
-/* Título */
 .titulo-editar {
   font-size: 2.8rem;
   font-weight: 700;
@@ -132,7 +128,6 @@ button[type="submit"]:hover:not(:disabled) {
   text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
-/* Botón volver */
 .btn-volver {
   background: linear-gradient(45deg, #1976d2, #64b5f6);
   color: white;
@@ -150,7 +145,6 @@ button[type="submit"]:hover:not(:disabled) {
   background: linear-gradient(45deg, #1565c0, #42a5f5);
 }
 
-/* Fondo general */
 body {
   background: linear-gradient(to bottom right, #e0f7e9, #d0f0ff);
   min-height: 100vh;
