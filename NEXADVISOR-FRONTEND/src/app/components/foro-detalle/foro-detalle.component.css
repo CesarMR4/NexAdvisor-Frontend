@@ -197,3 +197,28 @@ button:hover {
   text-align: center;
   margin-top: 16px;
 }
+
+.btn-volver {
+  background: linear-gradient(135deg, #1976d2, #64b5f6);
+  box-shadow: 0 4px 10px rgba(25, 118, 210, 0.25);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
+
+.btn-volver:hover {
+  background: linear-gradient(135deg, #1565c0, #42a5f5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(25, 118, 210, 0.35);
+}
+
+.btn-volver:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(25, 118, 210, 0.25);
+}

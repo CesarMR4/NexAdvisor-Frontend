@@ -121,6 +121,11 @@ eliminar(id: number): void {
     };
   }
 
+  
+volverDashboard() {
+  this.router.navigate(['/dashboard-estudiante']);
+}
+
   guardarEdicion(): void {
     if (!this.editandoPublicacion.titulo.trim() || !this.editandoPublicacion.contenido.trim()) return;
 

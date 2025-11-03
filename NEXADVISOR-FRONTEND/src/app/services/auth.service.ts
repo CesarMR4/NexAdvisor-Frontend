@@ -20,14 +20,14 @@ export class AuthService {
   private userSource = new BehaviorSubject<Usuario | null>(null);
   currentUser = this.userSource.asObservable();
 
-  private apiUrl = 'http://localhost:8080'; // Cambia al URL real si usas entorno productivo
+  private apiUrl = 'http://localhost:8080'; 
   //private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
     this.cargarUsuarioDesdeStorage();
   }
 
-  // ✅ Protege el acceso a localStorage (solo existe en navegador)
+  
   private cargarUsuarioDesdeStorage() {
     if (typeof window !== 'undefined' && window.localStorage) {
       const storedUser = localStorage.getItem('user');

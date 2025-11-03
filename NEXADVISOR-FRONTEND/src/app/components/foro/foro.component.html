@@ -4,31 +4,73 @@
     <main class="foro-container">
       <h2>Foro de Estudiantes</h2>
 
+      <!-- ======= Crear nueva publicación ======= -->
       <section class="formulario tarjeta-publicacion">
         <div class="header-formulario">
           <i class="fa fa-pencil-square-o icono-form"></i>
           <h3>Crear nueva publicación</h3>
         </div>
 
-        <div class="form-wrapper">
-          <div class="form-group">
-            <label for="titulo">Título</label>
-            <input id="titulo" type="text" [(ngModel)]="nuevaPublicacion.titulo" placeholder="Escribe el título aquí" />
-          </div>
+        <form #formPublicacion="ngForm" (ngSubmit)="publicar()" novalidate>
+          <div class="form-wrapper">
+            <!-- Campo título -->
+            <div class="form-group">
+              <label for="titulo">Título</label>
+              <input
+                id="titulo"
+                type="text"
+                name="titulo"
+                [(ngModel)]="nuevaPublicacion.titulo"
+                required
+                pattern="^(?=.*[A-Za-zÁÉÍÓÚáéíóúÑñ])[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s,.'!?-]+$"
+                #tituloRef="ngModel"
+                placeholder="Escribe el título aquí"
+              />
+              <div *ngIf="tituloRef.invalid && tituloRef.touched" class="error-msg">
+                <span *ngIf="tituloRef.errors?.['required']">⚠️ El título es obligatorio.</span>
+                <span *ngIf="tituloRef.errors?.['pattern']">
+                  ⚠️ El título debe contener texto válido (no solo números o símbolos).
+                </span>
+              </div>
+            </div>
 
-          <div class="form-group">
-            <label for="contenido">Contenido</label>
-            <textarea id="contenido" [(ngModel)]="nuevaPublicacion.contenido" placeholder="Escribe tu mensaje..." rows="5"></textarea>
-          </div>
+            <!-- Campo contenido -->
+            <div class="form-group">
+              <label for="contenido">Contenido</label>
+              <textarea
+                id="contenido"
+                name="contenido"
+                [(ngModel)]="nuevaPublicacion.contenido"
+                required
+                pattern="^(?=.*[A-Za-zÁÉÍÓÚáéíóúÑñ]).+$"
+                #contenidoRef="ngModel"
+                placeholder="Escribe tu mensaje..."
+                rows="5"
+              ></textarea>
+              <div *ngIf="contenidoRef.invalid && contenidoRef.touched" class="error-msg">
+                <span *ngIf="contenidoRef.errors?.['required']">⚠️ El contenido es obligatorio.</span>
+                <span *ngIf="contenidoRef.errors?.['pattern']">
+                  ⚠️ El comentario debe contener texto válido (no solo números o símbolos).
+                </span>
+              </div>
+            </div>
 
-          <div class="form-group boton-publicar centrado">
-            <button (click)="publicar()">Publicar</button>
+            <!-- Botones -->
+            <div class="form-group boton-publicar centrado">
+              <button type="submit" [disabled]="formPublicacion.invalid" class="btn-publicar">
+                Publicar
+              </button>
+              <button type="button" (click)="volverDashboard()" class="btn-volver">
+                Volver al Panel
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </section>
 
       <hr />
 
+      <!-- ======= Listado de publicaciones ======= -->
       <section class="lista-publicaciones">
         <h3>Publicaciones recientes</h3>
 
@@ -39,22 +81,62 @@
             </div>
 
             <div class="foro-central">
+              <!-- ======= Modo edición ======= -->
               <div *ngIf="editandoId === pub.id; else modoLectura">
-                <input type="text" [(ngModel)]="editandoPublicacion.titulo" placeholder="Editar título" />
-                <textarea [(ngModel)]="editandoPublicacion.contenido" rows="3" placeholder="Editar contenido"></textarea>
-                <div class="acciones">
-                  <button (click)="guardarEdicion()">Guardar</button>
-                  <button (click)="cancelarEdicion()">Cancelar</button>
-                </div>
+                <form #formEdicion="ngForm" (ngSubmit)="guardarEdicion()" novalidate>
+                  <input
+                    type="text"
+                    name="editTitulo"
+                    [(ngModel)]="editandoPublicacion.titulo"
+                    required
+                    pattern="^(?=.*[A-Za-zÁÉÍÓÚáéíóúÑñ])[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s,.'!?-]+$"
+                    #editTituloRef="ngModel"
+                    placeholder="Editar título"
+                  />
+                  <div *ngIf="editTituloRef.invalid && editTituloRef.touched" class="error-msg">
+                    <span *ngIf="editTituloRef.errors?.['required']">⚠️ El título es obligatorio.</span>
+                    <span *ngIf="editTituloRef.errors?.['pattern']">
+                      ⚠️ El título debe contener texto válido (no solo números o símbolos).
+                    </span>
+                  </div>
+
+                  <textarea
+                    name="editContenido"
+                    [(ngModel)]="editandoPublicacion.contenido"
+                    required
+                    pattern="^(?=.*[A-Za-zÁÉÍÓÚáéíóúÑñ]).+$"
+                    #editContenidoRef="ngModel"
+                    rows="3"
+                    placeholder="Editar contenido"
+                  ></textarea>
+                  <div *ngIf="editContenidoRef.invalid && editContenidoRef.touched" class="error-msg">
+                    <span *ngIf="editContenidoRef.errors?.['required']">⚠️ El contenido es obligatorio.</span>
+                    <span *ngIf="editContenidoRef.errors?.['pattern']">
+                      ⚠️ El comentario debe contener texto válido (no solo números o símbolos).
+                    </span>
+                  </div>
+
+                  <div class="acciones">
+                    <button type="submit" [disabled]="formEdicion.invalid">Guardar</button>
+                    <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+                  </div>
+                </form>
               </div>
 
+              <!-- ======= Modo lectura ======= -->
               <ng-template #modoLectura>
                 <h4>{{ pub.titulo }}</h4>
                 <p class="extracto">{{ pub.contenido | slice:0:140 }}...</p>
                 <div class="acciones">
                   <button *ngIf="pub.id != null" (click)="verDetalle(pub.id)" class="ver">Ver más</button>
                   <button *ngIf="pub.estudiante?.id === user.id" (click)="editar(pub)" class="editar">Editar</button>
-                  <button *ngIf="pub.id != null && pub.estudiante?.id === user.id" (click)="eliminar(pub.id)" class="eliminar">Eliminar</button>
+                  <button
+                    *ngIf="pub.id != null && pub.estudiante?.id === user.id"
+                    (click)="eliminar(pub.id)"
+                    class="eliminar"
+                  >
+                    Eliminar
+                  </button>
                 </div>
               </ng-template>
             </div>

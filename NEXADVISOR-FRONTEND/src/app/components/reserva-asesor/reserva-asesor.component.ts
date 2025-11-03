@@ -1,67 +1,9 @@
-/*
-import { Component, OnInit } from '@angular/core';
-import { ReservaService } from '../../services/reserva.service';
-import { AuthService } from '../../services/auth.service';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ReservaDTO } from '../../models/ReservaDTO';
 
-
-
-@Component({
-  selector: 'app-reserva-asesor',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './reserva-asesor.component.html',
-  styleUrls: ['./reserva-asesor.component.css']
-})
-
-export class ReservaAsesorComponent implements OnInit {
-  reservas: ReservaDTO[] = [];
-  comentarios: { [key: number]: string } = {};
-
-  constructor(
-    private reservaService: ReservaService,
-    private authService: AuthService
-  ) {}
-
-  ngOnInit(): void {
-    const user = this.authService.getUser();
-    if (user && user.tipoUsuario === 'asesor') {
-      this.reservaService.getByAsesor(user.id).subscribe(reservas => {
-        this.reservas = reservas;
-        console.log('Reservas DTO:', this.reservas);
-      });
-    }
-  }
-
-  eliminarReserva(id: number): void {
-    this.reservaService.eliminar(id).subscribe(() => {
-      this.reservas = this.reservas.filter(r => r.id !== id);
-    });
-  }
-
-  actualizarComentario(reserva: ReservaDTO): void {
-  const comentario = this.comentarios[reserva.id] || '';
-  this.reservaService.actualizarComentario(reserva.id, comentario).subscribe(() => {
-    reserva.comentarioAsesor = comentario;
-    alert('Comentario enviado correctamente');
-  });
-}
-
-  actualizarEstado(reserva: ReservaDTO, nuevoEstado: string): void {
-    this.reservaService.actualizarEstado(reserva.id, nuevoEstado).subscribe(() => {
-      reserva.estado = nuevoEstado;
-      alert('Estado actualizado');
-    });
-  }
-}
-*/
 
 import { Component, OnInit } from '@angular/core';
 import { ReservaService } from '../../services/reserva.service';
 import { AuthService } from '../../services/auth.service';
-import { CurriculumService } from '../../services/curriculum.service'; // 👈 Importado
+import { CurriculumService } from '../../services/curriculum.service'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReservaDTO } from '../../models/ReservaDTO';
@@ -124,7 +66,7 @@ ngOnInit(): void {
 
         this.curriculumService.obtenerReportePorReserva(reserva.id).subscribe({
           next: (res) => {
-            console.log('📄 Reporte IA recibido:', res); // útil para depurar
+            console.log('📄 Reporte IA recibido:', res); 
             reserva.tieneCurriculum = true;
             reservasCompletas.push(reserva);
             if (--pendientes === 0) {

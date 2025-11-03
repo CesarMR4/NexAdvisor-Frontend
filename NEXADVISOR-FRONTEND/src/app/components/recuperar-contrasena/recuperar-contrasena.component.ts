@@ -56,10 +56,10 @@ export class RecuperarContrasenaComponent implements OnInit {
     this.error = '';
 
     const url = this.tipoUsuario === 'estudiante'
-      ? 'http://localhost:8080/estudiante/reset-password'
-      : 'http://localhost:8080/asesores/reset-password'; 
-      // ? `${environment.apiUrl}/estudiante/reset-password`
-      //: `${environment.apiUrl}/asesores/reset-password`;
+      //? 'http://localhost:8080/estudiante/reset-password'
+      //: 'http://localhost:8080/asesores/reset-password'; 
+       ? `${environment.apiUrl}/estudiante/reset-password`
+      : `${environment.apiUrl}/asesores/reset-password`;
 
     this.http.put(url, this.datos, { responseType: 'text' }).subscribe({
       next: (respuesta) => {

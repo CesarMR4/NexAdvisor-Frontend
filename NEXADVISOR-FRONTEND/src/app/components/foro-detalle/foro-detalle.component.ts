@@ -8,6 +8,7 @@ import { RespuestaForoService } from '../../services/respuesta-foro.service';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-foro-detalle',
@@ -28,7 +29,8 @@ export class ForoDetalleComponent implements OnInit {
     private route: ActivatedRoute,
     private publicacionService: PublicacionForoService,
     private respuestaService: RespuestaForoService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router 
   ) {}
 
   ngOnInit(): void {
@@ -94,5 +96,8 @@ export class ForoDetalleComponent implements OnInit {
       },
       error: (e: any) => console.error('Error al publicar respuesta', e)
     });
+  }
+    volverForo(): void {
+    this.router.navigate(['/foro']);
   }
 }
