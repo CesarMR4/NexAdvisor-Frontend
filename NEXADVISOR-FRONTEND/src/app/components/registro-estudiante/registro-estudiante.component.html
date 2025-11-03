@@ -45,13 +45,16 @@
       </div>
     </div>
 
-    <div>
-      <label>Carrera:</label>
-      <input type="text" name="carrera" [(ngModel)]="estudiante.carrera" required #carreraRef="ngModel">
-      <div *ngIf="carreraRef.invalid && carreraRef.touched" class="error">
-        <span>La carrera es obligatoria.</span>
-      </div>
-    </div>
+<div>
+  <label>Carrera:</label>
+  <select name="carrera" [(ngModel)]="estudiante.carrera" required #carreraRef="ngModel">
+    <option value="">-- Selecciona una carrera --</option>
+    <option *ngFor="let c of carreras" [value]="c">{{ c }}</option>
+  </select>
+  <div *ngIf="carreraRef.invalid && carreraRef.touched" class="error">
+    <span>La carrera es obligatoria.</span>
+  </div>
+</div>
 
     <div class="botones-acciones">
       <button type="submit" [disabled]="form.invalid">Registrarse</button>
