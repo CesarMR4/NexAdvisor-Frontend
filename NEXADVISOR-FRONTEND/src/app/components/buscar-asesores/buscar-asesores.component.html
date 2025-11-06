@@ -10,23 +10,27 @@
       </select>
     </div>
 
-    <div *ngIf="tipoBusqueda === 'carrera'" style="margin-bottom: 1rem;">
-      <label>Carrera:</label>
-      <select [(ngModel)]="criterio">
-        <option value="" disabled selected>-- Selecciona una carrera --</option>
-        <option *ngFor="let c of carreras" [value]="c">{{ c }}</option>
-      </select>
+    <!-- BUSQUEDA POR CARRERA -->
+    <div *ngIf="tipoBusqueda === 'carrera'" class="busqueda-flex">
+      <div class="busqueda-select">
+        <label>Carrera:</label>
+        <select [(ngModel)]="criterio">
+          <option value="" disabled selected>-- Selecciona una carrera --</option>
+          <option *ngFor="let c of carreras" [value]="c">{{ c }}</option>
+        </select>
+      </div>
+      <button (click)="buscar()" [disabled]="cargando || !criterio">Buscar</button>
     </div>
 
-    <div *ngIf="tipoBusqueda === 'sector'" style="margin-bottom: 1rem;">
-      <label>Sector:</label>
-      <select [(ngModel)]="criterio">
-        <option value="" disabled selected>-- Selecciona un sector --</option>
-        <option *ngFor="let s of sectores" [value]="s">{{ s }}</option>
-      </select>
-    </div>
-
-    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+    <!-- BUSQUEDA POR SECTOR -->
+    <div *ngIf="tipoBusqueda === 'sector'" class="busqueda-flex">
+      <div class="busqueda-select">
+        <label>Sector:</label>
+        <select [(ngModel)]="criterio">
+          <option value="" disabled selected>-- Selecciona un sector --</option>
+          <option *ngFor="let s of sectores" [value]="s">{{ s }}</option>
+        </select>
+      </div>
       <button (click)="buscar()" [disabled]="cargando || !criterio">Buscar</button>
     </div>
 

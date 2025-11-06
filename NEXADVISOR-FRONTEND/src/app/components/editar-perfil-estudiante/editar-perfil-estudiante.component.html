@@ -1,35 +1,78 @@
 <section class="perfil-wrapper">
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-<h2 class="titulo-editar">Editar Perfil</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <h2 class="titulo-editar">Editar Perfil</h2>
+
   <div>
     <label for="nombre">Nombre:</label>
-    <input id="nombre" formControlName="nombre" />
-    <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" class="error-text">
-      El nombre es obligatorio.
+    <input
+      id="nombre"
+      formControlName="nombre"
+      type="text"
+      required
+      pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
+      title="El nombre solo puede contener letras y espacios"
+    />
+    <div *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid" class="error-text">
+      <span *ngIf="form.get('nombre')?.errors?.['required']">El nombre es obligatorio</span>
+      <span *ngIf="form.get('nombre')?.errors?.['pattern']">El nombre no debe contener números ni símbolos</span>
     </div>
   </div>
 
   <div>
     <label for="email">Email:</label>
-    <input id="email" formControlName="email" />
-    <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error-text">
-      Ingresa un email válido.
+    <input
+      id="email"
+      formControlName="email"
+      type="email"
+      required
+      title="Ingresa un correo válido"
+    />
+    <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="error-text">
+      <span *ngIf="form.get('email')?.errors?.['required']">El correo es obligatorio</span>
+      <span *ngIf="form.get('email')?.errors?.['email']">Ingresa un correo válido</span>
     </div>
   </div>
 
   <div>
     <label for="direccion">Dirección:</label>
-    <input id="direccion" formControlName="direccion" />
+    <input
+      id="direccion"
+      formControlName="direccion"
+      type="text"
+      required
+      minlength="5"
+      title="Debe tener al menos 5 caracteres"
+    />
+    <div *ngIf="form.get('direccion')?.touched && form.get('direccion')?.invalid" class="error-text">
+      <span *ngIf="form.get('direccion')?.errors?.['required']">La dirección es obligatoria</span>
+    </div>
   </div>
 
-  <div>
-    <label for="carrera">Carrera:</label>
-    <input id="carrera" formControlName="carrera" />
-  </div>
+    <div>
+      <label for="carrera">Carrera:</label>
+      <select id="carrera" formControlName="carrera" required>
+        <option value="">Selecciona una carrera</option>
+        <option *ngFor="let c of carreras" [value]="c">{{ c }}</option>
+      </select>
+      <div *ngIf="form.get('carrera')?.invalid && form.get('carrera')?.touched" class="error-text">
+        Selecciona una carrera.
+      </div>
+    </div>
 
   <div>
     <label for="telefono">Teléfono:</label>
-    <input id="telefono" formControlName="telefono" />
+    <input
+      id="telefono"
+      formControlName="telefono"
+      type="text"
+      required
+      pattern="^[0-9]{7,12}$"
+      title="Debe contener solo números y tener entre 7 y 12 dígitos válidos"
+    />
+    <div *ngIf="form.get('telefono')?.touched && form.get('telefono')?.invalid" class="error-text">
+      <span *ngIf="form.get('telefono')?.errors?.['required']">El teléfono es obligatorio.</span>
+      <span *ngIf="form.get('telefono')?.errors?.['pattern']">Debe contener solo números de 7 a 12 dígitos</span>
+    </div>
   </div>
 
   <div class="btn-form-container">

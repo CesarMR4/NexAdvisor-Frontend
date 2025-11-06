@@ -1,33 +1,88 @@
 <section class="perfil-wrapper">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
     <h2 class="titulo-editar">Editar perfil</h2>
 
     <div>
       <label for="nombre">Nombre:</label>
-      <input id="nombre" formControlName="nombre" />
-      <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" style="color:red;">
-        El nombre es obligatorio.
+      <input 
+        id="nombre" 
+        formControlName="nombre" 
+        type="text" 
+        required 
+        pattern="^[a-zA-ZÀ-ÿ\\s]+$"
+      />
+      <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" class="error-text">
+        <span *ngIf="form.get('nombre')?.errors?.['required']">El nombre es obligatorio</span>
+        <span *ngIf="form.get('nombre')?.errors?.['pattern']">El nombre no debe contener números ni símbolos.</span>
       </div>
     </div>
 
     <div>
       <label for="email">Email:</label>
-      <input id="email" formControlName="email" />
-      <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" style="color:red;">
-        Ingresa un email válido.
+      <input 
+        id="email" 
+        formControlName="email" 
+        type="email" 
+        required 
+        email 
+        autocomplete="off"
+      />
+      <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error-text">
+        <span *ngIf="form.get('email')?.errors?.['required']">El correo es obligatorio</span>
+        <span *ngIf="form.get('email')?.errors?.['email']">Ingresa un correo válido</span>
       </div>
     </div>
 
     <div>
       <label for="direccion">Dirección:</label>
-      <input id="direccion" formControlName="direccion" />
+      <input 
+        id="direccion" 
+        formControlName="direccion" 
+        type="text" 
+        required
+      />
+      <div *ngIf="form.get('direccion')?.invalid && form.get('direccion')?.touched" class="error-text">
+        <span>La dirección es obligatoria.</span>
+      </div>
     </div>
 
     <div>
       <label for="telefono">Teléfono:</label>
-      <input id="telefono" formControlName="telefono" />
+      <input 
+        id="telefono" 
+        formControlName="telefono" 
+        type="text" 
+        required 
+        pattern="^[0-9]{7,12}$"
+      />
+      <div *ngIf="form.get('telefono')?.invalid && form.get('telefono')?.touched" class="error-text">
+        <span *ngIf="form.get('telefono')?.errors?.['required']">El teléfono es obligatorio.</span>
+        <span *ngIf="form.get('telefono')?.errors?.['pattern']">Debe contener solo números de 7 a 12 dígitos</span>
+      </div>
     </div>
 
+    <div>
+      <label for="carrera">Carrera:</label>
+      <select id="carrera" formControlName="carrera" required>
+        <option value="">-- Selecciona una carrera --</option>
+        <option *ngFor="let c of carreras" [value]="c">{{ c }}</option>
+      </select>
+      <div *ngIf="form.get('carrera')?.invalid && form.get('carrera')?.touched" class="error-text">
+        <span>La carrera es obligatoria.</span>
+      </div>
+    </div>
+<!--
+    <div>
+      <label for="sector">Sector:</label>
+      <select id="sector" formControlName="sector" required>
+        <option value="">-- Selecciona un sector --</option>
+        <option *ngFor="let s of sectores" [value]="s">{{ s }}</option>
+      </select>
+      <div *ngIf="form.get('sector')?.invalid && form.get('sector')?.touched" class="error-text">
+        <span>El sector es obligatorio.</span>
+      </div>
+    </div>
+-->
     <button type="submit" [disabled]="form.invalid || isLoading">
       {{ isLoading ? 'Guardando...' : 'Guardar Cambios' }}
     </button>
@@ -35,8 +90,8 @@
     <button type="button" class="btn-cancelar" (click)="volverPerfilAsesor()">Atrás</button>
   </form>
 
-  <!-- ✅ Mensaje centrado debajo del formulario -->
   <div *ngIf="successMessage" class="mensaje-exito">
     {{ successMessage }}
   </div>
 </section>
+

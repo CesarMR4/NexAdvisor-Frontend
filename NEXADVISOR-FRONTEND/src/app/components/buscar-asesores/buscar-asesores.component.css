@@ -219,3 +219,43 @@ li button:hover {
   background: linear-gradient(135deg, #1565c0, #42a5f5);
   transform: translateY(-3px);
 }
+
+.busqueda-flex {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  margin-bottom: 1rem;
+}
+
+
+.busqueda-select {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.busqueda-flex button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #28a745, #34c759);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+}
+
+.busqueda-flex button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1e7e34, #2fa74e);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(40, 167, 69, 0.45);
+}
+
+.busqueda-flex button:disabled {
+  background-color: #98d9a5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
