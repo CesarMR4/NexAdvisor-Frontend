@@ -234,7 +234,7 @@ ngOnInit(): void {
   if (idEstudiante) {
     this.reservaService.getByEstudiante(idEstudiante).subscribe({
       next: (res) => {
-        console.log('🔹 Reservas recibidas en Angular:', res); // <— mira aquí
+        console.log('🔹 Reservas recibidas en Angular:', res); 
         this.reservas = res;
       },
       error: (err) => console.error('Error al obtener reservas:', err)
@@ -289,7 +289,7 @@ ngOnInit(): void {
         this.resultadoSubida[idReserva] = 'Enviado';
       },
       error: () => {
-        this.resultadoSubida[idReserva] = 'Ya habías enviado tu CV';
+        this.resultadoSubida[idReserva] = 'Error. Archivo grande (<50kb || 200000caract)';
       }
     });
   }

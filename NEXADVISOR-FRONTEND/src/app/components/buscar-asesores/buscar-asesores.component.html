@@ -10,7 +10,6 @@
       </select>
     </div>
 
-    <!-- BUSQUEDA POR CARRERA -->
     <div *ngIf="tipoBusqueda === 'carrera'" class="busqueda-flex">
       <div class="busqueda-select">
         <label>Carrera:</label>
@@ -22,7 +21,7 @@
       <button (click)="buscar()" [disabled]="cargando || !criterio">Buscar</button>
     </div>
 
-    <!-- BUSQUEDA POR SECTOR -->
+
     <div *ngIf="tipoBusqueda === 'sector'" class="busqueda-flex">
       <div class="busqueda-select">
         <label>Sector:</label>
@@ -46,7 +45,7 @@
         <span>{{ asesor.carrera }}</span>
         <span>{{ asesor.sector }}</span>
         <span>{{ asesor.email }}</span>
-        <app-ver-puntuacion [idAsesor]="asesor.id"></app-ver-puntuacion>
+       
 
         <button (click)="verHorarios(asesor.id)">Ver Horarios</button>
       </li>
